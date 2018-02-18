@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Titilium Web", sans-serif;
+  font-weight: bold;
+}
+p{
+  font-family: monospace;
+}
+
+img {
+  max-width: 100%;
+    height: auto;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+body {
+  font-family: 'Titillium Web', sans-serif!important;
+  background-color: gray;
+}
+#headerSection{
+  background-color:#87509c;
+  min-height:600px;
+  color: white;
+}
+#headerSection .navbar a{
+  color: white;
+  font-size: 0.8em;
+}
+#skillsSection{
+  min-height:652px;
+  background-color: white;
+  color: #3c4761;
+}
+#projectsSection {
+  background-color:#ffdd99;
+  color: #514c43;
+  min-width:300px;
+  text-align: center;
+  padding: 20px 20px;
+}
+#projectsSectionContent{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;  
+  grid-gap: 20px;
+  min-height: 420px;
+}
+
+#contactSection {
+  min-height: 650px;
+  background-color: #3c5499;
+  color: white;
+  vertical-align: middle;
+}
+#contactSection h1{
+  padding-top: 40px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+#selectTags{
+  display: grid;
+  grid-template-columns: repeat(6, auto);
+  grid-gap: 5px;
+  padding: 10px 70px;
+}
+.selectTag{
+  padding: 5px 10px;
+  border: 1px solid gray;
+  border-radius: 20px;
+}
+.selectTag:hover{
+  cursor: pointer;
+}
+
+.hiddenClass{
+  animation: hideme 3s, opacity 0.5s linear;
+  opacity: 0;
+}
+
+@keyframes hideme {
+  100%{
+    height: 0;
+    width: 0;
+  }
+}
+.selectedTag{
+  background-color: #514c43;
+  color: white;
+}
+
+.selectedTag{
+  cursor: pointer;
+}
+
+#contactSection input{
+  background-color: rgba(0,0,0,0.4);
+  border: none; 
+  border-radius: 8px;
+}
+#contactSection textarea{
+  background-color: rgba(0,0,0,0.4);
+  border: none; 
+  border-radius: 8px;
+}
+#contactSend{
+  background-color: white;
+  border-radius: 8px;
+  color: black;
+}
+#page{
+  box-shadow: 0 0 5px #000;
+}
+
+#headerText{
+  margin-top: 200px;
+  text-align: center;
+}
+#headerText a {
+  padding: 5px 60px;
+  margin-top: 30px;
+  background-color: #eb7d4b;
+  border: none;
+  color: white;
+}
+#headerNavbar{
+  padding-top: 30px;
+  background-color:rgba(135, 80, 156, 1);
+  box-shadow: 0 0 5px #000;
+  
+}
+.projectItem{
+  border: 1px solid #ffc34c;
+  border-radius: 10px;
+  display: grid;
+  
+}
+
+.footerTag{
+  display: inline-block;
+  min-width: 30px;
+  border: 1px solid #ffc34c;
+  margin-left: 5px;
+  border-radius: 3px;
+  padding: 2px 5px;
+}
+
+.footerTag{
+  cursor: pointer;
+}
+
+.projectFooter{
+  min-height: 50px;
+  padding: 5px 3px;
+}
+@media only screen and (max-width: 766px){
+  p{
+    font-family: monospace;
+  }
+  body{
+    font-family: "Titillium Web", sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+  font-family: "Titilium Web", sans-serif;
+}
+  #myNavbar{
+    width: 100%;
+    background-color: #eb7d4b;
+    
+  }
+  #myNavbar li a{
+    text-align: center;
+    display: block;
+    border-radius: 10px;
+  }
+}
+.navbar-brand{
+  font-size: 2em!important;
+  font-family: monospace;
+  font-weight: bold;
+}
+.active {
+  background-color: rgba(0,0,0,0.3);
+  border-radius: 10px;
+}
+.paddingDiv{
+  padding-top: 50px;
+}
+.form-group label{
+  font-size: 1.1em;
+  font-family: "Titillium Web", sans-serif;
+  color: rgba(255,255,255,0.6);
+}
+
+#myImage{
+  box-shadow: 2px,2px,2px,2px;
+}
+.valign{
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
