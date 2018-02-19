@@ -19,7 +19,14 @@ const defaultState = {
       "url": "https://endzi007.github.io/recipeApp/",
       "picture": "https://preview.ibb.co/i1GAgS/recipe_app.png",
       "tags": ["javascript", "react", "flux", "bootstrap" ]
-    }], 
+    },
+    {
+        "title": "Game of life",
+        "url": "https://github.com/endzi007/game-of-life",
+        "picture": "https://i.ytimg.com/vi/QT_pKNzOOhQ/maxresdefault.jpg",
+        "tags": ["javascript", "react", "flux", "bootstrap", "algorithm" ]
+      }
+], 
     filterTags: []
 }
 

@@ -19,20 +19,23 @@ body {
   font-family: 'Titillium Web', sans-serif!important;
   background-color: gray;
 }
+
 #headerSection{
   background-color:#87509c;
   min-height:600px;
   color: white;
+  .navbar a{
+    color: white;
+    font-size: 0.8em;
+  }
 }
-#headerSection .navbar a{
-  color: white;
-  font-size: 0.8em;
-}
+
 #skillsSection{
   min-height:652px;
   background-color: white;
   color: #3c4761;
 }
+
 #projectsSection {
   background-color:#ffdd99;
   color: #514c43;
@@ -40,6 +43,7 @@ body {
   text-align: center;
   padding: 20px 20px;
 }
+
 #projectsSectionContent{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;  
@@ -52,11 +56,11 @@ body {
   background-color: #3c5499;
   color: white;
   vertical-align: middle;
-}
-#contactSection h1{
-  padding-top: 40px;
-  padding-bottom: 20px;
-  text-align: center;
+  h1{
+    padding-top: 40px;
+    padding-bottom: 20px;
+    text-align: center;
+  }
 }
 #selectTags{
   display: grid;
@@ -64,13 +68,14 @@ body {
   grid-gap: 5px;
   padding: 10px 70px;
 }
+
 .selectTag{
   padding: 5px 10px;
   border: 1px solid gray;
   border-radius: 20px;
-}
-.selectTag:hover{
-  cursor: pointer;
+  &:hover{
+    cursor: pointer;
+  }
 }
 
 .hiddenClass{
@@ -93,15 +98,17 @@ body {
   cursor: pointer;
 }
 
-#contactSection input{
-  background-color: rgba(0,0,0,0.4);
-  border: none; 
-  border-radius: 8px;
-}
-#contactSection textarea{
-  background-color: rgba(0,0,0,0.4);
-  border: none; 
-  border-radius: 8px;
+#contactSection{ 
+  input{
+    background-color: rgba(0,0,0,0.4);
+    border: none; 
+    border-radius: 8px;
+  }
+  textarea{
+    background-color: rgba(0,0,0,0.4);
+    border: none; 
+    border-radius: 8px;
+  }
 }
 #contactSend{
   background-color: white;
@@ -115,13 +122,13 @@ body {
 #headerText{
   margin-top: 200px;
   text-align: center;
-}
-#headerText a {
-  padding: 5px 60px;
-  margin-top: 30px;
-  background-color: #eb7d4b;
-  border: none;
-  color: white;
+  a {
+    padding: 5px 60px;
+    margin-top: 30px;
+    background-color: #eb7d4b;
+    border: none;
+    color: white;
+  }
 }
 #headerNavbar{
   padding-top: 30px;
@@ -135,7 +142,6 @@ body {
   display: grid;
   
 }
-
 .footerTag{
   display: inline-block;
   min-width: 30px;
@@ -143,10 +149,9 @@ body {
   margin-left: 5px;
   border-radius: 3px;
   padding: 2px 5px;
-}
-
-.footerTag{
-  cursor: pointer;
+  &:hover{
+    cursor: pointer; 
+  }
 }
 
 .projectFooter{
