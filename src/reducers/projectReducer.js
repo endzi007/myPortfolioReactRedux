@@ -1,8 +1,13 @@
+
 export const filterReducer = (state = [], action) => {
     let newState = [...state];
     switch (action.type) {
         case "FILTER_PROJECTS": 
-        newState.push(action.payload);
+        if(newState.indexOf(action.payload)===-1){
+            newState.push(action.payload);
+        } else {
+            newState.splice(newState.indexOf(action.payload), 1);
+        }
         break;
         default: 
         break;

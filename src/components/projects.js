@@ -2,34 +2,61 @@ import React, { Component } from "react";
 import { Row, Col } from 'react-bootstrap';
 import Project from './project';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actions from '../actions/projectActions';
 import ProjectSectionTags from './projectSectionTags';
 
 const mapStateToProps = (store) =>{
-    console.log(store, "store");
     return{
-        projects: store.projects
+        projects: store.projects,
+        filterTags: store.filterTags
     }
 }
 
+const mapDispatchToProps = (dispatch) =>{
+    return bindActionCreators(actions, dispatch)
+}
+
 class Projects extends Component {
-    render(){
-        var tags = [];
-        var arrayToRender = this.props.projects.map((project)=>{
-            project.tags.forEach(element => {
-                if(tags.indexOf(element) === -1){
-                    tags.push(element);
+    constructor(){
+        super();
+        this.state = {
+            projects: [],
+            tags: [], 
+            filterTags: []
+        }
+    }
+
+    getAllTags(){
+        var tags = []; 
+        this.props.projects.map((project)=>{
+            project.tags.map((tag)=>{
+                if(tags.indexOf(tag)===-1){
+                    tags.push(tag);
                 }
             });
-            return <Project title={project.title} url={project.picture}/>
+        });
+        return tags;
+    }
+    componentWillMount(){
+        var fetchProjects = this.props.projects;
+        var fetchTags = this.getAllTags();
+        var filterTagsArr = this.props.filterTags;
+        this.setState({projects: fetchProjects, tags: fetchTags, filterTags: filterTagsArr});
+    }
+    render(){
+        var projectsToRender = this.state.projects.map((project, i)=>{
+            return <Project key={"project"+i} title={project.title} url={project.picture}  />
         })
+
         return(
             <Row>
                 <Col id="projectsSection" xs={12}>
                     <h1>MY PORTFOLIO</h1>
-                    <ProjectSectionTags tags = {tags}/>
+                    <ProjectSectionTags filterProjects={this.props.filterProjects} tags = {this.state.tags} />
                     <div id="selectTags"></div>
                     <div id="projectsSectionContent">
-                    {arrayToRender}
+                    {projectsToRender}
                     </div>
                 </Col>
             </Row>
@@ -39,4 +66,4 @@ class Projects extends Component {
 
 
 
-export default connect(mapStateToProps)(Projects);
+export default connect(mapStateToProps, mapDispatchToProps)(Projects);
