@@ -18,15 +18,6 @@ const mapDispatchToProps = (dispatch) =>{
 }
 
 class Projects extends Component {
-    constructor(){
-        super();
-        this.state = {
-            projects: [],
-            tags: [], 
-            filterTags: []
-        }
-    }
-
     getAllTags(){
         var tags = []; 
         this.props.projects.map((project)=>{
@@ -38,22 +29,30 @@ class Projects extends Component {
         });
         return tags;
     }
-    componentWillMount(){
-        var fetchProjects = this.props.projects;
-        var fetchTags = this.getAllTags();
-        var filterTagsArr = this.props.filterTags;
-        this.setState({projects: fetchProjects, tags: fetchTags, filterTags: filterTagsArr});
-    }
     render(){
-        var projectsToRender = this.state.projects.map((project, i)=>{
-            return <Project key={"project"+i} title={project.title} url={project.picture}  />
-        })
+        console.log(this.props);
+        var tags = this.getAllTags();
+        var projectsToRender = this.props.projects.map((project, i)=>{
+            if(this.props.filterTags.length === 0){
+                return <Project key={"project"+i} title={project.title} url={project.picture}  />;
+            }
 
+            var counter = 0;
+            project.tags.map((tag)=>{
+                if(this.props.filterTags.indexOf(tag)!==-1){
+                    counter++;
+                }
+            });
+            if(counter === this.props.filterTags.length){
+                return <Project key={"project"+i} title={project.title} url={project.picture}  />
+            }
+            
+        });
         return(
             <Row>
                 <Col id="projectsSection" xs={12}>
                     <h1>MY PORTFOLIO</h1>
-                    <ProjectSectionTags filterProjects={this.props.filterProjects} tags = {this.state.tags} />
+                    <ProjectSectionTags filterProjects={this.props.filterProjects} tags = {tags} />
                     <div id="selectTags"></div>
                     <div id="projectsSectionContent">
                     {projectsToRender}

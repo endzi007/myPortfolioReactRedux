@@ -2,7 +2,7 @@
 export const filterReducer = (state = [], action) => {
     let newState = [...state];
     switch (action.type) {
-        case "FILTER_PROJECTS": 
+        case "FILTER_PROJECTS":
         if(newState.indexOf(action.payload)===-1){
             newState.push(action.payload);
         } else {

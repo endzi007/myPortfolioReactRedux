@@ -3,7 +3,6 @@ import { Row, Col } from 'react-bootstrap';
 
 class Project extends Component {
     render(){
-        console.log("propps",this.props.propss)
         return(
             <div>
                 <h3>{this.props.title}</h3>
