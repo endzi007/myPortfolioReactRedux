@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../actions/projectActions';
 import ProjectSectionTags from './projectSectionTags';
+import FlipMove from 'react-flip-move';
 
 const mapStateToProps = (store) =>{
     return{
@@ -16,6 +17,7 @@ const mapStateToProps = (store) =>{
 const mapDispatchToProps = (dispatch) =>{
     return bindActionCreators(actions, dispatch)
 }
+
 
 class Projects extends Component {
     getAllTags(){
@@ -30,11 +32,10 @@ class Projects extends Component {
         return tags;
     }
     render(){
-        console.log(this.props);
         var tags = this.getAllTags();
         var projectsToRender = this.props.projects.map((project, i)=>{
             if(this.props.filterTags.length === 0){
-                return <Project key={"project"+i} title={project.title} url={project.picture}  />;
+                return <Project key={"project"+i} title={project.title} url={project.picture} />;
             }
 
             var counter = 0;
@@ -44,7 +45,7 @@ class Projects extends Component {
                 }
             });
             if(counter === this.props.filterTags.length){
-                return <Project key={"project"+i} title={project.title} url={project.picture}  />
+                return <Project itemHeight={200} key={"project"+i} title={project.title} url={project.picture}  />
             }
             
         });
@@ -54,9 +55,9 @@ class Projects extends Component {
                     <h1>MY PORTFOLIO</h1>
                     <ProjectSectionTags filterProjects={this.props.filterProjects} tags = {tags} />
                     <div id="selectTags"></div>
-                    <div id="projectsSectionContent">
-                    {projectsToRender}
-                    </div>
+                    <FlipMove id="projectsSectionContent" duration={500} easing="ease-out">
+                        {projectsToRender}
+                    </FlipMove>
                 </Col>
             </Row>
         );
