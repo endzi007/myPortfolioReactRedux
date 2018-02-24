@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Row } from 'react-bootstrap';
+import { Navbar } from 'react-bootstrap';
 
 class Footer extends Component {
     render(){
         return(
-        <div>
+        <Navbar fixedBottom>
             <p><span></span>Made by Enis<span></span></p>
-        </div>
+        </Navbar>
         );
     }
 }

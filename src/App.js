@@ -14,7 +14,7 @@ class App extends Component {
     return (
       <Router>
         <Route path="/">
-          <HomePage>
+          <HomePage onWheel = {(e)=>{console.log(e)}}>
             <Route exact path="/" component={HomeText} />
             <Route path="/skills" component={Skills}/>
             <Route path="/projects" component={Projects}/>
