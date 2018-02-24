@@ -50,16 +50,14 @@ class Projects extends Component {
             
         });
         return(
-            <Row>
-                <Col id="projectsSection" xs={12}>
-                    <h1>MY PORTFOLIO</h1>
-                    <ProjectSectionTags filterProjects={this.props.filterProjects} tags = {tags} />
-                    <div id="selectTags"></div>
-                    <FlipMove id="projectsSectionContent" duration={500} easing="ease-out">
-                        {projectsToRender}
-                    </FlipMove>
-                </Col>
-            </Row>
+            <Col id="projectsSection"  className="pageSection" xs={12}>
+                <h1>MY PORTFOLIO</h1>
+                <ProjectSectionTags filterTags = {this.props.filterTags} filterProjects={this.props.filterProjects} tags = {tags} />
+                <div id="selectTags"></div>
+                <FlipMove id="projectsSectionContent" duration={500} easing="ease-out">
+                    {projectsToRender}
+                </FlipMove>
+            </Col>
         );
     }
 }

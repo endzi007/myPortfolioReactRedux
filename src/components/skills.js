@@ -3,8 +3,7 @@ import { Row, Col, Media} from 'react-bootstrap';
 class Skills extends Component {
     render(){
         return(
-        <Row>
-            <Col xs={12} id="skillsSection">
+            <Col xs={12} className="pageSection" id="skillsSection">
               <Col xs={8} xsOffset={2} className="text-center paddingDiv">
                 <h2 className="paddingDiv">MY SKILLS</h2>
                 <p className="paddingDiv">I'm excited to learn web development  in the first place JavaScript on front and backend. Also I'm gonna learn React, Express and Mongo because my goal is to be full stack Web Develper. </p>
@@ -21,7 +20,6 @@ class Skills extends Component {
                 </Col>
               </Col>
             </Col>
-        </Row>
         );
     }
 }

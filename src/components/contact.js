@@ -34,8 +34,7 @@ class Contact extends Component {
     }
     render(){
         return(
-            <Row>
-                <Col id="contactSection" xs={12}  className="paddingDiv">
+                <Col id="contactSection" xs={12}  className="paddingDiv pageSection">
                 <h1>Contact me</h1>
                     <Col xs={6}  className="align">
                         <Form onSubmit={this.onFormSubmit}>
@@ -77,7 +76,6 @@ class Contact extends Component {
                         <img id="myImage" src="https://res.cloudinary.com/endzi007/image/upload/a_-90/v1482495024/20160721_190321_cx1ndb.jpg" alt="Author Enis Jasarovic" className="img img-responsive img-thumbnail" />
                     </Col>
                 </Col>
-            </Row>
         );
     }
 }

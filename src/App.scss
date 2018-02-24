@@ -49,8 +49,17 @@ body {
   grid-template-columns: 1fr 1fr 1fr 1fr;  
   grid-gap: 20px;
   min-height: 420px;
+  img {
+    border: 2px dotted lightgoldenrodyellow;
+    border-radius: 50% 50%;
+    display: block;
+    height: auto;
+    width: 100%;
+  }
 }
-
+.pageSection{
+  height: 90vh!important;
+}
 #contactSection {
   min-height: 650px;
   background-color: #3c5499;
@@ -115,10 +124,10 @@ body {
   border-radius: 8px;
   color: black;
 }
-#page{
-  box-shadow: 0 0 5px #000;
+#page {
+  max-width: 100vw;
+  max-height: 100vh;
 }
-
 #headerText{
   margin-top: 200px;
   text-align: center;
@@ -132,7 +141,6 @@ body {
 }
 #headerNavbar{
   padding-top: 30px;
-  background-color:rgba(135, 80, 156, 1);
   box-shadow: 0 0 5px #000;
   
 }
