@@ -1,5 +1,5 @@
 import { createStore, combineReducers } from 'redux';
-import { projectReducer, filterReducer } from '../reducers/projectReducer';
+import { projectReducer, filterReducer, pageTransition } from '../reducers/projectReducer';
 
 const defaultState = {
     projects: [{
@@ -27,12 +27,14 @@ const defaultState = {
         "tags": ["javascript", "react", "flux", "bootstrap", "algorithm" ]
       }
 ], 
-    filterTags: []
+    filterTags: [],
+    pageTransition: false
 }
 
 const reducers = combineReducers({
     filterTags: filterReducer,
-    projects: projectReducer
+    projects: projectReducer,
+    pageTransition: pageTransition
 });
 const store = createStore(reducers, defaultState);
 

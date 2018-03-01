@@ -26,3 +26,15 @@ export const projectReducer = (state = [], action) => {
     }
     return newState; 
 }
+
+
+export const pageTransition = (state = false, action) =>{
+    switch (action.type){
+        case "PAGE_TRANSITION":
+            state = action.payload; 
+            break;
+        default:
+            break;
+    }
+    return state;
+}

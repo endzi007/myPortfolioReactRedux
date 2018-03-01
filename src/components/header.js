@@ -1,8 +1,21 @@
 import React, { Component } from "react";
-import { Grid, Row, Col, Nav, Navbar, NavItem, MenuItem, NavDropdown } from 'react-bootstrap';
+import PropTypes from 'prop-types';
+import { Grid, Row, Col, Nav, Navbar, NavItem, MenuItem, NavDropdown, Button } from 'react-bootstrap';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+import * as actions from '../actions/projectActions'
 
 class Header extends Component {
+    static contextTypes = {
+        router: PropTypes.object
+    }
+
+    handleClick(e){
+        var link = e.target.attributes.link.value;
+        this.props.pageTransition(true)
+        this.context.router.history.push(link);
+    }
     render(){
         return(
         <Navbar id="headerNavbar" fixedTop>
@@ -14,15 +27,9 @@ class Header extends Component {
             </Navbar.Header>
             <Navbar.Collapse>
                 <Nav>
-                    <NavItem>
-                    <Link to="Skills">Skills</Link>
-                    </NavItem>
-                    <NavItem>
-                    <Link to="Projects">Projects</Link>
-                    </NavItem>
-                    <NavItem>
-                    <Link to="Contact">Contact</Link>
-                    </NavItem>
+                    <li><Link to="Skills">Skills</Link></li>
+                    <li><Link to="Projects">Projects</Link></li>
+                    <li><Link to="Contact">Contact</Link></li>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
@@ -30,4 +37,8 @@ class Header extends Component {
     }
 }
 
-export default Header;
+function mapDispatchToProps (dispatch){
+    return bindActionCreators(actions, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(Header);

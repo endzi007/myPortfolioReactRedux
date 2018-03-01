@@ -34,7 +34,7 @@ class Contact extends Component {
     }
     render(){
         return(
-                <Col id="contactSection" xs={12}  className="paddingDiv pageSection">
+                <Col id="contactSection" xs={12}  className="paddingDiv pageSection bounceInLeft">
                 <h1>Contact me</h1>
                     <Col xs={6}  className="align">
                         <Form onSubmit={this.onFormSubmit}>
@@ -73,7 +73,7 @@ class Contact extends Component {
                         </Form>
                     </Col>
                     <Col xs={4} xsOffset={1} className="align">
-                        <img id="myImage" src="https://res.cloudinary.com/endzi007/image/upload/a_-90/v1482495024/20160721_190321_cx1ndb.jpg" alt="Author Enis Jasarovic" className="img img-responsive img-thumbnail" />
+                        <img id="myImage" src="http://localhost:3000/src/assets/images/enis-jasarovic.jpg" alt="Author Enis Jasarovic" className="img img-responsive img-thumbnail" />
                     </Col>
                 </Col>
         );

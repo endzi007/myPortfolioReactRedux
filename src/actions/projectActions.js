@@ -4,3 +4,10 @@ export const filterProjects = (tag) => {
         payload: tag
     }
 }
+
+export const pageTransition = (startStop) => {
+    return {
+        type: "PAGE_TRANSITION",
+        payload: startStop
+    }
+}
