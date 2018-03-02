@@ -3,8 +3,8 @@ import Header from './components/header';
 import Contact from './components/contact';
 import Skills from './components/skills';
 import Projects from './components/projects';
-import HomePage from './components/homePage';
 import HomeText from './components/homeText';
+import Footer from './components/footer';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import animateComponent from './components/HOC/animateComponent';
@@ -19,24 +19,29 @@ class App extends Component {
     return (
       <Router>
         <Route path="/" render={({ location }) =>{
-          console.log(location)
           return(
             <div>
             <Header />
             <TransitionGroup>
               <CSSTransition
                 key={location.key}
-                timeout = {300}
-                classNames = "fade"
+                timeout = {1000}
+                classNames = {{
+                  enter: "animated",
+                  enterActive: "flipInX",
+                  exit: "animated",
+                  exitActive: "flipOutX"
+                }}
               >
                 <Switch location = {location}>
-                  <Route exact path="/" component={homeTextAnim} />
-                  <Route path="/skills" component={skillsAnim}/>
-                  <Route path="/projects" component={projectsAnim}/>
+                  <Route exact path="/" component={HomeText} />
+                  <Route path="/skills" component={Skills}/>
+                  <Route path="/projects" component={Projects}/>
                   <Route path="/contact" component={Contact}/>
                 </Switch>
               </CSSTransition>
             </TransitionGroup>
+            <Footer />
           </div>
           );
         }} />

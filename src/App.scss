@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Titillium+Web');
-
+//@import '../node_modules/animate.css/animate.css';
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Titilium Web", sans-serif;
@@ -45,30 +45,6 @@ body {
   padding: 20px 20px;
 }
 
-/*css transition groups*/
-
-.fade-enter {
-  opacity: 0;
-  left: -1000;  
-}
-
-.fade-enter.fade-enter-active {
-  opacity: 1;
-  left: 0;
-  transition: all 600ms;
-}
-
-.fade-leave {
-  opacity: 1;
-}
-
-.fade-leave.fade-leave-active {
-  opacity: 0;
-  transition: all 600ms;
-}
-
-
-/*---------------------*/
 #projectsSectionContent{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;  
@@ -84,7 +60,9 @@ body {
 }
 .pageSection{
   height: 90vh!important;
+  overflow: hidden;
 }
+
 #contactSection {
   min-height: 650px;
   background-color: #3c5499;

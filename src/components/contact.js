@@ -29,12 +29,11 @@ class Contact extends Component {
         }
     }
     onFormSubmit(e){
-        console.log(this.state);
         e.preventDefault();
     }
     render(){
         return(
-                <Col id="contactSection" xs={12}  className="paddingDiv pageSection bounceInLeft">
+                <Col id="contactSection" xs={12}  className="paddingDiv pageSection">
                 <h1>Contact me</h1>
                     <Col xs={6}  className="align">
                         <Form onSubmit={this.onFormSubmit}>
