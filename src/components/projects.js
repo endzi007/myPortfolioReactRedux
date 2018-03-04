@@ -35,7 +35,7 @@ class Projects extends Component {
         var tags = this.getAllTags();
         var projectsToRender = this.props.projects.map((project, i)=>{
             if(this.props.filterTags.length === 0){
-                return <Project key={"project"+i} title={project.title} url={project.picture} className="projectItem" />;
+                return <Project key={"project"+i} className="projectItem" {...project} />;
             }
 
             var counter = 0;
@@ -45,7 +45,7 @@ class Projects extends Component {
                 }
             });
             if(counter === this.props.filterTags.length){
-                return <Project itemHeight={200} key={"project"+i} title={project.title} url={project.picture} className="projectItem" />
+                return <Project itemHeight={200} key={"project"+i} {...project} className="projectItem" />
             }
             
         });

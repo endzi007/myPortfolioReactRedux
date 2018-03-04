@@ -1,24 +1,28 @@
 import React, { Component } from "react";
 import { Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import _ from 'lodash';
 
 const HoverProject = ({
-    opacity
+    opacity,
+    tags, 
+    title,
+    id,
+    url
 }) => {
+    console.log(url);
+    var tagsLi = _.map(tags, (tag)=>{
+        return <li>{tag}</li>
+    });
     return(
         <div className="projectHover" style={{
             opacity: opacity
         }}>
-            <h3>Project name</h3>
+            <h3>{title}</h3>
             <ul>
-                <li>tagName</li>
-                <li>tagName</li>
-                <li>tagName</li>
-                <li>tagName</li>
-                <li>tagName</li>
-                <li>tagName</li>
-                <li>tagName</li>
+                {tagsLi}
             </ul>
-            <div className="btn btn-success btn-block">View project</div>
+            <div className="btn btn-success btn-block"><Link to={`/projects/${id}`}>View project</Link></div>
         </div>
     );
 }
@@ -41,8 +45,13 @@ class Project extends Component {
                     });
                 }}
             >
-                <HoverProject opacity={this.state.opacity}/>
-                <img src={this.props.url} />
+                <HoverProject opacity={this.state.opacity}
+                tags={this.props.tags} 
+                title={this.props.title}
+                id={this.props.id}
+                url={this.props.url}
+                />
+                <img src={this.props.picture} />
             </div>
         );
     }

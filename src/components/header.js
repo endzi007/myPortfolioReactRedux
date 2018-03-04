@@ -27,9 +27,9 @@ class Header extends Component {
             </Navbar.Header>
             <Navbar.Collapse>
                 <Nav>
-                    <li><Link to="Skills">Skills</Link></li>
-                    <li><Link to="Projects">Projects</Link></li>
-                    <li><Link to="Contact">Contact</Link></li>
+                    <li><Link to="/Skills">Skills</Link></li>
+                    <li><Link to="/Projects">Projects</Link></li>
+                    <li><Link to="/Contact">Contact</Link></li>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

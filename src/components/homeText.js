@@ -15,7 +15,6 @@ export default class HomeText extends Component{
                         </h3>
                         <h4> I'm passionate about programming. You can check some of my current projects in the projects section.</h4>
                         <h4> I'm married and father of two kids. Currently I'm living in Montenegro. </h4>
-
                     </Typist>
                     <Link to="/contact" className="btn btn-default">Contact</Link>
                 </Jumbotron>
