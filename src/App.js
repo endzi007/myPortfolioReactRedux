@@ -14,38 +14,53 @@ const homeTextAnim = animateComponent(HomeText);
 const projectsAnim = animateComponent(Projects);
 const skillsAnim = animateComponent(Skills);
 
+const generalStyles = {
+  header: 0,
+  content: 0,
+  footer: 0
+
+};
+
 class App extends Component {
+  componentWillMount(){
+    generalStyles.header = 40;
+    generalStyles.footer = 20;
+    generalStyles.content = window.innerHeight-40-20;
+  }
   render() {
     return (
       <Router>
+        <div>
+        <Header style={generalStyles.header} />
         <Route path="/" render={({ location }) =>{
           return(
             <div>
-            <Header />
-            <TransitionGroup>
-              <CSSTransition
-                key={location.key}
-                timeout = {1000}
-                classNames = {{
-                  enter: "animated",
-                  enterActive: "flipInX",
-                  exit: "animated",
-                  exitActive: "flipOutX"
-                }}
-              >
-                <Switch location = {location}>
-                  <Route exact path="/" component={HomeText} />
-                  <Route path="/skills" component={Skills}/>
-                  <Route path="/projects" component={Projects}/>
-                  <Route path="/contact" component={Contact}/>
-                </Switch>
-              </CSSTransition>
-            </TransitionGroup>
-            <Footer />
+              <TransitionGroup>
+                <CSSTransition
+                  key={location.key}
+                  timeout = {500}
+                  classNames = {{
+                    enter: "animated",
+                    enterActive: "flipInX",
+                    exit: "animated",
+                    exitActive: "fadeOut"
+                  }}
+                  appear = {true}
+                >
+                  <Switch location = {location}>
+                    <Route exact path="/" component={HomeText} />
+                    <Route path="/skills" component={Skills}/>
+                    <Route path="/projects" component={Projects}/>
+                    <Route path="/contact" component={Contact}/>
+                  </Switch>
+                </CSSTransition>
+              </TransitionGroup>
+              
           </div>
           );
         }} />
-
+        <Footer style ={generalStyles.footer}/>
+        </div>
         </Router>
 
     );

@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Titillium+Web');
 //@import '../node_modules/animate.css/animate.css';
-
+html { 
+    margin-left: calc(100vw - 100%); 
+    overflow-y: scroll;
+  } 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Titilium Web", sans-serif;
   font-weight: bold;
@@ -11,9 +14,9 @@ p{
 
 img {
   max-width: 100%;
-    height: auto;
-    display: inline-block;
-    vertical-align: middle;
+  height: auto;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 body {
@@ -38,7 +41,7 @@ body {
 }
 
 #projectsSection {
-  background-color:#ffdd99;
+  background-color:#fff;
   color: #514c43;
   min-width:300px;
   text-align: center;
@@ -47,20 +50,59 @@ body {
 
 #projectsSectionContent{
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;  
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 20px;
-  min-height: 420px;
   img {
     border: 2px dotted lightgoldenrodyellow;
-    border-radius: 50% 50%;
-    display: block;
-    height: auto;
     width: 100%;
+  }
+  .projectItem{
+    border: 1px solid #ffc34c;
+    height: auto;
+    overflow: hidden;
+    position: relative;
+    .projectHover{
+      color: white;
+      position: absolute;
+      padding: 4px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #3c444b;
+      transition: all 500ms;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+
+      button{
+        flex-grow: 1;
+        border-radius: 5px;
+        align-self: flex-end;
+      }
+
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+        text-decoration: none;
+        justify-content: center;
+        list-style-type: none;
+        padding: 0;
+
+        li{
+          padding: 2px;
+          border: 1px solid gray;
+          border-radius: 2px;
+          margin: 4px;
+        }
+
+      }
+
+    }
   }
 }
 .pageSection{
   height: 90vh!important;
-  overflow: hidden;
 }
 
 #contactSection {
@@ -147,12 +189,7 @@ body {
   box-shadow: 0 0 5px #000;
   
 }
-.projectItem{
-  border: 1px solid #ffc34c;
-  border-radius: 10px;
-  display: grid;
-  
-}
+
 .footerTag{
   display: inline-block;
   min-width: 30px;
