@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 import { Button } from "react-bootstrap";
 
 const LargeProject = ({ match, projects })=>{
-    var project = projects[match.params.projectId];
+    
+    //not correct navigation
+    //var project = projects[match.params.projectId];
 
     return (
     <div className="largeProject"> 
