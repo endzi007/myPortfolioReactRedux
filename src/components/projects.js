@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { Row, Col } from 'react-bootstrap';
-import Project from './project';
+import Project from './project/project';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../actions/projectActions';
 import ProjectSectionTags from './projectSectionTags';
 import FlipMove from 'react-flip-move';
+import fetch from "isomorphic-fetch";
 
 const mapStateToProps = (store) =>{
     return{
@@ -20,6 +21,11 @@ const mapDispatchToProps = (dispatch) =>{
 
 
 class Projects extends Component {
+    componentDidMount(){
+        fetch("http://localhost/portfolioBackend/wp-json/wp/v2/project").then((response)=>{
+            console.log(response.json());
+        });
+    }
     getAllTags(){
         var tags = []; 
         this.props.projects.map((project)=>{

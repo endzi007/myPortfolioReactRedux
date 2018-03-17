@@ -5,7 +5,6 @@ import Skills from './components/skills';
 import Projects from './components/projects';
 import HomeText from './components/homeText';
 import Footer from './components/footer';
-import LargeProject from './components/largeProject';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import animateComponent from './components/HOC/animateComponent';
@@ -53,7 +52,6 @@ class App extends Component {
                     <Route path="/skills" component={Skills}/>
                     <Route exact path="/projects" component={Projects}/>
                     <Route path="/contact" component={Contact}/>
-                    <Route path="/projects/:projectId" component ={LargeProject} />
                   </Switch>
                 </CSSTransition>
               </TransitionGroup>
