@@ -18,7 +18,6 @@ const generalStyles = {
   header: 0,
   content: 0,
   footer: 0
-
 };
 
 class App extends Component {

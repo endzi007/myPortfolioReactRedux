@@ -1,27 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display|Raleway');
+
+@import './assets/css/font-awesome.css';
 //@import '../node_modules/animate.css/animate.css';
 html { 
     margin-left: calc(100vw - 100%); 
     overflow-y: scroll;
   } 
-h1, h2, h3, h4, h5, h6 {
-  font-family: "Titilium Web", sans-serif;
-  font-weight: bold;
-}
-p{
-  font-family: monospace;
-}
 
 img {
   max-width: 100%;
   height: auto;
   display: inline-block;
   vertical-align: middle;
-}
-
-body {
-  font-family: 'Titillium Web', sans-serif!important;
-  background-color: gray;
 }
 
 #headerSection{
