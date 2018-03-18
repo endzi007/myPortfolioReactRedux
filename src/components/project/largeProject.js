@@ -13,8 +13,13 @@ const footerButton = style({
 const modalBody = style({
     display: "grid",
     gridTemplateColumns: "3fr 2fr",
-    gridGap: "30px",
-});
+    gridGap: "30px"
+},
+    media({maxWidth: 768}, {
+        display: "grid",
+        gridTemplateColumns: "1fr"
+    })
+);
 
 const modalContainer = style({
     fontFamily: "Playfair Display!important",
@@ -31,6 +36,16 @@ const modalTagContainer = style({
 
 });
 
+
+const modalSize = style(
+    media({minWidth: 768},{
+        minWidth: "70vw",
+    }),
+    media({maxWidth: 768},{
+        minWidth: "90vw",
+    })
+);
+
 const LargeProject = ({
     tags, 
     title,
@@ -41,7 +56,8 @@ const LargeProject = ({
     toggleModalShow
 })=>{
     return (
-        <Modal bsSize = "large" show={show} onHide={toggleModalShow}>
+        //dialogClassName used for custom modal sizing 
+        <Modal dialogClassName={modalSize} show={show} onHide={toggleModalShow}>
             <Modal.Header> {title} </Modal.Header>
                 <Modal.Body>
                     <div className={modalContainer}>
