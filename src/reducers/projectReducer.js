@@ -28,13 +28,17 @@ export const projectReducer = (state = [], action) => {
 }
 
 
-export const pageTransition = (state = false, action) =>{
+export const appConfigReducer = (state = {
+    pageTransition: false,
+    transitionDuration: 0.7
+}, action) =>{
+    let newState = {...state};
     switch (action.type){
-        case "PAGE_TRANSITION":
-            state = action.payload; 
+        case "START_PAGE_TRANSITION":
+            newState.pageTransition = action.payload; 
             break;
         default:
             break;
     }
-    return state;
+    return newState;
 }

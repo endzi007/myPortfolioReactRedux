@@ -1,5 +1,5 @@
 import { createStore, combineReducers } from 'redux';
-import { projectReducer, filterReducer, pageTransition } from '../reducers/projectReducer';
+import { projectReducer, filterReducer, appConfigReducer } from '../reducers/projectReducer';
 
 const defaultState = {
     projects: [{
@@ -32,13 +32,16 @@ const defaultState = {
       }
 ], 
     filterTags: [],
-    pageTransition: false
+    appConfig: {
+        pageTransition: false, //when true start page fade out animation 
+        transitionDuration: 700 //miliseconds
+    }
 }
-
+window.state = defaultState;
 const reducers = combineReducers({
     filterTags: filterReducer,
     projects: projectReducer,
-    pageTransition: pageTransition
+    appConfig: appConfigReducer
 });
 const store = createStore(reducers, defaultState);
 

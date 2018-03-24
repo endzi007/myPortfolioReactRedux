@@ -6,7 +6,7 @@ import Typist from 'react-typist';
 export default class HomeText extends Component{
     render(){
         return(
-            <div id="headerText" className="pageSection col-xs 12">
+            <div id="headerText"   className={`pageSection col-xs-12 ${this.props.className}`} >
                 <Jumbotron>
                     <Typist avgTypingDelay={40} cursor={{show: false, blink: false, element: "/", hideWhenDone: true, hideWhenDoneDelay: 1000}}>
                         <h3>Hi there! My name is Enis Jasarovic and I am front-end web developer. Technologies I'm working with  PHP-C++

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from 'prop-types';
 import { Grid, Row, Col, Nav, Navbar, NavItem, MenuItem, NavDropdown, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import * as actions from '../actions/projectActions'
 
@@ -11,34 +11,45 @@ class Header extends Component {
         router: PropTypes.object
     }
 
-    handleClick(e){
-        var link = e.target.attributes.link.value;
-        this.props.pageTransition(true)
-        this.context.router.history.push(link);
+    handleClick(path){
+        if (this.props.history.location.pathname === path){
+            return;
+        }
+
+        this.props.startPageTransition(true);
+
+        setTimeout(()=>{
+            this.props.startPageTransition(false);
+            this.props.history.push(path)
+        }, this.props.appConfig.transitionDuration);
     }
     render(){
         return(
         <Navbar id="headerNavbar" fixedTop>
             <Navbar.Header>
                 <Navbar.Brand>
-                <Link to="/"> Endzi </Link>
+                <button className="btn btn-link" onClick={this.handleClick.bind(this, "/")}> Endzi </button>
                 </Navbar.Brand>
             <Navbar.Toggle />
             </Navbar.Header>
             <Navbar.Collapse>
                 <Nav>
-                    <li><Link to="/Skills">Skills</Link></li>
-                    <li><Link to="/Projects">Projects</Link></li>
-                    <li><Link to="/Contact">Contact</Link></li>
+                    <li><button onClick={this.handleClick.bind(this, "/Skills")}className="btn btn-link">Skills</button></li>
+                    <li><button onClick={this.handleClick.bind(this, "/Projects")}className="btn btn-link">Projects</button></li>
+                    <li><button onClick={this.handleClick.bind(this, "/Contact")}className="btn btn-link" >Contact</button></li>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
         );
     }
 }
-
+function mapStateToProps (state){
+    return {
+        appConfig: state.appConfig
+    }
+}
 function mapDispatchToProps (dispatch){
     return bindActionCreators(actions, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Header));

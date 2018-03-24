@@ -33,7 +33,7 @@ class Contact extends Component {
     }
     render(){
         return(
-                <Col id="contactSection" xs={12}  className="paddingDiv pageSection">
+                <Col id="contactSection" xs={12}  className={`paddingDiv pageSection ${this.props.className}`}>
                 <h1>Contact me</h1>
                     <Col xs={6}  className="align">
                         <Form onSubmit={this.onFormSubmit}>

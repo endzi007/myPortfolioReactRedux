@@ -56,7 +56,7 @@ class Projects extends Component {
             
         });
         return(
-            <Col id="projectsSection"  className={"pageSection "+this.props.class} xs={12}>
+            <Col id="projectsSection"  className={`pageSection ${this.props.className}`} xs={12}>
                 <h1>MY PORTFOLIO</h1>
                 <ProjectSectionTags filterTags = {this.props.filterTags} filterProjects={this.props.filterProjects} tags = {tags} />
                 <div id="selectTags"></div>
