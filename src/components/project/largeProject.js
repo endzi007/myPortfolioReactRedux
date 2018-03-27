@@ -1,9 +1,7 @@
-import React, { Component } from 'react';
-import { Match } from 'react-router-dom';
+import React from 'react';
 import { connect } from 'react-redux';
-import { Button, Modal, ButtonGroup } from "react-bootstrap";
-import { style, media, cssRaw } from 'typestyle';
-import { width } from 'window-size';
+import { Modal } from "react-bootstrap";
+import { style, media } from 'typestyle';
 
 const footerButton = style({
     borderRadius: "6px",
@@ -96,4 +94,6 @@ function mapStateToProps(store){
         projects: store.projects
     }
 }
+
+
 export default connect (mapStateToProps)(LargeProject); 

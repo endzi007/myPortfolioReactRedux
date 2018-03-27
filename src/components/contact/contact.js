@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
-import { Col, Row, Form, ControlLabel, FormControl, FormGroup } from 'react-bootstrap';
+import { Col, Form, ControlLabel, FormControl, FormGroup } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
 class Contact extends Component {
+    static propTypes = {
+        appConfig: PropTypes.shape({
+            pageTransition: PropTypes.bool.isRequired, 
+            transitionDuration: PropTypes.func.isRequred
+        }).isRequired,
+    }
+
     constructor(){
         super();
         this.state = {
@@ -32,6 +40,7 @@ class Contact extends Component {
         e.preventDefault();
     }
     render(){
+        console.log(this.props, "contact");
         return(
                 <Col id="contactSection" xs={12}  className={`paddingDiv pageSection ${this.props.className}`}>
                 <h1>Contact me</h1>
@@ -78,5 +87,9 @@ class Contact extends Component {
         );
     }
 }
+
+
+
+
 
 export default Contact;

@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
-import Header from './components/header';
-import Contact from './components/contact';
-import Skills from './components/skills';
-import Projects from './components/projects';
-import HomeText from './components/homeText';
-import Footer from './components/footer';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import animateComponent from './components/HOC/animateComponent';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
+
+import Header from './components/header';
+import Footer from './components/footer';
+
+/*-----pages------*/
+import Contact from './components/contact/contact';
+import Skills from './components/skills/skills';
+import Projects from './components//project/projects';
+import HomeText from './components//home/homeText';
+
+
+
 
 
 const generalStyles = {

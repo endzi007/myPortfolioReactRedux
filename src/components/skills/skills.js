@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col, Media} from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 class Skills extends Component {
     render(){
         return(

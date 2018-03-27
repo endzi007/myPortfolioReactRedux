@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col, Button } from 'react-bootstrap';
+import { Col, Button } from 'react-bootstrap';
 
 class ProjectSectionTags extends Component {
     render(){

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Jumbotron, Row } from 'react-bootstrap';
+import { Jumbotron } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Typist from 'react-typist';
 

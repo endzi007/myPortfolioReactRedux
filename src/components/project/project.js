@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import HoverProject from './hoverProject';
-import _ from 'lodash';
 import LargeProject from './largeProject';
 
 class Project extends Component {
@@ -30,7 +27,7 @@ class Project extends Component {
                 {...this.props}
                 toggleModalShow ={this.toggleModalShow.bind(this, true)}
                 />
-                <img src={this.props.picture} />
+                <img src={this.props.picture} alt={this.props.title}/>
                 <LargeProject show={this.state.showModal} toggleModalShow ={this.toggleModalShow.bind(this, false)} {...this.props} />
             </div>
         );

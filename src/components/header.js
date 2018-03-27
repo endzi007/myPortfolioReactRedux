@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
-import { Grid, Row, Col, Nav, Navbar, NavItem, MenuItem, NavDropdown, Button } from 'react-bootstrap';
+import { Navbar } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import * as actions from '../actions/projectActions'
 
@@ -33,11 +33,11 @@ class Header extends Component {
             <Navbar.Toggle />
             </Navbar.Header>
             <Navbar.Collapse>
-                <Nav>
+                <ul className="nav navbar-nav">
                     <li><button onClick={this.handleClick.bind(this, "/Skills")}className="btn btn-link">Skills</button></li>
                     <li><button onClick={this.handleClick.bind(this, "/Projects")}className="btn btn-link">Projects</button></li>
                     <li><button onClick={this.handleClick.bind(this, "/Contact")}className="btn btn-link" >Contact</button></li>
-                </Nav>
+                </ul>
             </Navbar.Collapse>
         </Navbar>
         );

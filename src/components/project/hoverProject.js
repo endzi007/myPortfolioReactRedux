@@ -1,18 +1,17 @@
-import React, { Component } from "react";
-import { Row, Col } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import React from "react";
+import PropTypes from 'prop-types';
 import _ from 'lodash';
 
 const HoverProject = ({
     opacity,
-    tags, 
+    tags,
     title,
     id,
-    url, 
+    url,
     toggleModalShow
 }) => {
-    var tagsLi = _.map(tags, (tag)=>{
-        return <li>{tag}</li>
+    var tagsLi = _.map(tags, (tag, i)=>{
+        return <li key={`${tag}_${i}`}>{tag}</li>
     });
     return(
         <div className="projectHover" style={{
@@ -25,6 +24,15 @@ const HoverProject = ({
             <div className="btn btn-success btn-block" onClick={toggleModalShow}>View project</div>
         </div>
     );
+}
+
+HoverProject.PropTypes = {
+    opacity:PropTypes.string.isRequired,
+    tags:PropTypes.string.isRequired,
+    title:PropTypes.string.isRequired,
+    id:PropTypes.string.isRequired,
+    url:PropTypes.string.isRequired,
+    toggleModalShow:PropTypes.string.isRequired
 }
 
 
