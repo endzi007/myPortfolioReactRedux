@@ -40,9 +40,8 @@ class Contact extends Component {
         e.preventDefault();
     }
     render(){
-        console.log(this.props, "contact");
         return(
-                <Col id="contactSection" xs={12}  className={`paddingDiv pageSection ${this.props.className}`}>
+                <Col id="contactSection" xs={12}  className={`pageSection ${this.props.className}`}>
                 <h1>Contact me</h1>
                     <Col xs={6}  className="align">
                         <Form onSubmit={this.onFormSubmit}>

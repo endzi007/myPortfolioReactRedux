@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from 'prop-types';
 import _ from 'lodash';
 
 const HoverProject = ({
@@ -8,13 +7,14 @@ const HoverProject = ({
     title,
     id,
     url,
-    toggleModalShow
+    toggleModalShow,
+    defaultClass
 }) => {
     var tagsLi = _.map(tags, (tag, i)=>{
         return <li key={`${tag}_${i}`}>{tag}</li>
     });
     return(
-        <div className="projectHover" style={{
+        <div className={defaultClass} style={{
             opacity: opacity
         }}>
             <h3>{title}</h3>
@@ -25,15 +25,5 @@ const HoverProject = ({
         </div>
     );
 }
-
-HoverProject.PropTypes = {
-    opacity:PropTypes.string.isRequired,
-    tags:PropTypes.string.isRequired,
-    title:PropTypes.string.isRequired,
-    id:PropTypes.string.isRequired,
-    url:PropTypes.string.isRequired,
-    toggleModalShow:PropTypes.string.isRequired
-}
-
 
 export default HoverProject;

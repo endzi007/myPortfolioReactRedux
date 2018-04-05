@@ -13,21 +13,7 @@ import Projects from './components//project/projects';
 import HomeText from './components//home/homeText';
 
 
-
-
-
-const generalStyles = {
-  header: 0,
-  content: 0,
-  footer: 0
-};
-
 class App extends Component {
-  componentWillMount(){
-    generalStyles.header = 40;
-    generalStyles.footer = 20;
-    generalStyles.content = window.innerHeight-40-20;
-  }
   render() {
     const homeTextAnim = animateComponent(HomeText);
     const projectsAnim = animateComponent(Projects);
@@ -36,7 +22,7 @@ class App extends Component {
     return (
       <Router>
         <div>
-        <Header style={generalStyles.header} />
+        <Header />
         <Route path="/" render={({ location }) =>{
           return(
             <div>
@@ -44,12 +30,11 @@ class App extends Component {
                 <Route exact path="/" component={homeTextAnim} />
                 <Route path="/skills" component={skillsAnim}/>
                 <Route exact path="/projects" component={projectsAnim}/>
-                <Route path="/contact" component={contactAnim}/>
+                <Route path="/Contact" component={contactAnim}/>
               </Switch>
             </div>
           );
         }} />
-        <Footer style ={generalStyles.footer}/>
         </div>
         </Router>
 

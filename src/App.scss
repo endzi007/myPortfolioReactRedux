@@ -4,7 +4,6 @@
 @import './assets/css/font-awesome.css';
 //@import '../node_modules/animate.css/animate.css';
 html { 
-    margin-left: calc(100vw - 100%); 
     overflow-y: scroll;
   } 
 
@@ -13,22 +12,6 @@ img {
   height: auto;
   display: inline-block;
   vertical-align: middle;
-}
-
-#headerSection{
-  background-color:#87509c;
-  min-height:600px;
-  color: white;
-  .navbar a{
-    color: white;
-    font-size: 0.8em;
-  }
-}
-
-#skillsSection{
-  min-height:652px;
-  background-color: white;
-  color: #3c4761;
 }
 
 #projectsSection {
@@ -47,91 +30,14 @@ img {
     border: 2px dotted lightgoldenrodyellow;
     width: 100%;
   }
-  .projectItem{
-    border: 1px solid #ffc34c;
-    height: auto;
-    overflow: hidden;
-    position: relative;
-    .projectHover{
-      color: white;
-      position: absolute;
-      padding: 4px;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #3c444b;
-      transition: all 500ms;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-
-      button{
-        flex-grow: 1;
-        border-radius: 5px;
-        align-self: flex-end;
-      }
-
-      ul {
-        display: flex;
-        flex-wrap: wrap;
-        text-decoration: none;
-        justify-content: center;
-        list-style-type: none;
-        padding: 0;
-
-        li{
-          padding: 3px 10px;
-          border: 1px solid gray;
-          border-radius: 2px;
-          margin: 4px;
-        }
-
-      }
-
-    }
-  }
 }
+
 .pageSection{
-  height: 90vh!important;
+  height: 100vh;
+  width: 100vw;
 }
 
-
-.largeProject{
-  $projectColor: lightblue;
-  margin-top: 100px;
-  padding: 20px;
-  .LPHeader{
-    background: $projectColor;
-    border-radius: 7px;
-    height: 50px;
-    color: white;
-    text-align: center;
-    padding-top: 5px;
-    font-size: 2.2em;
-  }
-  .LPContent{
-    margin-top: 20px;
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-    grid-gap: 20px;
-    background-color: $projectColor;
-    min-height: 200px;
-    border-radius: 7px;
-    padding: 20px;
-  }
-  .LPMain{
-    background-color: white;
-    border-radius: 7px;
-  }
-  .LPLink{
-    background-color: white;
-    border-radius: 7px;
-  }
-
-}
 #contactSection {
-  min-height: 650px;
   background-color: #3c5499;
   color: white;
   vertical-align: middle;
@@ -141,20 +47,12 @@ img {
     text-align: center;
   }
 }
+
 #selectTags{
   display: grid;
   grid-template-columns: repeat(6, auto);
   grid-gap: 5px;
   padding: 10px 70px;
-}
-
-.selectTag{
-  padding: 5px 10px;
-  border: 1px solid gray;
-  border-radius: 20px;
-  &:hover{
-    cursor: pointer;
-  }
 }
 
 .hiddenClass{
@@ -215,22 +113,6 @@ img {
   
 }
 
-.footerTag{
-  display: inline-block;
-  min-width: 30px;
-  border: 1px solid #ffc34c;
-  margin-left: 5px;
-  border-radius: 3px;
-  padding: 2px 5px;
-  &:hover{
-    cursor: pointer; 
-  }
-}
-
-.projectFooter{
-  min-height: 50px;
-  padding: 5px 3px;
-}
 @media only screen and (max-width: 766px){
   p{
     font-family: monospace;
@@ -256,10 +138,6 @@ img {
   font-size: 2em!important;
   font-family: monospace;
   font-weight: bold;
-}
-.active {
-  background-color: rgba(0,0,0,0.3);
-  border-radius: 10px;
 }
 .paddingDiv{
   padding-top: 50px;

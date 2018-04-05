@@ -4,7 +4,24 @@ import { Navbar } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
+import { style } from "typestyle";
 import * as actions from '../actions/projectActions'
+
+
+var defaultStyle = style({
+    position: "absolute",
+    left: 0,
+    top: 0,
+    zIndex: 999,
+    display: "flex",
+    $nest: {
+        "p": {
+            color: "white",
+            fontSize: "1em",
+            background: "lightgray"
+        }
+    }
+});
 
 class Header extends Component {
     static contextTypes = {
@@ -25,21 +42,13 @@ class Header extends Component {
     }
     render(){
         return(
-        <Navbar id="headerNavbar" fixedTop>
-            <Navbar.Header>
-                <Navbar.Brand>
-                <button className="btn btn-link" onClick={this.handleClick.bind(this, "/")}> Endzi </button>
-                </Navbar.Brand>
-            <Navbar.Toggle />
-            </Navbar.Header>
-            <Navbar.Collapse>
+            <div className={defaultStyle}>
                 <ul className="nav navbar-nav">
-                    <li><button onClick={this.handleClick.bind(this, "/Skills")}className="btn btn-link">Skills</button></li>
-                    <li><button onClick={this.handleClick.bind(this, "/Projects")}className="btn btn-link">Projects</button></li>
-                    <li><button onClick={this.handleClick.bind(this, "/Contact")}className="btn btn-link" >Contact</button></li>
+                    <li><p onClick={this.handleClick.bind(this, "/Skills")}className="btn btn-link">Skills</p></li>
+                    <li><p onClick={this.handleClick.bind(this, "/Projects")}className="btn btn-link">Projects</p></li>
+                    <li><p onClick={this.handleClick.bind(this, "/Contact")}className="btn btn-link" >Contact</p></li>
                 </ul>
-            </Navbar.Collapse>
-        </Navbar>
+            </div>
         );
     }
 }

@@ -59,7 +59,6 @@ class Projects extends Component {
             <Col id="projectsSection"  className={`pageSection ${this.props.className}`} xs={12}>
                 <h1>MY PORTFOLIO</h1>
                 <ProjectSectionTags filterTags = {this.props.filterTags} filterProjects={this.props.filterProjects} tags = {tags} />
-                <div id="selectTags"></div>
                 <FlipMove id="projectsSectionContent" duration={500} easing="ease-out">
                     {projectsToRender}
                 </FlipMove>
