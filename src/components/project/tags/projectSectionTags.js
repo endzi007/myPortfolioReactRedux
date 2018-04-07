@@ -37,16 +37,14 @@ class ProjectSectionTags extends Component {
     render(){
         var tags = this.props.tags.map((tag, i)=>{
             if(this.props.filterTags.indexOf(tag)!==-1){
-                return <a href="#" className={`${activeTag} ${tagStyle}`} onClick={()=>{this.props.filterProjects(tag)}} key={tag+"_"+i}>{tag}</a>
+                return <div className={`${activeTag} ${tagStyle}`} onClick={()=>{this.props.filterProjects(tag)}} key={tag+"_"+i}>{tag}</div>
             }
-            return <a href="#" className={tagStyle} onClick={()=>{this.props.filterProjects(tag)}} key={tag+"_"+i}>{tag}</a>
+            return <div className={tagStyle} onClick={()=>{this.props.filterProjects(tag)}} key={tag+"_"+i}>{tag}</div>
         });
         return(
-            <Row style={{padding: "12px"}}>
-                <Col xs={12}>
-                    {tags}
-                </Col>
-            </Row>
+            <div style={{padding: "12px", display: "flex", flexDirection: "row", justifyContent: "center", flexWrap: "wrap"}}>
+                {tags}
+            </div>
         );
     }
 }
