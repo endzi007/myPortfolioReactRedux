@@ -48,6 +48,7 @@ class Navigation extends Component {
             return;
         }
         this.props.startPageTransition(true);
+        this.toggleShowDrawer(false);
 
         setTimeout(()=>{
             this.props.startPageTransition(false);

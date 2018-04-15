@@ -13,9 +13,9 @@ class Contact extends Component {
     constructor(){
         super();
         this.state = {
-            name:"",
+            name: "",
             email: "",
-            message:""
+            message: ""
         }
         this.onFormSubmit = this.onFormSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
