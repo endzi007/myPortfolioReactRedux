@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
-import { Col, Form, ControlLabel, FormControl, FormGroup } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import { TextField, MuiThemeProvider } from 'material-ui';
+import { style } from 'typestyle';
+
+const defaultStyle = style({
+    textAlign: "center",
+    margin: "0 auto",
+    padding: "20px",
+    paddingTop: "40px"
+});
+
+const inputStyle={
+    width: "70%",
+    backgroundColor: "rgba(255,255,255,0.5)",
+    marginBottom: "10px"
+}
 
 class Contact extends Component {
-    static propTypes = {
-        appConfig: PropTypes.shape({
-            pageTransition: PropTypes.bool.isRequired, 
-            transitionDuration: PropTypes.func.isRequred
-        }).isRequired,
-    }
-
     constructor(){
         super();
         this.state = {
@@ -40,49 +47,32 @@ class Contact extends Component {
         e.preventDefault();
     }
     render(){
-        return(
-                <Col id="contactSection" xs={12}  className={`pageSection ${this.props.className}`}>
-                <h1>Contact me</h1>
-                    <Col xs={6}  className="align">
-                        <Form onSubmit={this.onFormSubmit}>
-                        <FormGroup>
-                            <ControlLabel> Name </ControlLabel>
-                            <FormControl 
-                                type="text"
-                                placeholder="enter name"
-                                onChange = {this.handleChange}
-                                name="name"
-                                value={this.state.name}
-                            />
-                        </FormGroup>
-                        <FormGroup>
-                            <ControlLabel> Email </ControlLabel>
-                            <FormControl 
-                                type="text"
-                                value={this.state.email}
-                                placeholder="enter email"
-                                onChange = {this.handleChange.bind(this)}
-                                name="email"
-                            />
-                        </FormGroup>
-                    <FormGroup controlId="formControlsTextarea">
-                        <ControlLabel>Message</ControlLabel>
-                    <FormControl onChange={this.handleChange} name="message" componentClass="textarea" placeholder="textarea" value={this.state.message} />
-                      </FormGroup>
-                        <FormGroup>
-                            <ControlLabel> Submit </ControlLabel>
-                            <FormControl 
-                                type="submit"
-                                value="Send"
-                            />
-                        </FormGroup>
 
-                        </Form>
-                    </Col>
-                    <Col xs={4} xsOffset={1} className="align">
-                        <img id="myImage" src="http://localhost:3000/src/assets/images/enis-jasarovic.jpg" alt="Author Enis Jasarovic" className="img img-responsive img-thumbnail" />
-                    </Col>
-                </Col>
+        return(
+            
+            <div className={`pageSection ${defaultStyle}`}>
+                    <h2> Contact me </h2>
+                    <TextField
+                        hintText="enter your name"
+                        errorText=""
+                        floatingLabelText="Your name"
+                        style={inputStyle}
+                    /><br />
+                    <TextField
+                        hintText="enter your email"
+                        errorText=""
+                        floatingLabelText="Your email"
+                        style={inputStyle}
+                    /><br />
+                    <TextField
+                        hintText="enter your message"
+                        errorText=""
+                        floatingLabelText="Message"
+                        style={{...inputStyle}}
+                        multiLine={true}
+                        rows={3}
+                    /><br />
+            </div>
         );
     }
 }
