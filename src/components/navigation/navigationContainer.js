@@ -5,23 +5,24 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { style } from "typestyle";
+import { StyleSheet, css } from 'aphrodite/no-important';
 import * as actions from '../../actions/projectActions'
 import NavigationDrawer from './navigationDrawer';
 import ToggleDrawer from './toggleDrawer';
 
 
-var defaultStyle = style({
-    position: "absolute",
-    left: 0,
-    top: 0,
-    zIndex: 999,
-    display: "flex",
-    $nest: {
-        "p": {
-            color: "white",
-            fontSize: "1em",
-            background: "lightgray"
-        }
+var styles = StyleSheet.create({
+    default: {
+        position: "absolute",
+        left: 0,
+        top: 0,
+        zIndex: 999,
+        display: "flex",
+    },
+    p: {
+        color: "white",
+        fontSize: "1em",
+        background: "lightgray"
     }
 });
 
@@ -58,7 +59,7 @@ class Navigation extends Component {
 
     render(){
         return(
-            <div className={defaultStyle}>
+            <div className={css(styles.default)}>
                 <NavigationDrawer show={this.state.showDrawer} handleClick={this.handleClick.bind(this)}/>
                 <ToggleDrawer show ={this.state.showDrawer} handleClick={this.toggleShowDrawer.bind(this)}/>
             </div>

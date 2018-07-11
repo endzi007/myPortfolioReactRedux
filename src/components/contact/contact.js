@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { TextField, MuiThemeProvider } from 'material-ui';
+import { TextField } from 'material-ui';
 import { style } from 'typestyle';
+import { StyleSheet, css } from 'aphrodite'; 
 
-const defaultStyle = style({
+const defaultStyle = StyleSheet.create({
     textAlign: "center",
     margin: "0 auto",
     padding: "20px",
@@ -50,7 +50,7 @@ class Contact extends Component {
 
         return(
             
-            <div className={`pageSection ${defaultStyle}`}>
+            <div className={`pageSection ${css(defaultStyle)}`}>
                     <h2> Contact me </h2>
                     <TextField
                         hintText="enter your name"

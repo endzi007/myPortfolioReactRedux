@@ -1,7 +1,8 @@
 import React from 'react';
 import { style } from 'typestyle';
+import { StyleSheet, css } from 'aphrodite/no-important';
 
-const defaultStyle = style({
+const styles = StyleSheet({
     borderBottom: "1px solid gray",
     width: "100%"
 });
@@ -9,7 +10,7 @@ const defaultStyle = style({
 
 const TextField = () =>{
     return([
-        <input className={defaultStyle} type="text" />
+        <input className={css(styles)} type="text" />
     ]);
 }
 
