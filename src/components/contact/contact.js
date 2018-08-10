@@ -12,19 +12,6 @@ import TextField from '@material-ui/core/TextField';
 import cyan from '@material-ui/core/colors/cyan';
 import { style } from 'typestyle';
 
-const defaultStyle = style({
-  width: "40vw",
-  margin: " 0 auto",
-  display: "flex",
-  flexDirection: "column",
-  opacity: 0.8,
-  $nest: {
-    "h1": {
-      alignSelf: "center"
-    }
-  }
-});
-
 
 const encode = (data) => {
   return Object.keys(data)
@@ -36,6 +23,19 @@ const styles = theme => ({
   root: {
     width: '90%',
     color: theme.palette.secondary
+  },
+  defaultStyle: {
+    width: "50vw",
+    margin: " 0 auto",
+    display: "flex",
+    flexDirection: "column",
+    opacity: 0.8,
+    "& h1": {
+        alignSelf: "center"
+      },
+    '@media (max-width: 766px)':{
+      width: "80vw"
+    }
   },
   button: {
     marginTop: theme.spacing.unit,
@@ -78,14 +78,12 @@ class VerticalLinearStepper extends React.Component {
     }));
 
   };
-
   handleBack = () => {
     this.setState(state => ({
       activeStep: state.activeStep - 1,
       error: false
     }));
   };
-
   handleReset = () => {
     this.setState({
       activeStep: 0,
@@ -189,11 +187,9 @@ class VerticalLinearStepper extends React.Component {
         return 'Send your message: ';
     }
   }
-  
   handleButton = (step) => {
     return false;
   }
-
   handleSubmit = (e) => {
     fetch("/", {
       method: "POST",
@@ -211,7 +207,7 @@ class VerticalLinearStepper extends React.Component {
     const { activeStep } = this.state;
 
     return (
-      <div className={defaultStyle}>
+      <div className={classes.defaultStyle}>
       <h1>Contact me</h1>
       
       <form onSubmit ={this.handleSubmit}>

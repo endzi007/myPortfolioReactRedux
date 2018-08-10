@@ -14,8 +14,9 @@ const styles = (theme)=>({
         alignItems: "center",
         textAlign: "center",
         '@media (max-width: 766px)': {
-            fontSize: "0.6em",
-            color: "red"
+            "& h1, h2, h3, h4":{
+                fontSize: "1rem",
+            }
         }
     },
     paper: {
@@ -25,9 +26,6 @@ const styles = (theme)=>({
             marginBottom: "10px"
         }
 
-    },
-    h1: {
-        color: theme.palette.headers.main
     },
     leftSide: {
         backgroundColor: theme.palette.background.default,
@@ -83,15 +81,18 @@ const styles = (theme)=>({
             width: "60px",
             transform: "translate(5px, -55px)",
         }
-        
     },
     textDiv:{
-        width: "100%",
+        maxWidth: "100%",
         height: "100%",
         display: "block",
         padding: "20px 50px",
+        letterSpacing: "1px",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
         '@media (max-width: 766px)':{
-            padding: "0"
+            padding: "35px 35px", 
         }
     },
     underlinedH1:{
@@ -130,7 +131,7 @@ class HomeText extends Component{
                 <div className={`${classes.rightSide} ${classes.typist}`}>
                         <Typist
                             key="typist2" 
-                            className={`${classes.h1}`} 
+                            className={`${classes.textDiv}`} 
                             avgTypingDelay={20} 
                             cursor={{show: false, blink: true, element: "|", hideWhenDoneDelay: 1000}}
                         >
