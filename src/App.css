@@ -177,11 +177,9 @@ img {
 @keyframes animationIn{
   0% {
       opacity: 0;
-      margin-left: -1000px;
   }
   100% {
       opacity: 1;
-      margin-left: 0;
   }
 }
 
@@ -191,5 +189,6 @@ img {
   }
   100% {
       opacity: 0;
+      left: 2000px;
   }
 }

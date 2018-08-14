@@ -8,7 +8,7 @@ const defaultState = {
     filterTags: [],
     appConfig: {
         pageTransition: false, //when true start page fade out animation 
-        transitionDuration: 500 //miliseconds
+        transitionDuration: 2000 //miliseconds
     }
 }
 window.state = defaultState;

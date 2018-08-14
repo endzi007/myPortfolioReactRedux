@@ -33,9 +33,11 @@ const styles = (theme)=>({
         left: 0, 
         height: "100vh",
         width: "50vw",
-        borderRight: `1px solid ${theme.palette.primary.main}`,
         '@media (max-width: 766px)':{
             fontSize: "0.7em",
+            width: "100vw",
+            height: "50vh",
+            border: "nones"
         }
     },
     rightSide: {
@@ -47,7 +49,12 @@ const styles = (theme)=>({
         display: "block",
         borderLeft: `2px solid ${theme.palette.primary.main}`,
         '@media (max-width: 766px)':{
-            fontSize: "0.7em"
+            top: "50vh",
+            height: "50vh",
+            width: "100vw",
+            border: "none",
+            borderTop: `2px solid ${theme.palette.primary.main}`,
+            
         }
     },
     center: {
@@ -61,15 +68,21 @@ const styles = (theme)=>({
         backgroundColor: theme.palette.background.default,
         borderTopColor:theme.palette.primary.main,
         borderRightColor: theme.palette.primary.main,
-        transform: "translate(-50%, -50%) translateX(-2px) rotate(45deg)",
+        transformOrigin: "left",
+        transform: "translate(-50%, -50%) translateX(16px) rotate(45deg)",
         zIndex: "3",
         textAlign: "center",
         display: "flex",
         alignItems: "right",
         justifyItems: "left",
         '@media(max-width: 766px)':{
-            width: "80px",
-            height: "80px"
+            width: "60px",
+            height: "60px",
+            border: "2px solid transparent",
+            transform: "translate(0, -50%) translateY(-13px) rotate(45deg)",
+            borderBottomColor: theme.palette.primary.main,
+            borderRightColor: theme.palette.primary.main
+
         }
     },
     svg:{
@@ -78,15 +91,15 @@ const styles = (theme)=>({
         width: "80px",
         transform: "translate(10px, -30px)",
         '@media(max-width:766px)':{
-            width: "60px",
-            transform: "translate(5px, -55px)",
+            width: "40px",
+            transform: 'translate(7px, -65px) rotate(0)'
         }
     },
     textDiv:{
         maxWidth: "100%",
         height: "100%",
         display: "block",
-        padding: "20px 50px",
+        padding: "20px 60px",
         letterSpacing: "1px",
         display: "flex",
         flexDirection: "column",
@@ -117,42 +130,19 @@ class HomeText extends Component{
         return(
             <div className={classes.root}>
                 <div className={`${classes.leftSide} ${classes.typist}`}>
-                <Typist 
-                    key="typist1" 
-                    className={`${classes.typist} ${classes.h1}`} 
-                    avgTypingDelay={20} 
-                    cursor={{show: false, blink: true, element: "|", hideWhenDoneDelay: 1000}}
-                >
-                        <Typography key="typistchild2" className={`${classes.h1} ${classes.underlinedH1}`} variant="headline">Enis Jasarovic</Typography>
-                        <Typography key="typistchild3" className={classes.h1} variant="subheading">web developer</Typography>
-                </Typist>
+                <div className={`${classes.typist} ${classes.h1}`} >
+                        <Typography className={`${classes.h1} ${classes.underlinedH1}`} variant="headline">Enis Jasarovic</Typography>
+                        <Typography className={classes.h1} variant="subheading">web developer</Typography>
+                </div>
                 </div>
 
                 <div className={`${classes.rightSide} ${classes.typist}`}>
-                        <Typist
-                            key="typist2" 
-                            className={`${classes.textDiv}`} 
-                            avgTypingDelay={20} 
-                            cursor={{show: false, blink: true, element: "|", hideWhenDoneDelay: 1000}}
-                        >
-                        <Typography 
-                            className={classes.h1} 
-                            variant="headline"
-                        >
-                        Welcome to my Portfolio site
-                        </Typography>
-                            <Typography 
-                                className={classes.h1} 
-                                variant="subheading"
-                            >
-                            I'm front-end web developer. Technologies I'm working with  PHP-C++
-                                <Typist.Backspace count={7} delay={150} />
-                                <span>JavaScript - React - Redux - jQuery - Node</span>
-                            </Typography>
+                    <div className={classes.textDiv}>
+                    <Typography  className={`${classes.h1} ${classes.underlinedH1}`} variant="headline">Welcome to my Portfolio site</Typography>
                         <Typography variant="body1"> 
                             You can check some of my current projects in the projects section.
                         </Typography>
-                    </Typist>
+                    </div>
                 </div>
 
                 <div className={classes.center}>

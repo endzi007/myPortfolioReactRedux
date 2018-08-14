@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
-import { Navbar } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
@@ -42,10 +41,10 @@ class Navigation extends Component {
         }
         this.props.startPageTransition(true);
         this.toggleShowDrawer(false);
-
         setTimeout(()=>{
+            this.props.history.push(path);
             this.props.startPageTransition(false);
-            this.props.history.push(path)
+
         }, this.props.appConfig.transitionDuration);
     }
 

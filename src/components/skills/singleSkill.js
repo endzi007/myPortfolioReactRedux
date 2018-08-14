@@ -9,10 +9,10 @@ const styles = theme => ({
 
     
 });
-export default withStyles(styles)(({ classes, title, value})=>{
+export default withStyles(styles)(({ classes, title, value, barColor})=>{
     return(
         <div className={classes.root}>
-            <ProgressBar value={value} label={title} />
+            <ProgressBar value={value} barColor={barColor} label={title} />
         </div>
     );
 });

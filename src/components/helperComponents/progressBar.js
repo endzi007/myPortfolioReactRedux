@@ -1,7 +1,5 @@
 import React from 'react';
 
-
-
 export default class extends React.Component {
 
        state={
@@ -17,7 +15,8 @@ export default class extends React.Component {
         root: {
             width: "100%",
             padding: "0",
-            position: "relative"
+            position: "relative",
+            padding: `8px 0px`
         },
         background: {
             width: "100%",
@@ -40,7 +39,12 @@ export default class extends React.Component {
             display: "flex",
             justifyContent: "space-between",
             marginBottom: "3px",
-            ...this.props.labelStyle
+            ...this.props.labelStyle,
+            fontSize: "0.8em",
+            letterSpacing: "1px",
+            '& div:nth-child(0)':{
+                color: "red"
+            }
         }
     }
 
@@ -58,7 +62,7 @@ export default class extends React.Component {
         return(
             <div style={{...this.styles.root}}>
                 <div style={{...this.styles.label}}>
-                    <div> {this.state.label}</div>
+                    <div>{this.state.label}</div>
                     <div> {`${this.state.value}%`} </div>
                 </div>
                 
