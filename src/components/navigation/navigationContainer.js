@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
-import { style } from "typestyle";
 import * as actions from '../../actions/projectActions'
 import NavigationDrawer from './navigationDrawer';
 import ToggleDrawer from './toggleDrawer';

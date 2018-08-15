@@ -41,7 +41,7 @@ const theme = createMuiTheme({
       }
   },
   typography: {
-      fontFamily: "Arapey, Georgia, Times, Times New Roman, serif"
+      fontFamily: "Raleway, Georgia, Times, Times New Roman, serif"
   },
 
 });

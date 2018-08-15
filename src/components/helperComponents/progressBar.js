@@ -1,6 +1,6 @@
 import React from 'react';
-
-export default class extends React.Component {
+import { withStyles } from '@material-ui/core';
+class ProgressBar extends React.Component {
 
        state={
             value: 1,
@@ -14,37 +14,52 @@ export default class extends React.Component {
     styles = {
         root: {
             width: "100%",
-            padding: "0",
             position: "relative",
-            padding: `8px 0px`
+            height: "25px",
+            marginTop: "8px",
+            overflow: "hidden",
+            ...this.props.root
         },
         background: {
             width: "100%",
-            height: "10px",
+            height: "100%",
             position: "absolute",
             zIndex: 0,
-            borderRadius: "3px" 
+            borderRadius: "3px",
+            backgroundColor: this.props.theme.palette.background.paper,
+            ...this.props.background 
         },
         bar:{
             left: "0",
             width: "100%", 
-            height: "8px",
+            height: "98%",
+            backgroundColor: this.props.theme.palette.primary.main,
             position: "absolute",
             zIndex: "1",
-            borderRadius: "3px",
             transformOrigin: "left",
-            transition: `transform ${this.state.duration}ms ease-in`
+            transition: `transform ${this.state.duration}ms ease-in`,
+            ...this.props.bar
         },
         label: {
-            display: "flex",
-            justifyContent: "space-between",
-            marginBottom: "3px",
-            ...this.props.labelStyle,
-            fontSize: "0.8em",
-            letterSpacing: "1px",
-            '& div:nth-child(0)':{
-                color: "red"
-            }
+            position: "absolute",
+            top: "50%",
+            paddingLeft: "10px",
+            zIndex: 3,
+            transform: "translateY(-50%)",
+            display: "block",
+            width: "150px",
+            backgroundColor: this.props.theme.palette.primary.dark,
+            padding: "6px 3px 3px 6px",
+            ...this.props.label
+        },
+        value: {
+            position: "absolute",
+            top: "50%",
+            right: "10px",
+            zIndex: 3,
+            transform: "translateY(-50%)",
+            color: this.props.theme.palette.primary.light,
+            ...this.props.value
         }
     }
 
@@ -53,29 +68,18 @@ export default class extends React.Component {
             this.setState({
                 value: this.props.value,
                 label: this.props.label,
-                backgroundColor: this.props.backgroundColor || "blue",
-                barColor: this.props.barColor || "green"
             });
         }, 0);
     }
     render(){
         return(
             <div style={{...this.styles.root}}>
-                <div style={{...this.styles.label}}>
-                    <div>{this.state.label}</div>
-                    <div> {`${this.state.value}%`} </div>
-                </div>
-                
+                <div style={{...this.styles.label}}>{this.state.label}</div>
+                <div style={{...this.styles.value}}> {`${this.state.value}%`} </div>
                 <div>
-                    <div style={{
-                        ...this.styles.background, 
-                        backgroundColor: this.state.backgroundColor
-                    }}></div>
-                    <div style={{
-                        ...this.styles.bar, 
+                    <div style={{...this.styles.background}}></div>
+                    <div style={{...this.styles.bar, 
                         transform: `scalex(${this.state.value/100})`,
-                        backgroundColor: this.state.barColor,
-                        border: `1px solid ${this.state.backgroundColor}`,
                         }} ></div>
                 </div>
             </div>
@@ -83,3 +87,5 @@ export default class extends React.Component {
     }
 
 }
+
+export default withStyles({}, {withTheme: true})(ProgressBar)

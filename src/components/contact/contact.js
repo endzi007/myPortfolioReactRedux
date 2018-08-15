@@ -1,16 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
-import StepContent from '@material-ui/core/StepContent';
-import Button from '@material-ui/core/Button';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
-import cyan from '@material-ui/core/colors/cyan';
-import { style } from 'typestyle';
+import { withStyles, Stepper, Step, StepLabel, StepContent, Button, Paper, Typography, TextField, Snackbar } from '@material-ui/core';
 
 
 const encode = (data) => {
@@ -49,10 +39,10 @@ const styles = theme => ({
   },
   MuiStepIcon:{
     root:{
-      color: cyan
+      color: theme.palette.primary.main
     },
     active:{
-      color: cyan
+      color: theme.palette.primary.main
     }
   }
 });
@@ -68,7 +58,8 @@ class VerticalLinearStepper extends React.Component {
     email: "",
     message: "",
     subject: "",
-    error: true
+    error: true,
+    open: false
   };
 
   handleNext = () => {
@@ -191,6 +182,7 @@ class VerticalLinearStepper extends React.Component {
     return false;
   }
   handleSubmit = (e) => {
+    console.log("submit");
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -199,6 +191,14 @@ class VerticalLinearStepper extends React.Component {
       .then(() => this.handleReset())
       .catch(error => alert(error));
     e.preventDefault();
+    this.setState({
+      open: true
+    });
+  }
+  onCloseSnackbar = ()=>{
+    this.setState({
+      open: false
+    })
   }
   
   render() {
@@ -209,7 +209,15 @@ class VerticalLinearStepper extends React.Component {
     return (
       <div className={classes.defaultStyle}>
       <h1>Contact me</h1>
-      
+      <Snackbar
+          onClose={this.onCloseSnackbar}
+          open={this.state.open}
+          autoHideDuration={6000}
+          ContentProps={{
+            'aria-describedby': 'message-id',
+          }}
+          message={<span id="message-id">I love snacks</span>}
+        />
       <form onSubmit ={this.handleSubmit}>
         <Stepper activeStep={activeStep} orientation="vertical">
           {steps.map((label, index) => {

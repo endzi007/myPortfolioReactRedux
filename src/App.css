@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Titillium+Web");
-@import url("https://fonts.googleapis.com/css?family=Arapey");
+@import url("https://fonts.googleapis.com/css?family=Raleway");
 @import url(./assets/css/font-awesome.css);
 @import url(./assets/css/hamburgers.css);
 html {
@@ -7,7 +7,7 @@ html {
   margin: 0;
 }
 body {
-  font-family: "Arapey", "Georgia", "Times", "Times New Roman";
+  font-family: "Raleway", "Georgia", "Times", "Times New Roman";
   background-image: url("./assets/images/background1.png")!important;
   font-weight:lighter;
   background-attachment: fixed;
