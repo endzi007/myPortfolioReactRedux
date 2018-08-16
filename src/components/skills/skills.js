@@ -7,7 +7,7 @@ const styles = theme => ({
     padding: "60px 100px",
     minHeight: "80vh",
     '@media (max-width: 766px)':{
-      padding: "70px 50px"
+      padding: "80px 10px"
     }
   },
   skillsContainer: {

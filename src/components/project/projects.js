@@ -25,8 +25,14 @@ const styles = theme =>({
         color: theme.palette.primary.main,
     },
     root: {
-        textAlign: "center",
-        paddingTop: "40px"
+        paddingTop: "40px",  
+    },
+    projects: {
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+        gridGap: "20px",
+        justifyItems: "center",
+        alignItems: "start"
     }
 });
 
@@ -93,7 +99,7 @@ class Projects extends Component {
             <div className={`pageSection ${classes.root}`} >
                 <Typography className={classes.h1} variant="display1">My Work</Typography>
                 <ProjectSectionTags filterTags = {this.props.filterTags} filterProjects={this.props.filterProjects} tags = {tags} />
-                <FlipMove id="projectsSectionContent" duration={500} easing="ease-out">
+                <FlipMove className={classes.projects} duration={500} easing="ease-out">
                     {projectsToRender}
                 </FlipMove>
             </div>

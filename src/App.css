@@ -28,13 +28,6 @@ img {
   display: inline-block;
   vertical-align: middle; }
 
-#projectsSectionContent {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-gap: 20px; }
-  #projectsSectionContent img {
-    border: 2px dotted lightgoldenrodyellow;
-    width: 100%; }
 
 .pageSection {
   height: 100vh;

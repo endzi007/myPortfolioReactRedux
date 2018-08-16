@@ -69,17 +69,18 @@ const styles = (theme)=>({
         borderTopColor:theme.palette.primary.main,
         borderRightColor: theme.palette.primary.main,
         transformOrigin: "left",
-        transform: "translate(-50%, -50%) translateX(16px) rotate(45deg)",
+        transform: "translate(-50%, -50%)",
         zIndex: "3",
         textAlign: "center",
         display: "flex",
         alignItems: "right",
         justifyItems: "left",
+        transformOrigin: "center center",
         '@media(max-width: 766px)':{
             width: "60px",
             height: "60px",
             border: "2px solid transparent",
-            transform: "translate(0, -50%) translateY(-13px) rotate(45deg)",
+            transform: "translate(-50%, -50%) rotate(45deg)",
             borderBottomColor: theme.palette.primary.main,
             borderRightColor: theme.palette.primary.main
 

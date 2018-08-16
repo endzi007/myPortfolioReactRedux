@@ -12,8 +12,8 @@ const styles = theme =>({
         justifyContent: "center",
         alignContent: "flex-start",
         alignItems: "flex-start",
-        paddingTop: "20px",
-        paddingLeft: "15px"
+        paddingTop: "10px",
+        paddingLeft: "10px"
     },
     span: {
         backgroundColor: theme.palette.primary.main,

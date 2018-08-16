@@ -72,6 +72,7 @@ class ProgressBar extends React.Component {
         }, 0);
     }
     render(){
+        console.log(this.props);
         return(
             <div style={{...this.styles.root}}>
                 <div style={{...this.styles.label}}>{this.state.label}</div>
@@ -88,4 +89,4 @@ class ProgressBar extends React.Component {
 
 }
 
-export default withStyles({}, {withTheme: true})(ProgressBar)
+export default withStyles({}, {withTheme: true, withWidth: true})(ProgressBar)

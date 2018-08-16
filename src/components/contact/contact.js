@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, Stepper, Step, StepLabel, StepContent, Button, Paper, Typography, TextField, Snackbar } from '@material-ui/core';
-
+import { withStyles, Stepper, Step, StepLabel, StepContent, Button, Paper, Typography, TextField } from '@material-ui/core';
+import Snackbar from '../helperComponents/snackbar';
 
 const encode = (data) => {
   return Object.keys(data)
@@ -43,6 +43,15 @@ const styles = theme => ({
     },
     active:{
       color: theme.palette.primary.main
+    }
+  },
+  snackbar: {
+    root: {
+      borderRadius: "20px",
+      backgroundColor: theme.palette.primary.main
+    },
+    snackbarContent: {
+      backgroundColor: theme.palette.primary.main
     }
   }
 });
@@ -194,11 +203,11 @@ class VerticalLinearStepper extends React.Component {
     this.setState({
       open: true
     });
-  }
-  onCloseSnackbar = ()=>{
-    this.setState({
-      open: false
-    })
+    setTimeout(()=>{
+      this.setState({
+       open: false 
+      });
+    }, 3000);
   }
   
   render() {
@@ -209,15 +218,7 @@ class VerticalLinearStepper extends React.Component {
     return (
       <div className={classes.defaultStyle}>
       <h1>Contact me</h1>
-      <Snackbar
-          onClose={this.onCloseSnackbar}
-          open={this.state.open}
-          autoHideDuration={6000}
-          ContentProps={{
-            'aria-describedby': 'message-id',
-          }}
-          message={<span id="message-id">I love snacks</span>}
-        />
+      <Snackbar show={this.state.open} message="enis"/>
       <form onSubmit ={this.handleSubmit}>
         <Stepper activeStep={activeStep} orientation="vertical">
           {steps.map((label, index) => {
