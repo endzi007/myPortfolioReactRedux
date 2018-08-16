@@ -5,6 +5,8 @@
 html {
   padding: 0;
   margin: 0;
+  font-size: 16px;
+  @media screen
 }
 body {
   font-family: "Raleway", "Georgia", "Times", "Times New Roman";
@@ -87,6 +89,11 @@ img {
   max-height: 100vh; 
 }
 @media only screen and (max-width: 766px) {
+
+  html {
+    font-size: 14px;
+  }
+
   #myNavbar {
     width: 100%;
     background-color: #eb7d4b; }

@@ -1,5 +1,51 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core';
+import { withStyles, Typography, withWidth } from '@material-ui/core';
+
+const styles = theme => console.log(theme)||({
+    root: {
+        width: "100%",
+        position: "relative",
+        height: "25px",
+        marginTop: "8px",
+        overflow: "hidden"
+    },
+    background: {
+        width: "100%",
+        height: "100%",
+        position: "absolute",
+        zIndex: 0,
+        borderRadius: "3px",
+        backgroundColor: theme.palette.background.paper
+    },
+    bar:{
+        left: "0",
+        width: "100%", 
+        height: "98%",
+        backgroundColor: theme.palette.primary.main,
+        position: "absolute",
+        zIndex: "1",
+        transformOrigin: "left",
+        transition: `transform 500ms ease-in`
+    },
+    label: {
+        position: "absolute",
+        top: "50%",
+        paddingLeft: "10px",
+        zIndex: 3,
+        transform: "translateY(-50%)",
+        display: "block",
+        width: "100px",
+        backgroundColor: theme.palette.primary.dark,
+        padding: "6px 3px 3px 6px"
+    },
+    value: {
+        position: "absolute",
+        top: "50%",
+        zIndex: 3,
+        transform: "translateY(-50%)",
+        fontSize: "inherit"
+    }
+})
 class ProgressBar extends React.Component {
 
        state={
@@ -11,57 +57,6 @@ class ProgressBar extends React.Component {
             label: "",
         }
 
-    styles = {
-        root: {
-            width: "100%",
-            position: "relative",
-            height: "25px",
-            marginTop: "8px",
-            overflow: "hidden",
-            ...this.props.root
-        },
-        background: {
-            width: "100%",
-            height: "100%",
-            position: "absolute",
-            zIndex: 0,
-            borderRadius: "3px",
-            backgroundColor: this.props.theme.palette.background.paper,
-            ...this.props.background 
-        },
-        bar:{
-            left: "0",
-            width: "100%", 
-            height: "98%",
-            backgroundColor: this.props.theme.palette.primary.main,
-            position: "absolute",
-            zIndex: "1",
-            transformOrigin: "left",
-            transition: `transform ${this.state.duration}ms ease-in`,
-            ...this.props.bar
-        },
-        label: {
-            position: "absolute",
-            top: "50%",
-            paddingLeft: "10px",
-            zIndex: 3,
-            transform: "translateY(-50%)",
-            display: "block",
-            width: "150px",
-            backgroundColor: this.props.theme.palette.primary.dark,
-            padding: "6px 3px 3px 6px",
-            ...this.props.label
-        },
-        value: {
-            position: "absolute",
-            top: "50%",
-            right: "10px",
-            zIndex: 3,
-            transform: "translateY(-50%)",
-            color: this.props.theme.palette.primary.light,
-            ...this.props.value
-        }
-    }
 
     componentDidMount = ()=>{
         setTimeout(()=>{
@@ -73,15 +68,14 @@ class ProgressBar extends React.Component {
     }
     render(){
         console.log(this.props);
+        const { classes } = this.props;
         return(
-            <div style={{...this.styles.root}}>
-                <div style={{...this.styles.label}}>{this.state.label}</div>
-                <div style={{...this.styles.value}}> {`${this.state.value}%`} </div>
+            <div className={classes.root}>
+                <div className={classes.label}><Typography variant="body1">{this.state.label}</Typography></div>
+                <div className={classes.value} style={{left: `${this.state.value}%`}}> {`${this.state.value}%`} </div>
                 <div>
-                    <div style={{...this.styles.background}}></div>
-                    <div style={{...this.styles.bar, 
-                        transform: `scalex(${this.state.value/100})`,
-                        }} ></div>
+                    <div className={classes.background}></div>
+                    <div className={classes.bar} style={{ transform: `scalex(${this.state.value/100})`}} ></div>
                 </div>
             </div>
         );
@@ -89,4 +83,4 @@ class ProgressBar extends React.Component {
 
 }
 
-export default withStyles({}, {withTheme: true, withWidth: true})(ProgressBar)
+export default withWidth()(withStyles(styles, {withTheme: true})(ProgressBar));

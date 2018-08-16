@@ -23,9 +23,14 @@ const mapDispatchToProps = (dispatch) =>{
 const styles = theme =>({
     h1: {
         color: theme.palette.primary.main,
+        margin: "0 auto",
+        alignSelf: "center",
+        justifySelf: "center"
     },
     root: {
-        paddingTop: "40px",  
+        paddingTop: "60px",  
+        display: "flex",
+        flexDirection: "column"
     },
     projects: {
         display: "grid",
@@ -98,7 +103,9 @@ class Projects extends Component {
         return(
             <div className={`pageSection ${classes.root}`} >
                 <Typography className={classes.h1} variant="display1">My Work</Typography>
+                <div>
                 <ProjectSectionTags filterTags = {this.props.filterTags} filterProjects={this.props.filterProjects} tags = {tags} />
+                </div>
                 <FlipMove className={classes.projects} duration={500} easing="ease-out">
                     {projectsToRender}
                 </FlipMove>

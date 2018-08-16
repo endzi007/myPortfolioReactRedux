@@ -69,7 +69,7 @@ const styles = (theme)=>({
         borderTopColor:theme.palette.primary.main,
         borderRightColor: theme.palette.primary.main,
         transformOrigin: "left",
-        transform: "translate(-50%, -50%)",
+        transform: "translate(-50%, -50%) translate(-2px) rotate(45deg) ",
         zIndex: "3",
         textAlign: "center",
         display: "flex",
@@ -80,7 +80,7 @@ const styles = (theme)=>({
             width: "60px",
             height: "60px",
             border: "2px solid transparent",
-            transform: "translate(-50%, -50%) rotate(45deg)",
+            transform: "translate(-50%, -50%)  rotate(45deg)",
             borderBottomColor: theme.palette.primary.main,
             borderRightColor: theme.palette.primary.main
 
