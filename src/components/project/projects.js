@@ -7,11 +7,13 @@ import ProjectSectionTags from './tags/projectSectionTags';
 import FlipMove from 'react-flip-move';
 import PropTypes from 'prop-types';
 import { Typography, withStyles } from "@material-ui/core";
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const mapStateToProps = (store) =>{
     return{
         projects: store.projects,
-        filterTags: store.filterTags
+        filterTags: store.filterTags,
+        fetching: store.fetching
     }
 }
 
@@ -80,7 +82,7 @@ class Projects extends Component {
                     tags={project.tags}
                     />;
                 }
-    
+
                 var counter = 0;
                 project.tags.map((tag)=>{
                     if(this.props.filterTags.indexOf(tag)!==-1){
@@ -99,6 +101,7 @@ class Projects extends Component {
                 }
             });
         }
+        let renderDiv = this.props.fetching === true ? <CircularProgress /> : projectsToRender;
         
         return(
             <div className={`pageSection ${classes.root}`} >
@@ -107,7 +110,7 @@ class Projects extends Component {
                 <ProjectSectionTags filterTags = {this.props.filterTags} filterProjects={this.props.filterProjects} tags = {tags} />
                 </div>
                 <FlipMove className={classes.projects} duration={500} easing="ease-out">
-                    {projectsToRender}
+                {renderDiv}
                 </FlipMove>
             </div>
         );

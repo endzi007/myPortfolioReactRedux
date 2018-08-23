@@ -27,6 +27,23 @@ export const projectReducer = (state = [], action) => {
     return newState; 
 }
 
+export const fetchReducer = (state=false, action)=>{
+    switch(action.type){
+        case "FETCH_PROJECTS_START": 
+            state = true;
+            break;
+        case "FETCH_PROJECTS_OK":
+            state = false;
+            break;
+        case "FETCH_CATEGORIES_BAD":
+            state = false;
+            break;
+        default: 
+            state = false;
+            break;
+    }
+    return state;
+}
 
 export const appConfigReducer = (state = {
     pageTransition: false,

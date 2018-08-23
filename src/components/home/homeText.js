@@ -61,7 +61,7 @@ const styles = (theme)=>({
         width: "120px",
         height: "120px",
         borderRadius: "50%",
-        position: "absolute",
+        position: "fixed",
         border: `2px solid transparent`,
         top: "50%",
         left: "50%",
@@ -79,10 +79,10 @@ const styles = (theme)=>({
         '@media(max-width: 766px)':{
             width: "60px",
             height: "60px",
-            border: "2px solid transparent",
-            transform: "translate(-50%, -50%)  rotate(45deg)",
-            borderBottomColor: theme.palette.primary.main,
-            borderRightColor: theme.palette.primary.main
+            top: "40px",
+            left: "100%",
+            transform: "translate(-100%, -50%) translateX(-10px)",
+            borderColor: theme.palette.primary.main
 
         }
     },

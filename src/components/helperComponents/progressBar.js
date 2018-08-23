@@ -30,21 +30,17 @@ const styles = theme => console.log(theme)||({
     label: {
         position: "absolute",
         top: "50%",
-        paddingLeft: "10px",
         zIndex: 3,
         transform: "translateY(-50%)",
         display: "block",
-        width: "100px",
+        minWidth: "150px",
         backgroundColor: theme.palette.primary.dark,
-        padding: "6px 3px 3px 6px"
+        padding: "6px 3px 6px 6px",
+        '& span': {
+            fontWeight: "bold",
+            color: theme.palette.secondary.light
+        }
     },
-    value: {
-        position: "absolute",
-        top: "50%",
-        zIndex: 3,
-        transform: "translateY(-50%)",
-        fontSize: "inherit"
-    }
 })
 class ProgressBar extends React.Component {
 
@@ -71,8 +67,10 @@ class ProgressBar extends React.Component {
         const { classes } = this.props;
         return(
             <div className={classes.root}>
-                <div className={classes.label}><Typography variant="body1">{this.state.label}</Typography></div>
-                <div className={classes.value} style={{left: `${this.state.value}%`}}> {`${this.state.value}%`} </div>
+                <div className={classes.label}> 
+
+                <Typography variant="body1"><span>{`${this.state.value}%`} </span> | {this.state.label} </Typography>
+                </div>
                 <div>
                     <div className={classes.background}></div>
                     <div className={classes.bar} style={{ transform: `scalex(${this.state.value/100})`}} ></div>
