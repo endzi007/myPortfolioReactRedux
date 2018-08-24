@@ -13,7 +13,7 @@ const styles = theme =>({
         alignContent: "flex-start",
         alignItems: "flex-start",
         paddingTop: "10px",
-        paddingLeft: "10px"
+        paddingLeft: "10px",
     },
     span: {
         backgroundColor: theme.palette.primary.main,
@@ -29,7 +29,7 @@ const styles = theme =>({
 const ToggleDrawer = ({ show, handleClick, classes})=>{
     return (
         <div onClick={handleClick.bind(null, !show)} className={classes.main}>
-            <button className={`hamburger hamburger--collapse ${show===true?"is-active":""}`} type="button">
+            <button style={{outline: "none"}} className={`hamburger hamburger--collapse ${show===true?"is-active":""}`} type="button">
                 <span className="hamburger-box">
                     <span className={`hamburger-inner ${classes.span}`}></span>
                 </span>

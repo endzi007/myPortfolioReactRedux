@@ -40,10 +40,19 @@ const styles = theme =>({
         gridGap: "20px",
         justifyItems: "center",
         alignItems: "start"
+    }, 
+    circularProgress: {
+        position: "absolute",
+        left: "50%",
+        top: "50%",
     }
 });
 
 class Projects extends Component {
+
+    state = {
+        fetching: true
+    }
 
     async setProjects (){
         let data = await this.props.fetchProjects();
@@ -53,6 +62,9 @@ class Projects extends Component {
     }
     componentDidMount(){
         this.setProjects();
+        this.setState(()=>({
+            fetching: this.props.fetching
+        }));
     }
     getAllTags(){
         var tags = []; 
@@ -101,8 +113,8 @@ class Projects extends Component {
                 }
             });
         }
-        let renderDiv = this.props.fetching === true ? <CircularProgress /> : projectsToRender;
         
+        const renderDiv = this.state.fetching === true ? <CircularProgress className={classes.circularProgress} /> :  projectsToRender;
         return(
             <div className={`pageSection ${classes.root}`} >
                 <Typography className={classes.h1} variant="display1">My Work</Typography>

@@ -57,9 +57,9 @@ class Project extends React.Component {
                 <Typography component="p">
                   {this.props.content}
                 </Typography>
-                <Typography component="p">
+                <div>
                   {tags}
-                </Typography>
+                </div>
               </CardContent>
               <CardActions>
                 <Button disabled={this.props.github === undefined || this.props.github === ""} size="small" color="primary" href={this.props.github}>
