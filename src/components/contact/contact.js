@@ -217,7 +217,7 @@ class VerticalLinearStepper extends React.Component {
 
     return (
       <div className={classes.defaultStyle}>
-      <h1>Contact me</h1>
+      <Typography variant="headline">Write me something amaizing :)</Typography>
       <Snackbar show={this.state.open} message="enis"/>
       <form onSubmit ={this.handleSubmit}>
         <Stepper activeStep={activeStep} orientation="vertical">

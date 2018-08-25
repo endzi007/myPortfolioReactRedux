@@ -5,7 +5,7 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 import theme from './components/helperComponents/theme';
 import Navigation from './components/navigation/navigationContainer';
 import TransitionOverlay from './transitionOverlay.js';
-
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 /*-----pages------*/
 import Contact from './components/contact/contact';
@@ -26,6 +26,7 @@ class App extends React.Component {
   render() {
     return (
       <MuiThemeProvider theme={theme}>
+      <CssBaseline />
       <Router>
         <div>
         <Navigation />

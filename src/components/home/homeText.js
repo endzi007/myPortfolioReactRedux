@@ -69,7 +69,7 @@ const styles = (theme)=>({
         borderTopColor:theme.palette.primary.main,
         borderRightColor: theme.palette.primary.main,
         transformOrigin: "left",
-        transform: "translate(-50%, -50%) translate(-2px) rotate(45deg) ",
+        transform: "translate(-50%, -50%) rotate(45deg) ",
         zIndex: "3",
         textAlign: "center",
         display: "flex",
@@ -141,8 +141,11 @@ class HomeText extends Component{
                     <div className={classes.textDiv}>
                     <Typography  className={`${classes.h1} ${classes.underlinedH1}`} variant="headline">Welcome to my Portfolio site</Typography>
                         <Typography variant="body1"> 
-                            You can check some of my current projects in the projects section.
+                            I build Javascript - React apps, Wordpress sites and a lot more.. <br/>
+                            You can check some of my latest projects in projects section. <br />
+                            Let's build something, contact me... 
                         </Typography>
+                        <Typography component="a" variant = "body1"><a></a></Typography>
                     </div>
                 </div>
 

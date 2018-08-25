@@ -30,7 +30,9 @@ const styles = theme =>({
         justifySelf: "center"
     },
     root: {
-        paddingTop: "60px",  
+        width: "80%",
+        margin: "100px auto 30px auto",
+
         display: "flex",
         flexDirection: "column"
     },
@@ -116,7 +118,7 @@ class Projects extends Component {
         
         const renderDiv = this.state.fetching === true ? <CircularProgress className={classes.circularProgress} /> :  projectsToRender;
         return(
-            <div className={`pageSection ${classes.root}`} >
+            <div className={classes.root} >
                 <Typography className={classes.h1} variant="display1">My Work</Typography>
                 <div>
                 <ProjectSectionTags filterTags = {this.props.filterTags} filterProjects={this.props.filterProjects} tags = {tags} />

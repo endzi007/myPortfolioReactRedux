@@ -1,6 +1,6 @@
 import React from 'react';
 import { Drawer } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/';
+import { withStyles, Typography } from '@material-ui/core/';
 import { Link } from 'react-router-dom';
 import SvgImage from './svgImage';
 
@@ -43,10 +43,10 @@ const NavigationDrawer = ({show, handleClick, classes}) =>{
         <Drawer style={{overflow: "hidden", zIndex: 100}} open={show}>
             <div className={classes.wrapperStyle}>
                 <div className={classes.navStyle}>
-                    <div className={classes.navItemStyle} onClick={handleClick.bind(null, "/")}> <SvgImage show={show} name="home"/> Home </div>
-                    <div className={classes.navItemStyle} onClick={handleClick.bind(null, "/Skills")}> <SvgImage show={show} name="skills"/> About </div>
-                    <div className={classes.navItemStyle} onClick={handleClick.bind(null, "/Projects")}><SvgImage show={show} name="projects"/> Projects</div>
-                    <div className={classes.navItemStyle} onClick={handleClick.bind(null, "/Contact")}><SvgImage show={show} name="contact"/> Contact</div>
+                    <Typography variant="body1" className={classes.navItemStyle} onClick={handleClick.bind(null, "/")}> <SvgImage show={show} name="home"/> Home </Typography>
+                    <Typography variant="body1" className={classes.navItemStyle} onClick={handleClick.bind(null, "/Skills")}> <SvgImage show={show} name="skills"/> About </Typography>
+                    <Typography variant="body1" className={classes.navItemStyle} onClick={handleClick.bind(null, "/Projects")}><SvgImage show={show} name="projects"/> Projects</Typography>
+                    <Typography variant="body1" className={classes.navItemStyle} onClick={handleClick.bind(null, "/Contact")}><SvgImage show={show} name="contact"/> Contact</Typography>
                 </div>
             </div>
         </Drawer>

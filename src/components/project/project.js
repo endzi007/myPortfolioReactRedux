@@ -24,7 +24,8 @@ const styles = (theme)=> {
     },
     chip: {
       margin: theme.spacing.unit/2,
-      height: "25px"
+      height: "25px",
+      backgroundColor: theme.palette.primary.dark
     }
   };
 }
@@ -42,6 +43,8 @@ class Project extends React.Component {
     render(){
         const { classes } = this.props;
         const tags = this.props.tags.map((tag,i)=><Chip className={classes.chip} key={`${tag}_${i}`} label={tag}/>);
+        const githubButton = this.props.github === "" ? null :<Button size="small" color="primary" href={this.props.github}>Github</Button>; 
+        const projectButton  = this.props.link === "" ? null :<Button size="small" color="primary" href={this.props.link}> Project site </Button>;
         return(
             <div>
             <Card className={classes.card}>
@@ -51,7 +54,7 @@ class Project extends React.Component {
                 title={this.props.title}
               />
               <CardContent>
-                <Typography gutterBottom variant="headline" component="h2">
+                <Typography gutterBottom variant="headline" component="h2" color="primary">
                   {this.props.title}
                 </Typography>
                 <Typography component="p">
@@ -62,12 +65,8 @@ class Project extends React.Component {
                 </div>
               </CardContent>
               <CardActions>
-                <Button disabled={this.props.github === undefined || this.props.github === ""} size="small" color="primary" href={this.props.github}>
-                  Github
-                </Button>
-                <Button disabled={this.props.link===undefined || this.props.link === ""} size="small" color="primary" href={this.props.link}>
-                  Project
-                </Button>
+                {githubButton}
+                {projectButton}
               </CardActions>
             </Card>
           </div>
