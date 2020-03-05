@@ -50,7 +50,9 @@ class Navigation extends Component {
         const { classes } = this.props;
         return(
             <div className={classes.root}>
-                <NavigationDrawer show={this.state.showDrawer} handleClick={this.handleClick.bind(this)}/>
+                <div 
+                className="drawer"
+                style={{width: "25vw", height: "100vh", display: this.state.showDrawer? "block": "none"}}></div>
                 <ToggleDrawer show ={this.state.showDrawer} handleClick={this.toggleShowDrawer.bind(this)}/>
             </div>
         );

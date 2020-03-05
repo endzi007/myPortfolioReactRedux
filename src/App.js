@@ -33,7 +33,7 @@ class App extends React.Component {
         <TransitionOverlay />
         <Route path="/" render={({ location }) =>{
           return(
-            <div>
+            <div style={{transform: `perspective(150vw) rotateY(-14deg)`, transformOrigin: "top right", width: "100vw"}}>
               <Switch location = {location}>
                 <Route exact path="/" component={HomeText} />
                 <Route path="/skills" component={Skills}/>
