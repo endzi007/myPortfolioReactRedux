@@ -30,9 +30,8 @@ const styles = theme =>({
         justifySelf: "center"
     },
     root: {
-        width: "80%",
-        margin: "100px auto 30px auto",
-
+        width: "100vw",
+        margin: "5vh auto 5vh auto",
         display: "flex",
         flexDirection: "column"
     },

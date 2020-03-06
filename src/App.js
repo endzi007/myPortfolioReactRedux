@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import { MuiThemeProvider } from '@material-ui/core/styles';
@@ -13,17 +13,7 @@ import Skills from './components/skills/skills';
 import Projects from './components//project/projects';
 import HomeText from './components//home/homeText';
 
-
-
-
-const generalStyles = {
-  header: 0,
-  content: 0,
-  footer: 0
-};
-
-class App extends React.Component {
-  render() {
+const App = ()=> {
     return (
       <MuiThemeProvider theme={theme}>
       <CssBaseline />
@@ -47,7 +37,6 @@ class App extends React.Component {
         </Router>
         </MuiThemeProvider>
     );
-  }
 }
 
 export default App;

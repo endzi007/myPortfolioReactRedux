@@ -1,11 +1,13 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../actions/projectActions'
-import NavigationDrawer from './navigationDrawer';
 import ToggleDrawer from './toggleDrawer';
-import { withStyles } from '@material-ui/core/';
+import { withStyles, Typography } from '@material-ui/core/';
+import SvgImage from './svgImage';
+import anime from 'animejs';
+import { useRef } from "react";
 
 
 const styles = theme =>({
@@ -15,48 +17,77 @@ const styles = theme =>({
         top: 0,
         zIndex: 999,
         display: "flex",
+    },
+    wrapperStyle: {
+        display: "flex",
+        flexDirection: "row",
+        height: "100%",
+        maxHeight: "100vh",
+        background: theme.palette.background.paper,
+    },
+    navStyle :{
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        height: "100%",
+        overflowY: "hidden",
+    },
+    navItemStyle:{
+        display: "flex",
+        padding: "10px",
+        justifyContent: "center",
+        textAlign: "center",
+        flexDirection: "column",
+        alignContent: "center",
+        borderRight: theme.palette.primary.main,        
+        "&:hover":{
+            backgroundColor: "gray",
+            cursor: "pointer"
+        },
+        width: "100%"
     }
 });
 
-class Navigation extends Component {
+const Navigation = (props)=> {
 
-    constructor(){
-        super();
-        this.state = {
-            showDrawer: false,
-        }
-    }
-
-    toggleShowDrawer(show){
-        this.setState({
-            showDrawer: show
-        });
-    }
-
-    handleClick(path){
-        if (this.props.history.location.pathname === path){
+    const [showDrawer, setShowDrawer ] = useState(false);
+    const myRef = useRef(null);
+    const handleClick = (path) => {
+        if (props.history.location.pathname === path){
             return;
         }
-        this.props.startPageTransition(true);
-        this.toggleShowDrawer(false);
+        props.startPageTransition(true);
+        setShowDrawer(false);
         setTimeout(()=>{
-            this.props.history.push(path);
-            this.props.startPageTransition(false);
+            props.history.push(path);
+            props.startPageTransition(false);
 
-        }, this.props.appConfig.transitionDuration);
+        }, props.appConfig.transitionDuration);
     }
 
-    render(){
-        const { classes } = this.props;
+        const { classes } = props;
         return(
             <div className={classes.root}>
                 <div 
-                className="drawer"
-                style={{width: "25vw", height: "100vh", display: this.state.showDrawer? "block": "none"}}></div>
-                <ToggleDrawer show ={this.state.showDrawer} handleClick={this.toggleShowDrawer.bind(this)}/>
+                ref={myRef}
+                className={showDrawer? "drawer": "drawer drawerClosed"}
+                style={{width: "25vw", height: "100vh"}}>
+                    <div className={classes.wrapperStyle}>
+                        <div className={classes.navStyle}>
+                            <Typography variant="body1" className={classes.navItemStyle} onClick={()=>{handleClick("/")}}> <SvgImage show={true} name="home"/> Home </Typography>
+                            <Typography variant="body1" className={classes.navItemStyle} onClick={()=>{handleClick("/Skills")}}> <SvgImage show={true} name="skills"/> About </Typography>
+                            <Typography variant="body1" className={classes.navItemStyle} onClick={()=>{handleClick("/Projects")}}><SvgImage show={true} name="projects"/> Projects</Typography>
+                            <Typography variant="body1" className={classes.navItemStyle} onClick={()=>{handleClick("/Contact")}}><SvgImage show={true} name="contact"/> Contact</Typography>
+                        </div>
+                    </div>
+
+                </div>
+                <ToggleDrawer show ={showDrawer} handleClick={()=>{
+                    setShowDrawer(!showDrawer)
+                }}/>
             </div>
         );
-    }
 }
 
 function mapStateToProps (state){

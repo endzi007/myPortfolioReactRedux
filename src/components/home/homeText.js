@@ -125,55 +125,41 @@ const styles = (theme)=>({
     }
 });
 
-class HomeText extends Component{
-    render(){
-        const { classes } = this.props;
-        return(
-            <div className={classes.root}>
-                <div className={`${classes.leftSide} ${classes.typist}`}>
-                <div className={`${classes.typist} ${classes.h1}`} >
-                        <Typography className={`${classes.h1} ${classes.underlinedH1}`} variant="headline">Enis Jasarovic</Typography>
-                        <Typography className={classes.h1} variant="subheading">web developer</Typography>
-                </div>
-                </div>
+const HomeText = (props)=>{
+    const { classes } = props;
+    return(
+        <div className={classes.root}>
+            <div className={`${classes.leftSide} ${classes.typist}`}>
+            <div className={`${classes.typist} ${classes.h1}`} >
+                    <Typography className={`${classes.h1} ${classes.underlinedH1}`} variant="headline">Enis Jasarovic</Typography>
+                    <Typography className={classes.h1} variant="subheading">web developer</Typography>
+            </div>
+            </div>
 
-                <div className={`${classes.rightSide} ${classes.typist}`}>
-                    <div className={classes.textDiv}>
-                    <Typography  className={`${classes.h1} ${classes.underlinedH1}`} variant="headline">Welcome to my Portfolio site</Typography>
-                        <Typography variant="body1"> 
-                            I build Javascript - React apps, Wordpress sites and a lot more.. <br/>
-                            You can check some of my latest projects in projects section. <br />
-                            Let's build something, contact me... 
-                        </Typography>
-                        <Typography component="a" variant = "body1"><a></a></Typography>
-                    </div>
-                </div>
-
-                <div className={classes.center}>
-                <svg className={classes.svg} xmlns="http://www.w3.org/2000/svg" width="50mm" height="50mm" viewBox="0 0 50 50">
-                    <g id="Layer_x0020_1">
-                    <metadata/>
-                    <path d="M9.27489 42.2878c-1.16937,0 -2.33871,-0.161276 -3.50808,-0.483865 -1.17743,-0.322589 -2.28226,-0.806453 -3.32259,-1.45161l1.70162 -2.95163c0.806453,0.499994 1.66936,0.90323 2.58872,1.19356 0.919359,0.290311 1.81452,0.435476 2.67743,0.435476 1.78227,0 3.34678,-0.427412 4.70162,-1.27419 1.35485,-0.854842 2.16131,-2.0726 2.41131,-3.66131 0.0644993,-0.346783 0.0967582,-0.774195 0.0967582,-1.27421 0,-0.508059 0,-0.935489 0,-1.28225l0 -25.113 3.73389 0 0 25.0727c0,0.645159 -0.0161294,1.27419 -0.0483883,1.88711 -0.0322589,0.6129 -0.0967766,1.13709 -0.193553,1.58065 -0.217729,1.13711 -0.637094,2.14516 -1.24999,3.04033 -0.6129,0.887101 -1.39518,1.65323 -2.34678,2.29841 -0.951618,0.645159 -2.04034,1.13709 -3.25003,1.47581 -1.21774,0.338718 -2.5484,0.508059 -3.99194,0.508059zm15.8791 -3.68548l21.7581 0 0 3.14517 -21.734 0 -0.0241942 -3.14517zm0.0241942 -16.5565l20.863 0 0 3.1613 -20.863 0 0 -3.1613zm0 -15.621l21.734 0 0 3.14517 -21.734 0 0 -3.14517z"/>
-                    </g>
-                </svg>
+            <div className={`${classes.rightSide} ${classes.typist}`}>
+                <div className={classes.textDiv}>
+                <Typography  className={`${classes.h1} ${classes.underlinedH1}`} variant="headline">Welcome to my Portfolio site</Typography>
+                    <Typography variant="body1"> 
+                        Javascript, React, Redux, Electron, Node, CSS, HTML5, Wordpress... <br/>
+                        You can check some of my latest projects in projects section. <br />
+                        Let's build something, contact me... 
+                    </Typography>
+                    <Typography component="a" variant = "body1"><a></a></Typography>
                 </div>
             </div>
-        );
-    }
+
+            <div className={classes.center}>
+            <svg className={classes.svg} xmlns="http://www.w3.org/2000/svg" width="50mm" height="50mm" viewBox="0 0 50 50">
+                <g id="Layer_x0020_1">
+                <metadata/>
+                <path d="M9.27489 42.2878c-1.16937,0 -2.33871,-0.161276 -3.50808,-0.483865 -1.17743,-0.322589 -2.28226,-0.806453 -3.32259,-1.45161l1.70162 -2.95163c0.806453,0.499994 1.66936,0.90323 2.58872,1.19356 0.919359,0.290311 1.81452,0.435476 2.67743,0.435476 1.78227,0 3.34678,-0.427412 4.70162,-1.27419 1.35485,-0.854842 2.16131,-2.0726 2.41131,-3.66131 0.0644993,-0.346783 0.0967582,-0.774195 0.0967582,-1.27421 0,-0.508059 0,-0.935489 0,-1.28225l0 -25.113 3.73389 0 0 25.0727c0,0.645159 -0.0161294,1.27419 -0.0483883,1.88711 -0.0322589,0.6129 -0.0967766,1.13709 -0.193553,1.58065 -0.217729,1.13711 -0.637094,2.14516 -1.24999,3.04033 -0.6129,0.887101 -1.39518,1.65323 -2.34678,2.29841 -0.951618,0.645159 -2.04034,1.13709 -3.25003,1.47581 -1.21774,0.338718 -2.5484,0.508059 -3.99194,0.508059zm15.8791 -3.68548l21.7581 0 0 3.14517 -21.734 0 -0.0241942 -3.14517zm0.0241942 -16.5565l20.863 0 0 3.1613 -20.863 0 0 -3.1613zm0 -15.621l21.734 0 0 3.14517 -21.734 0 0 -3.14517z"/>
+                </g>
+            </svg>
+            </div>
+        </div>
+    );
+
 }
 
-/*
-                    <Typist className={`${classes.typist} ${classes.h1}`} avgTypingDelay={20} cursor={{show: false, blink: true, element: "|", hideWhenDoneDelay: 1000}}>
-                        <Typography className={classes.h1} variant="display1">Enis Jasarovic</Typography>
-                        <Typography className={classes.h1} variant="body1">web developer</Typography>
-                        <Typography className={classes.h1} variant="display2">Welcome to my Portfolio site</Typography>
-                        <Typography className={classes.h1} variant="display1">I'm front-end web developer. Technologies I'm working with  PHP-C++
-                            <Typist.Backspace count={7} delay={150} />
-                            <span>JavaScript - React - Redux - jQuery - Node</span>
-                        </Typography>
-                        <Typography variant="display1"> You can check some of my current projects in the projects section.</Typography>
-                        <Typography variant="display1"> I'm married and father of two kids. Currently I'm based in Montenegro. </Typography>
-                    </Typist>
-*/
 
 export default withStyles(styles)(HomeText);

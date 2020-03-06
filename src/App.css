@@ -122,6 +122,25 @@ body{
 
 .drawer{
   background-color: #eb7d4b;
-  transform: perspective(100vw) rotateY(40deg);
   transform-origin: top left;
+  transform: perspective(100vw) rotateY(40deg);
+  animation: drawerAnimation 1s ease-out;
+}
+
+
+@keyframes drawerAnimation{
+
+  0%{
+    width: 0%;
+    perspective: 0;
+  }
+  50%{
+    width: 100%;
+    perspective: 0;
+  }
+  100%{
+    width: 100%;
+    perspective: 100vw;
+  }
+
 }
