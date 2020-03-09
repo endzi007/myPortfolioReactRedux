@@ -8,6 +8,7 @@ import { withStyles, Typography } from '@material-ui/core/';
 import SvgImage from './svgImage';
 import anime from 'animejs';
 import { useRef } from "react";
+import { useEffect } from "react";
 
 
 const styles = theme =>({
@@ -65,14 +66,34 @@ const Navigation = (props)=> {
 
         }, props.appConfig.transitionDuration);
     }
-
+    useEffect(()=>{
+         anime({
+            targets: myRef.current,
+            duration: 500,
+            keyframes: [
+                {
+                    duration: 500,
+                    rotateY: 40,
+                    easing: "easeOutQuad",
+                    delay: 500
+                }
+            ],
+        }); 
+    }, []);
+     
         const { classes } = props;
         return(
             <div className={classes.root}>
                 <div 
                 ref={myRef}
-                className={showDrawer? "drawer": "drawer drawerClosed"}
-                style={{width: "25vw", height: "100vh"}}>
+                className={showDrawer? "drawer": "drawer"}
+                style={{
+                    width: "25vw", 
+                    height: "100vh", 
+                    backgroundColor: "#eb7d4b",
+                    transformOrigin: "top left",
+                    transform: "perspective(100vw)"
+                }}>
                     <div className={classes.wrapperStyle}>
                         <div className={classes.navStyle}>
                             <Typography variant="body1" className={classes.navItemStyle} onClick={()=>{handleClick("/")}}> <SvgImage show={true} name="home"/> Home </Typography>
