@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import Project from './project';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -49,27 +49,24 @@ const styles = theme =>({
     }
 });
 
-class Projects extends Component {
+const Projects = (props)=> {
+    const [ fetching, setFetching ] = useState(true);
+    const setProjects = () =>{
+        props.fetchProjects().then((data)=>{
+            if(data.type ==="FETCH_PROJECTS_OK"){
+                props.addProjectsToStore(data.payload); 
+            }
+        });
+    }
+    useEffect(()=>{
+        setProjects();
+        setFetching(props.fetching);
+    },[])
 
-    state = {
-        fetching: true
-    }
 
-    async setProjects (){
-        let data = await this.props.fetchProjects();
-        if(data.type === "FETCH_PROJECTS_OK"){
-            this.props.addProjectsToStore(data.payload);
-        }
-    }
-    componentDidMount(){
-        this.setProjects();
-        this.setState(()=>({
-            fetching: this.props.fetching
-        }));
-    }
-    getAllTags(){
+    const getAllTags =()=>{
         var tags = []; 
-        this.props.projects.map((project)=>{
+        props.projects.map((project)=>{
             for(var i in project.tags){
                 const tag = project.tags[i];
                 if(tags.indexOf(tag) === -1){
@@ -79,13 +76,12 @@ class Projects extends Component {
         });
         return tags;
     }
-    render(){
-        const { classes } = this.props;
+        const { classes } = props;
         var tags=[];
-        if(this.props.projects.length !== 0){
-            tags = this.getAllTags();
-            var projectsToRender = this.props.projects.map((project, i)=>{
-                if(this.props.filterTags.length === 0){
+        if(props.projects.length !== 0){
+            tags = getAllTags();
+            var projectsToRender = props.projects.map((project, i)=>{
+                if(props.filterTags.length === 0){
                     return <Project key={"project"+i} 
                     title={project.title}
                     content= {project.content}
@@ -98,11 +94,11 @@ class Projects extends Component {
 
                 var counter = 0;
                 project.tags.map((tag)=>{
-                    if(this.props.filterTags.indexOf(tag)!==-1){
+                    if(props.filterTags.indexOf(tag)!==-1){
                         counter++;
                     }
                 });
-                if(counter === this.props.filterTags.length){
+                if(counter === props.filterTags.length){
                     return <Project itemHeight={200} key={"project"+i} 
                     title={project.title}
                     content= {project.content}
@@ -115,19 +111,18 @@ class Projects extends Component {
             });
         }
         
-        const renderDiv = this.state.fetching === true ? <CircularProgress className={classes.circularProgress} /> :  projectsToRender;
-        return(
-            <div className={classes.root} >
-                <Typography className={classes.h1} variant="display1">My Work</Typography>
-                <div>
-                <ProjectSectionTags filterTags = {this.props.filterTags} filterProjects={this.props.filterProjects} tags = {tags} />
-                </div>
-                <FlipMove className={classes.projects} duration={500} easing="ease-out">
-                {renderDiv}
-                </FlipMove>
+    const renderDiv = fetching === true ? <CircularProgress className={classes.circularProgress} /> :  projectsToRender;
+    return(
+        <div className={classes.root} >
+            <Typography className={classes.h1} variant="display1">My Work</Typography>
+            <div>
+            <ProjectSectionTags filterTags = {props.filterTags} filterProjects={props.filterProjects} tags = {tags} />
             </div>
-        );
-    }
+            <FlipMove className={classes.projects} duration={500} easing="ease-out">
+            {renderDiv}
+            </FlipMove>
+        </div>
+    );
 }
 
 Projects.propTypes={

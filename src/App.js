@@ -1,5 +1,6 @@
-import React from 'react';
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import React, { useEffect, useRef } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
 import './App.css';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import theme from './components/helperComponents/theme';
@@ -8,16 +9,22 @@ import TransitionOverlay from './transitionOverlay.js';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 /*-----pages------*/
-import Contact from './components/contact/contact';
 import Skills from './components/skills/skills';
-import Projects from './components//project/projects';
+import Contact from './components/contact/contact';
+import Projects from './components//project/projects'; 
 import HomeText from './components//home/homeText';
-import { useEffect } from 'react';
-import { useRef } from 'react';
 import anime from 'animejs';
 
+
+const useStyles = makeStyles( theme => ({
+  root:{
+    padding: "10vw",
+    backgroundColor: theme.palette.primary.main
+  }
+}));
 const App = ()=> {
   const myRef= useRef(null);
+  const classes = useStyles();
   useEffect(()=>{
     anime({
       targets: myRef.current,
@@ -36,21 +43,17 @@ const App = ()=> {
       <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
-        <div>
+        <div className={classes.root}>
         <Navigation />
         <TransitionOverlay />
-        <Route path="/" render={({ location }) =>{
-          return(
-            <div ref= {myRef} style={{transform: `perspective(150vw)`, transformOrigin: "top right", width: "100vw"}}>
-              <Switch location = {location}>
-                <Route exact path="/" component={HomeText} />
-                <Route path="/skills" component={Skills}/>
-                <Route exact path="/projects" component={Projects}/>
-                <Route path="/contact" component={Contact}/>
-              </Switch>
-            </div>
-          );
-        }} />
+          <div ref= {myRef} style={{transformOrigin: "top right", width: "100vw"}}>
+            <Switch>
+              <Route exact path="/" component={HomeText} />
+              <Route path="/skills" component={Skills}/>
+              <Route exact path="/projects" component={Projects}/>
+              <Route path="/contact" component={Contact}/>
+            </Switch>
+          </div>
         </div>
         </Router>
         </MuiThemeProvider>
@@ -58,3 +61,9 @@ const App = ()=> {
 }
 
 export default App;
+
+/* 
+
+
+
+*/

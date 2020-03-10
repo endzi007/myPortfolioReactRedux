@@ -63,40 +63,39 @@ const styles = theme => ({
 });
 
 
-class Skills extends Component {
-    render(){
-      const { classes, theme} = this.props;
-        return(
-            <div className={classes.root}>
-                <div className={classes.skillsContainer}>
-                <div className={classes.devider}></div>
-                <Paper className={`${classes.leftSide}`}>
-                  <Avatar className={classes.avatar} src={avatarImg} alt="enis-jasarovic"/>
-                  <Typography variant="display2" component="h5">Enis Jašarović</Typography>
-                  <Typography variant="title">web developer</Typography>
-                  <Typography variant="title">I'm web developer from Montenegro with few years of experience as freelancer.</Typography>                
+const  Skills = (props)=> {
+
+    const { classes, theme} = props;
+      return(
+          <div className={classes.root}>
+              <div className={classes.skillsContainer}>
+              <div className={classes.devider}></div>
+              <Paper className={`${classes.leftSide}`}>
+                <Avatar className={classes.avatar} src={avatarImg} alt="enis-jasarovic"/>
+                <Typography variant="display2" component="h5">Enis Jašarović</Typography>
+                <Typography variant="title">web developer</Typography>
+                <Typography variant="title">I'm web developer from Montenegro with few years of experience as freelancer.</Typography>                
+              </Paper>
+                <Paper className={classes.skillsGroup} style={{backgroundColor: theme.palette.background.default}}>
+                  <ProgressBar label="REACT" value={85} />
+                  <ProgressBar label="JAVASCRIPT" value={85}/>
+                  <ProgressBar label="JQUERY" value={80}/>
+                  <ProgressBar label="REDUX" value={85}/>
+                  <ProgressBar label="HTML5" value={85}/>
+                  <ProgressBar label="CSS, SASS" value={90}/>
+                  <ProgressBar label="BOOTSTRAP 4" value={90}/>
+                  <ProgressBar label="MATERIAL-UI" value={85}/>
+                  <ProgressBar label="GIT" value={55} />
+                  <ProgressBar label="WEBPACK, PARCEL" value={55} />
+                  <ProgressBar label="NODE" value={50} />
+                  <ProgressBar label="EXPRESS" value={50} />
+                  <ProgressBar label="PHOTOSHOP" value={80} />
+                  <ProgressBar label="ILLUSTRATOR" value={50} />
                 </Paper>
-                  <Paper className={classes.skillsGroup} style={{backgroundColor: theme.palette.background.default}}>
-                    <ProgressBar label="REACT" value={85} />
-                    <ProgressBar label="JAVASCRIPT" value={85}/>
-                    <ProgressBar label="JQUERY" value={80}/>
-                    <ProgressBar label="REDUX" value={85}/>
-                    <ProgressBar label="HTML5" value={85}/>
-                    <ProgressBar label="CSS, SASS" value={90}/>
-                    <ProgressBar label="BOOTSTRAP 4" value={90}/>
-                    <ProgressBar label="MATERIAL-UI" value={85}/>
-                    <ProgressBar label="GIT" value={55} />
-                    <ProgressBar label="WEBPACK, PARCEL" value={55} />
-                    <ProgressBar label="NODE" value={50} />
-                    <ProgressBar label="EXPRESS" value={50} />
-                    <ProgressBar label="PHOTOSHOP" value={80} />
-                    <ProgressBar label="ILLUSTRATOR" value={50} />
-                  </Paper>
-                  
-                </div>
-            </div>
-        );
-    }
+                
+              </div>
+          </div>
+      );
 }
 
 export default withStyles(styles, {withTheme: true})(Skills);

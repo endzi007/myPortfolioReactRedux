@@ -58,28 +58,18 @@ const Navigation = (props)=> {
         if (props.history.location.pathname === path){
             return;
         }
-        props.startPageTransition(true);
+
+        props.history.push(path);
+        setShowDrawer(false);
+        //props.startPageTransition(false);
+       /*  props.startPageTransition(true);
         setShowDrawer(false);
         setTimeout(()=>{
             props.history.push(path);
             props.startPageTransition(false);
 
-        }, props.appConfig.transitionDuration);
+        }, props.appConfig.transitionDuration); */
     }
-    useEffect(()=>{
-         anime({
-            targets: myRef.current,
-            duration: 500,
-            keyframes: [
-                {
-                    duration: 500,
-                    rotateY: 40,
-                    easing: "easeOutQuad",
-                    delay: 500
-                }
-            ],
-        }); 
-    }, []);
      
         const { classes } = props;
         return(
@@ -88,11 +78,9 @@ const Navigation = (props)=> {
                 ref={myRef}
                 className={showDrawer? "drawer": "drawer"}
                 style={{
-                    width: "25vw", 
+                    width: "20vw", 
                     height: "100vh", 
                     backgroundColor: "#eb7d4b",
-                    transformOrigin: "top left",
-                    transform: "perspective(100vw)"
                 }}>
                     <div className={classes.wrapperStyle}>
                         <div className={classes.navStyle}>

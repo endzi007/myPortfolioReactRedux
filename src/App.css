@@ -3,12 +3,6 @@
 @import url(./assets/css/font-awesome.css);
 @import url(./assets/css/hamburgers.css);
 
-body{
-  position: "fixed";
-  background-image: url("./assets/images/background1.png")!important;
-  background-attachment: fixed;
-  background-size: cover; 
-}
 @keyframes hideme {
   100% {
     height: 0;
