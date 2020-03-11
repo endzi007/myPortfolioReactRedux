@@ -1,17 +1,18 @@
 import React from 'react';
 import { Drawer } from '@material-ui/core';
 import { withStyles, Typography } from '@material-ui/core/';
+import { makeStyles } from "@material-ui/core/styles";
 import { Link } from 'react-router-dom';
 import SvgImage from './svgImage';
 
 
-const styless = theme => ({
+const styless = makeStyles(theme => ({
     wrapperStyle: {
         display: "flex",
         flexDirection: "row",
         height: "100%",
         maxHeight: "100vh",
-        background: theme.palette.background.paper,
+        background: theme.palette.primary.dark,
     },
     navStyle :{
         width: "210px",
@@ -20,6 +21,7 @@ const styless = theme => ({
         justifyContent: "center",
         height: "100%",
         overflowY: "hidden",
+        display: "none"
     },
     navItemStyle:{
         display: "flex",
@@ -28,17 +30,17 @@ const styless = theme => ({
         textAlign: "center",
         flexDirection: "column",
         alignContent: "center",
-        borderRight: theme.palette.primary.main,        
+        borderRight: theme.palette.secondary.main,        
         "&:hover":{
             backgroundColor: "gray",
             cursor: "pointer"
         }
     }
     
-});
+}));
 
-const NavigationDrawer = ({show, handleClick, classes}) =>{
-    
+const NavigationDrawer = ({show, handleClick}) =>{
+    const classes = styless();
     return(
         <Drawer style={{overflow: "hidden", zIndex: 100}} open={show}>
             <div className={classes.wrapperStyle}>
@@ -53,5 +55,5 @@ const NavigationDrawer = ({show, handleClick, classes}) =>{
     );
 }
 
-export default withStyles(styless)(NavigationDrawer);
+export default NavigationDrawer;
 

@@ -1,11 +1,11 @@
 import { createMuiTheme } from '@material-ui/core/styles';
-import { amber, blue, cyan } from '@material-ui/core/colors';
+import { cyan } from '@material-ui/core/colors';
 
 const theme = createMuiTheme({
   palette: {
     type: "dark",
     primary: {
-        main: "#32FFB4"
+        main: "#49BCEC"
     },
     secondary: {
         main: "#18ffff"
@@ -15,6 +15,9 @@ const theme = createMuiTheme({
     },
     headers: {
         main: "#fff",
+    },
+    background: {
+        default: "#181718"
     }
   },
   overrides:{

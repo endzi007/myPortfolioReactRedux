@@ -2,7 +2,11 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway");
 @import url(./assets/css/font-awesome.css);
 @import url(./assets/css/hamburgers.css);
+@import url('https://fonts.googleapis.com/css?family=Anton&display=swap');
 
+.boldFont{
+  font-family: 'Anton', sans-serif;
+}
 @keyframes hideme {
   100% {
     height: 0;
