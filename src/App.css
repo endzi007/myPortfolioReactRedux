@@ -12,11 +12,8 @@
     height: 0;
     width: 0; } }
 
-@media only screen and (max-width: 766px) {
 
-  html {
-    font-size: 14px;
-  }
+@media only screen and (max-width: 766px) {
 
   #myNavbar {
     width: 100%;
@@ -33,7 +30,6 @@
 
 .paddingDiv {
   padding-top: 50px; }
-
 .form-group label {
   font-size: 1.1em;
   font-family: "Titillium Web", sans-serif;

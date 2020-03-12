@@ -1,32 +1,33 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core';
+import { withStyles, makeStyles, useTheme} from '@material-ui/core';
 
-const styles = theme =>({
-    main: {
-        position: "fixed",
-        zIndex: 10000000,
-        left: 0,
-        top: "0px",
-        width: "50px",
-        display: "flex",
-        justifyContent: "center",
-        alignContent: "flex-start",
-        alignItems: "flex-start",
-        paddingTop: "10px",
-        paddingLeft: "10px",
-    },
-    span: {
-        backgroundColor: theme.palette.primary.main,
-        "&:before":{
-            backgroundColor: theme.palette.primary.main
-        },
-        "&:after":{
-            backgroundColor: theme.palette.primary.main
+const styles = makeStyles(theme =>{
+    return {
+        main: (props)=> ({
+            width: "60px",
+            display: "flex",
+            justifyContent: "center",
+            alignContent: "flex-start",
+            alignItems: "flex-start",
+            paddingTop: "10px",
+            paddingLeft: "10px",
+            height: "100%"
+        }),
+        span: {
+            backgroundColor: theme.palette.primary.main,
+            "&:before":{
+                backgroundColor: theme.palette.primary.main
+            },
+            "&:after":{
+                backgroundColor: theme.palette.primary.main
+            }
         }
     }
 });
 
-const ToggleDrawer = ({ show, handleClick, classes})=>{
+const ToggleDrawer = ({ show, handleClick})=>{
+    const theme = useTheme();
+    const classes = styles();
     return (
         <div onClick={handleClick.bind(null, !show)} className={classes.main}>
             <button style={{outline: "none"}} className={`hamburger hamburger--collapse ${show===true?"is-active":""}`} type="button">
@@ -38,4 +39,4 @@ const ToggleDrawer = ({ show, handleClick, classes})=>{
     ); 
 }
 
-export default withStyles(styles)(ToggleDrawer); 
+export default ToggleDrawer; 

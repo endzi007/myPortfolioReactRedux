@@ -8,26 +8,27 @@ const styles = makeStyles(theme=>({
         height: "100%",
         display: "grid",
         gridTemplateColumns: "50% 50%",
-        position: "relative"
+        position: "relative",
+        paddingTop: "50px"
     },
     left: {
         height: "100%",
         backgroundColor: theme.palette.primary.main,
         boxShadow: "0px 0px 10px black",
-        borderRadius: "10px"
+        borderRadius: "10px",
+        color: theme.palette.background.default,
+        textAlign: "right",
     },
     right: {
-        height:"100%"
+        height:"100%",
+        color: theme.palette.primary.main,
+        textAlign: "left",
     },
-    center:{
-        position: "absolute",
-        top: "100px",
-        left: "50%",
-        transform: "translateX(-50%)",
+    span: {
+        fontSize: "9vw",
+        letterSpacing: "5px",
         fontFamily: "'Anton', sans-serif",
-        fontSize: "3.5rem",
-        letterSpacing: "20px",
-        fontWeight: "bolder"
+        letterSpacing: "5px"
     }
 }));
 
@@ -35,9 +36,8 @@ const HomeText = (props)=>{
     const classes = styles();
     return(
         <div className={classes.root}>
-            <div className={classes.center}>Enis Jasarovic</div>
-            <div className={classes.left}></div>
-            <div className={classes.right}></div>
+            <div className={classes.left}><span className={classes.span}>Enis Ja</span><p>Welcome</p></div>
+            <div className={classes.right}><span className={classes.span}>sarovic</span></div>
         </div>
     );
 

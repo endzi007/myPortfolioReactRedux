@@ -46,6 +46,10 @@ const theme = createMuiTheme({
   typography: {
       fontFamily: "Raleway, Georgia, Times, Times New Roman, serif"
   },
+  dimensions:{
+      navWidth: 200,
+      drawerWidth: 50
+  }
 
 });
 

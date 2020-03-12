@@ -4,27 +4,31 @@ import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../actions/projectActions'
 import ToggleDrawer from './toggleDrawer';
-import { withStyles, Typography } from '@material-ui/core/';
+import { withStyles, Typography, makeStyles } from '@material-ui/core/';
 import SvgImage from './svgImage';
 import anime from 'animejs';
 import { useRef } from "react";
 import { useEffect } from "react";
 
 
-const styles = theme =>({
-    root:{
+const styles = makeStyles (theme =>{
+    return {
+    root: (props)=>({
         position: "absolute",
         left: 0,
         top: 0,
         zIndex: 999,
         display: "flex",
-    },
+        height: "100vh",
+        width: theme.dimensions.navWidth,
+        transform: props.showDrawer? `translateX(-${theme.dimensions.navWidth-50}px)` : "translateX(0px)",
+        transition: "all 0.5s cubic-bezier(0.680, -0.550, 0.265, 1.550);"
+    }),
     wrapperStyle: {
         display: "flex",
         flexDirection: "row",
         height: "100%",
-        maxHeight: "100vh",
-        background: theme.palette.background.paper,
+        background: theme.palette.primary.light,
     },
     navStyle :{
         width: "100%",
@@ -48,6 +52,7 @@ const styles = theme =>({
         },
         width: "100%"
     }
+    }
 });
 
 const Navigation = (props)=> {
@@ -58,31 +63,26 @@ const Navigation = (props)=> {
         if (props.history.location.pathname === path){
             return;
         }
-
-        props.history.push(path);
-        setShowDrawer(false);
-        //props.startPageTransition(false);
-       /*  props.startPageTransition(true);
+        props.startPageTransition(true);
         setShowDrawer(false);
         setTimeout(()=>{
             props.history.push(path);
             props.startPageTransition(false);
 
-        }, props.appConfig.transitionDuration); */
+        }, props.appConfig.transitionDuration);
     }
      
-        const { classes } = props;
+        const  classes  = styles({showDrawer: showDrawer});
         return(
             <div className={classes.root}>
                 <div 
                 ref={myRef}
-                className={showDrawer? "drawer": "drawer"}
                 style={{
-                    width: "20vw", 
+                    width: "100%",
                     height: "100vh", 
-                    backgroundColor: "#eb7d4b",
+                    backgroundColor: "#eb7d4b"
                 }}>
-                    <div className={classes.wrapperStyle}>
+                    <div className={classes.wrapperStyle} >
                         <div className={classes.navStyle}>
                             <Typography variant="body1" className={classes.navItemStyle} onClick={()=>{handleClick("/")}}> <SvgImage show={true} name="home"/> Home </Typography>
                             <Typography variant="body1" className={classes.navItemStyle} onClick={()=>{handleClick("/Skills")}}> <SvgImage show={true} name="skills"/> About </Typography>
@@ -92,9 +92,7 @@ const Navigation = (props)=> {
                     </div>
 
                 </div>
-                <ToggleDrawer show ={showDrawer} handleClick={()=>{
-                    setShowDrawer(!showDrawer)
-                }}/>
+                <ToggleDrawer show ={showDrawer} handleClick={()=>{ setShowDrawer(!showDrawer) }}/>
             </div>
         );
 }

@@ -23,7 +23,10 @@ const useStyles = makeStyles(theme => ({
     width: "100vw",
     height: "100vh",
     overflow: "hidden",
-    position: "relative"
+    position: "relative",
+    "@media only screen and (max-width: 768px)":{
+      padding: "5px 5px 5px 5px"
+    }
   }
 }));
 const App = ()=> {
@@ -33,7 +36,7 @@ const App = ()=> {
       <CssBaseline />
       <Router>
          <Wrapper>
-          {/* <Navigation /> */}
+          <Navigation />
           <TransitionOverlay />
               <Switch>
               <Route exact path="/" component={HomeText} />
