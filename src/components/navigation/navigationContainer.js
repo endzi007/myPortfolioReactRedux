@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
-import * as actions from '../../actions/projectActions'
+import { creators as actions } from '../../appConfig/appConfigDuck'
 import ToggleDrawer from './toggleDrawer';
 import { withStyles, Typography, makeStyles } from '@material-ui/core/';
 import SvgImage from './svgImage';
@@ -71,7 +71,10 @@ const Navigation = (props)=> {
 
         }, props.appConfig.transitionDuration);
     }
-     
+     const handleShowDrawer = ()=>{
+
+        setShowDrawer(!showDrawer);
+     }
         const  classes  = styles({showDrawer: showDrawer});
         return(
             <div className={classes.root}>
@@ -92,7 +95,7 @@ const Navigation = (props)=> {
                     </div>
 
                 </div>
-                <ToggleDrawer show ={showDrawer} handleClick={()=>{ setShowDrawer(!showDrawer) }}/>
+                <ToggleDrawer show ={showDrawer} handleClick={handleShowDrawer}/>
             </div>
         );
 }
@@ -104,8 +107,8 @@ function mapStateToProps (state){
 
 }
 
-function mapDispatchToProps (dispatch){
-    return bindActionCreators(actions, dispatch);
+const mapDispatchToProps = {
+    startPageTransition: actions.startPageTransition
 }
 
 export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(withRouter(Navigation)));

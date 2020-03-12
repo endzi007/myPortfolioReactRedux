@@ -1,5 +1,5 @@
 import React, { useRef, Fragment } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import { ThemeProvider, makeStyles } from '@material-ui/core';
 import theme from './components/helperComponents/theme';
@@ -22,7 +22,6 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.background.default,
     width: "100vw",
     height: "100vh",
-    overflow: "hidden",
     position: "relative",
     "@media only screen and (max-width: 768px)":{
       padding: "5px 5px 5px 5px"
@@ -39,7 +38,10 @@ const App = ()=> {
           <Navigation />
           <TransitionOverlay />
               <Switch>
-              <Route exact path="/" component={HomeText} />
+                <Route exact path="/" component={HomeText} />
+                <Route path="/skills" component={Skills}/>
+                <Route exact path="/projects" component={Projects}/>
+                <Route path="/contact" component={Contact}/>
               </Switch>
           </Wrapper>
         </Router>
@@ -56,9 +58,7 @@ export default App;
 
 /* 
 
-    <Route path="/skills" component={Skills}/>
-    <Route exact path="/projects" component={Projects}/>
-    <Route path="/contact" component={Contact}/>
+
                 
 */
 

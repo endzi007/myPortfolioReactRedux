@@ -1,24 +1,25 @@
 import React, { useEffect, useState } from "react";
 import Project from './project';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as actions from '../../actions/projectActions';
 import ProjectSectionTags from './tags/projectSectionTags';
 import FlipMove from 'react-flip-move';
 import PropTypes from 'prop-types';
 import { Typography, withStyles } from "@material-ui/core";
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { fetchProjects, creators as projectActions } from '../../projectsDuck/projectsDuck';
+import { types as projectTypes } from '../../projectsDuck/projectsDuck';
 
 const mapStateToProps = (store) =>{
     return{
-        projects: store.projects,
-        filterTags: store.filterTags,
-        fetching: store.fetching
+        projects: store.projects.projects,
+        filterTags: store.projects.filterTags,
+        fetching: store.appConfig.fetching
     }
 }
 
-const mapDispatchToProps = (dispatch) =>{
-    return bindActionCreators(actions, dispatch)
+const mapDispatchToProps = {
+    fetchProjects: fetchProjects,
+    addProjectsToStore: projectActions.addProjectsToStore
 }
 
 
@@ -52,8 +53,10 @@ const styles = theme =>({
 const Projects = (props)=> {
     const [ fetching, setFetching ] = useState(true);
     const setProjects = () =>{
+        console.log("setFetch")
         props.fetchProjects().then((data)=>{
-            if(data.type ==="FETCH_PROJECTS_OK"){
+            console.log("fethc")
+            if(data.type ===projectTypes.FETCH_PROJECTS_OK){
                 props.addProjectsToStore(data.payload); 
             }
         });
