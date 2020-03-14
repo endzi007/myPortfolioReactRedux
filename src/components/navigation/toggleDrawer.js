@@ -33,7 +33,7 @@ const ToggleDrawer = ({ show, handleClick})=>{
     const classes = styles();
     return (
         <div onClick={handleClick.bind(null, !show)} className={classes.main}>
-            <button style={{outline: "none"}} className={`hamburger hamburger--collapse ${show===false?"is-active":""}`} type="button">
+            <button style={{outline: "none"}} className={`hamburger hamburger--collapse ${show===true?"is-active":""}`} type="button">
                 <span className="hamburger-box">
                     <span className={`hamburger-inner ${classes.span}`}></span>
                 </span>

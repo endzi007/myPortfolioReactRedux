@@ -2,21 +2,25 @@ export const types = {
     START_PAGE_TRANSITION: "appConfig/START_PAGE_TRANSITION",
     FETCH_PROJECTS_START: "appConfig/FETCH_PROJECTS_START",
     FETCH_PROJECTS_OK: "appConfig/FETCH_PROJECTS_OK",
-    FETCH_CATEGORIES_BAD: "appConfig/FETCH_CATEGORIES_BAD"
-
-
+    FETCH_CATEGORIES_BAD: "appConfig/FETCH_CATEGORIES_BAD",
+    SHOW_DRAWER_AND_CARDS: "appConfig/SHOW_DRAWER_AND_CARDS",
+    CURRENT_HOVER: "appConfig/CURRENT_HOVER"
 }
 
 
 export const creators = {
     startPageTransition: (start)=>({type: types.START_PAGE_TRANSITION, payload: start}),
+    showDrawerAndCards: (bool)=>({type: types.SHOW_DRAWER_AND_CARDS, payload: bool}),
+    currentHover: (str) =>({type: types.CURRENT_HOVER, payload: str})
 
 }
 
 export let defaultState = {
     pageTransition: false, //when true start page fade out animation 
     transitionDuration: 2000, //miliseconds,
-    fetching: false
+    fetching: false,
+    showDrawerAndCards: false,
+    currentHover: ""
 }
 export default (state = defaultState, action )=>{
     let newState = {...state};
@@ -33,8 +37,13 @@ export default (state = defaultState, action )=>{
         case types.FETCH_CATEGORIES_BAD:
             newState.fetching = false;
             return newState;
+        case types.SHOW_DRAWER_AND_CARDS:
+            newState.showDrawerAndCards = action.payload;
+            return newState;
+        case types.CURRENT_HOVER:  
+            newState.currentHover= action.payload;
+            return newState;
         default: 
-            newState.fetching = false;
             return newState;
     }
 }

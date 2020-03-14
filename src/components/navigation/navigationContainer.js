@@ -21,7 +21,7 @@ const styles = makeStyles (theme =>{
         display: "flex",
         height: "100vh",
         width: theme.dimensions.navWidth,
-        transform: props.showDrawer? `translateX(-${theme.dimensions.navWidth-50}px)` : "translateX(0px)",
+        transform: !props.showDrawer? `translateX(-${theme.dimensions.navWidth-50}px)` : "translateX(0px)",
         transition: "all 0.5s cubic-bezier(0.680, -0.550, 0.265, 1.550);"
     }),
     wrapperStyle: {
@@ -56,15 +56,14 @@ const styles = makeStyles (theme =>{
 });
 
 const Navigation = (props)=> {
-
-    const [showDrawer, setShowDrawer ] = useState(false);
     const myRef = useRef(null);
+
     const handleClick = (path) => {
         if (props.history.location.pathname === path){
             return;
         }
         props.startPageTransition(true);
-        setShowDrawer(false);
+        props.showDrawerAndCards(false);
         setTimeout(()=>{
             props.history.push(path);
             props.startPageTransition(false);
@@ -72,10 +71,14 @@ const Navigation = (props)=> {
         }, props.appConfig.transitionDuration);
     }
      const handleShowDrawer = ()=>{
+        props.showDrawerAndCards(!props.appConfig.showDrawerAndCards);
+    }
 
-        setShowDrawer(!showDrawer);
-     }
-        const  classes  = styles({showDrawer: showDrawer});
+    const handleMouseOver = (e)=>{
+        props.currentHover()
+
+    }
+        const  classes  = styles({showDrawer: props.appConfig.showDrawerAndCards});
         return(
             <div className={classes.root}>
                 <div 
@@ -87,15 +90,15 @@ const Navigation = (props)=> {
                 }}>
                     <div className={classes.wrapperStyle} >
                         <div className={classes.navStyle}>
-                            <Typography variant="body1" className={classes.navItemStyle} onClick={()=>{handleClick("/")}}> <SvgImage show={true} name="home"/> Home </Typography>
-                            <Typography variant="body1" className={classes.navItemStyle} onClick={()=>{handleClick("/Skills")}}> <SvgImage show={true} name="skills"/> About </Typography>
-                            <Typography variant="body1" className={classes.navItemStyle} onClick={()=>{handleClick("/Projects")}}><SvgImage show={true} name="projects"/> Projects</Typography>
-                            <Typography variant="body1" className={classes.navItemStyle} onClick={()=>{handleClick("/Contact")}}><SvgImage show={true} name="contact"/> Contact</Typography>
+                            <Typography variant="body1" onMouseOver={()=>{handleMouseOver("/")}} className={classes.navItemStyle} onClick={()=>{handleClick("/")}}> <SvgImage show={true} name="home"/> Home </Typography>
+                            <Typography variant="body1" onMouseOver={()=>{handleMouseOver("/Skills")}} className={classes.navItemStyle} onClick={()=>{handleClick("/Skills")}}> <SvgImage show={true} name="skills"/> About </Typography>
+                            <Typography variant="body1" onMouseOver={()=>{handleMouseOver("/Projects")}} className={classes.navItemStyle} onClick={()=>{handleClick("/Projects")}}><SvgImage show={true} name="projects"/> Projects</Typography>
+                            <Typography variant="body1" onMouseOver={()=>{handleMouseOver("(Contact")}} className={classes.navItemStyle} onClick={()=>{handleClick("/Contact")}}><SvgImage show={true} name="contact"/> Contact</Typography>
                         </div>
                     </div>
 
                 </div>
-                <ToggleDrawer show ={showDrawer} handleClick={handleShowDrawer}/>
+                <ToggleDrawer show ={props.appConfig.showDrawerAndCards} handleClick={handleShowDrawer}/>
             </div>
         );
 }
@@ -108,7 +111,9 @@ function mapStateToProps (state){
 }
 
 const mapDispatchToProps = {
-    startPageTransition: actions.startPageTransition
+    startPageTransition: actions.startPageTransition,
+    showDrawerAndCards: actions.showDrawerAndCards,
+    currentHover: actions.currentHover
 }
 
-export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(withRouter(Navigation)));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Navigation));

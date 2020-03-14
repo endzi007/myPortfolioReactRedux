@@ -1,5 +1,6 @@
 import React, { useRef, Fragment } from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
 import './App.css';
 import { ThemeProvider, makeStyles } from '@material-ui/core';
 import theme from './components/helperComponents/theme';
@@ -12,6 +13,7 @@ import Skills from './components/skills/skills';
 import Contact from './components/contact/contact';
 import Projects from './components//project/projects'; 
 import HomeText from './components//home/homeText';
+import Cards from './components/helperComponents/cards';
 import anime from 'animejs';
 
 
@@ -28,7 +30,7 @@ const useStyles = makeStyles(theme => ({
     }
   }
 }));
-const App = ()=> {
+const App = (props)=> {
   const myRef= useRef(null);
     return (
       <ThemeProvider theme={theme}>
@@ -37,12 +39,15 @@ const App = ()=> {
          <Wrapper>
           <Navigation />
           <TransitionOverlay />
+          <Cards show={props.appConfig.showDrawerAndCards}/>
+          <div style={{display: props.appConfig.showDrawerAndCards? "none": "block"}}>
               <Switch>
                 <Route exact path="/" component={HomeText} />
                 <Route path="/skills" component={Skills}/>
                 <Route exact path="/projects" component={Projects}/>
                 <Route path="/contact" component={Contact}/>
               </Switch>
+          </div>
           </Wrapper>
         </Router>
         </ThemeProvider>
@@ -54,7 +59,13 @@ const Wrapper = (props)=>{
     const classes = useStyles();
     return <div className={classes.root}>{props.children}</div>
 }
-export default App;
+
+const mapStateToProps = (state)=>{
+  return {
+    appConfig: state.appConfig
+  }
+}
+export default connect(mapStateToProps, null)(App);
 
 /* 
 
