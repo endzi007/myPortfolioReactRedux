@@ -40,14 +40,14 @@ const App = (props)=> {
           <Navigation />
           <TransitionOverlay />
           <Cards show={props.appConfig.showDrawerAndCards}/>
-          <div style={{display: props.appConfig.showDrawerAndCards? "none": "block"}}>
+{/*           <div style={{display: props.appConfig.showDrawerAndCards? "none": "block"}}>
               <Switch>
                 <Route exact path="/" component={HomeText} />
                 <Route path="/skills" component={Skills}/>
                 <Route exact path="/projects" component={Projects}/>
                 <Route path="/contact" component={Contact}/>
               </Switch>
-          </div>
+          </div> */}
           </Wrapper>
         </Router>
         </ThemeProvider>

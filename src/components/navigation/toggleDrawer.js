@@ -13,24 +13,33 @@ const styles = makeStyles(theme =>{
             paddingLeft: "10px",
             height: "100%"
         }),
-        span: {
+        span:(props)=> ({
             backgroundColor: theme.palette.primary.main,
             boxShadow: "0px 0px 2px black",
+            transition: "transform 0.3 ease-in",
             "&:before":{
                 backgroundColor: theme.palette.primary.main,
                 boxShadow: "0px 0px 2px black",
+                transform: `scaleX(${props.scale})`,
+                transition: "transform 0.3 ease-in",
             },
             "&:after":{
                 backgroundColor: theme.palette.primary.main,
                 boxShadow: "0px 0px 2px black",
+                transform: `scaleX(${props.scale})`,
+                transition: "transform 0.3 ease-in",
+            },
+            "&:hover":{
+                transform: "scaleX(1.2)",
+                transition: "transform .5s ease-in"
             }
-        }
+        })
     }
 });
 
 const ToggleDrawer = ({ show, handleClick})=>{
     const theme = useTheme();
-    const classes = styles();
+    const classes = styles({scale: 0.8});
     return (
         <div onClick={handleClick.bind(null, !show)} className={classes.main}>
             <button style={{outline: "none"}} className={`hamburger hamburger--collapse ${show===true?"is-active":""}`} type="button">

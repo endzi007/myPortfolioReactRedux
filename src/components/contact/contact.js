@@ -191,7 +191,6 @@ class VerticalLinearStepper extends React.Component {
     return false;
   }
   handleSubmit = (e) => {
-    console.log("submit");
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },

@@ -1,7 +1,7 @@
 import React from 'react';
 import { withStyles, Typography, withWidth } from '@material-ui/core';
 
-const styles = theme => console.log(theme)||({
+const styles = theme => ({
     root: {
         width: "100%",
         position: "relative",
@@ -63,7 +63,6 @@ class ProgressBar extends React.Component {
         }, 0);
     }
     render(){
-        console.log(this.props);
         const { classes } = this.props;
         return(
             <div className={classes.root}>

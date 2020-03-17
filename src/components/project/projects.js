@@ -53,9 +53,7 @@ const styles = theme =>({
 const Projects = (props)=> {
     const [ fetching, setFetching ] = useState(true);
     const setProjects = () =>{
-        console.log("setFetch")
         props.fetchProjects().then((data)=>{
-            console.log("fethc")
             if(data.type ===projectTypes.FETCH_PROJECTS_OK){
                 props.addProjectsToStore(data.payload); 
             }

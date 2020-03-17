@@ -20,7 +20,7 @@ export let defaultState = {
     transitionDuration: 2000, //miliseconds,
     fetching: false,
     showDrawerAndCards: false,
-    currentHover: ""
+    currentHover: "/"
 }
 export default (state = defaultState, action )=>{
     let newState = {...state};

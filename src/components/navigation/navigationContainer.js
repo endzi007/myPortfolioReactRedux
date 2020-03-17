@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, useLocation } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { creators as actions } from '../../appConfig/appConfigDuck'
 import ToggleDrawer from './toggleDrawer';
@@ -57,26 +57,28 @@ const styles = makeStyles (theme =>{
 
 const Navigation = (props)=> {
     const myRef = useRef(null);
+    const location = useLocation();
 
     const handleClick = (path) => {
         if (props.history.location.pathname === path){
             return;
         }
         props.startPageTransition(true);
-        props.showDrawerAndCards(false);
         setTimeout(()=>{
+            props.showDrawerAndCards(false);
             props.history.push(path);
             props.startPageTransition(false);
-
         }, props.appConfig.transitionDuration);
     }
      const handleShowDrawer = ()=>{
+        props.currentHover(location.pathname);
         props.showDrawerAndCards(!props.appConfig.showDrawerAndCards);
     }
 
-    const handleMouseOver = (e)=>{
-        props.currentHover()
-
+    const onMouseEnterHandler = (path)=>{
+        setTimeout(()=>{
+            props.currentHover(path);
+        },0);
     }
         const  classes  = styles({showDrawer: props.appConfig.showDrawerAndCards});
         return(
@@ -90,10 +92,10 @@ const Navigation = (props)=> {
                 }}>
                     <div className={classes.wrapperStyle} >
                         <div className={classes.navStyle}>
-                            <Typography variant="body1" onMouseOver={()=>{handleMouseOver("/")}} className={classes.navItemStyle} onClick={()=>{handleClick("/")}}> <SvgImage show={true} name="home"/> Home </Typography>
-                            <Typography variant="body1" onMouseOver={()=>{handleMouseOver("/Skills")}} className={classes.navItemStyle} onClick={()=>{handleClick("/Skills")}}> <SvgImage show={true} name="skills"/> About </Typography>
-                            <Typography variant="body1" onMouseOver={()=>{handleMouseOver("/Projects")}} className={classes.navItemStyle} onClick={()=>{handleClick("/Projects")}}><SvgImage show={true} name="projects"/> Projects</Typography>
-                            <Typography variant="body1" onMouseOver={()=>{handleMouseOver("(Contact")}} className={classes.navItemStyle} onClick={()=>{handleClick("/Contact")}}><SvgImage show={true} name="contact"/> Contact</Typography>
+                            <Typography variant="body1" onMouseEnter={()=>{onMouseEnterHandler("/")}} className={classes.navItemStyle} onClick={()=>{handleClick("/")}}> <SvgImage show={true} name="home"/> Home </Typography>
+                            <Typography variant="body1" onMouseEnter={()=>{onMouseEnterHandler("/Skills")}} className={classes.navItemStyle} onClick={()=>{handleClick("/Skills")}}> <SvgImage show={true} name="skills"/> About </Typography>
+                            <Typography variant="body1" onMouseEnter={()=>{onMouseEnterHandler("/Projects")}} className={classes.navItemStyle} onClick={()=>{handleClick("/Projects")}}><SvgImage show={true} name="projects"/> Projects</Typography>
+                            <Typography variant="body1" onMouseEnter={()=>{onMouseEnterHandler("/Contact")}} className={classes.navItemStyle} onClick={()=>{handleClick("/Contact")}}><SvgImage show={true} name="contact"/> Contact</Typography>
                         </div>
                     </div>
 
