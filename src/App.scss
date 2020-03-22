@@ -3,10 +3,18 @@
 @import url(./assets/css/font-awesome.css);
 @import url(./assets/css/hamburgers.css);
 @import url('https://fonts.googleapis.com/css?family=Anton&display=swap');
+:root {
+  --marginTop: 70px;
+  --marginBottom: 50px;
+  --marginLeft: 70px;
+  --marginRight: 70px;
+}
+
 
 .boldFont{
   font-family: 'Anton', sans-serif;
 }
+
 @keyframes hideme {
   100% {
     height: 0;
@@ -147,4 +155,11 @@
 .fadeOutUpBig {
   -webkit-animation-name: fadeOutUpBig;
   animation-name: fadeOutUpBig;
+}
+
+.innerDivClass{
+  width: calc(100% - var(--marginLeft) - var(--marginRight));
+  height: calc(100% - var(--marginTop) - var(--marginBottom));
+  top: var(--marginTop);
+  left: var(--marginBottom);
 }

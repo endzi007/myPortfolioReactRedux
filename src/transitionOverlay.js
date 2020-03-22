@@ -10,10 +10,10 @@ const TransitionOverlay = ({ classes, appConfig, theme})=>{
     const defaultStyle = (state)=> ({
         transition: `opacity ${appConfig.transitionDuration/8}ms ease-in-out`,
         opacity: state==="entered"? 1: 0,
-        width: "100vw", 
-        height: "100vh",
+        width: "100%", 
+        height: "100%",
         backgroundColor: theme.palette.background.default,
-        position: "fixed",
+        position: "absolute",
         top: 0, 
         zIndex: 1000,
       });

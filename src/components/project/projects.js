@@ -19,29 +19,32 @@ const mapStateToProps = (store) =>{
 
 const mapDispatchToProps = {
     fetchProjects: fetchProjects,
-    addProjectsToStore: projectActions.addProjectsToStore
+    addProjectsToStore: projectActions.addProjectsToStore,
+    filterProjects: projectActions.filterProjects
 }
 
 
 const styles = theme =>({
     h1: {
-        color: theme.palette.primary.main,
+        color: theme.palette.primary.main.contrastText,
         margin: "0 auto",
         alignSelf: "center",
         justifySelf: "center"
     },
     root: {
-        width: "100vw",
-        margin: "5vh auto 5vh auto",
+        width: "100%",
         display: "flex",
-        flexDirection: "column"
+        flexDirection: "column",
+        padding: "50px"
     },
     projects: {
         display: "grid",
-        gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+        gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
         gridGap: "20px",
-        justifyItems: "center",
-        alignItems: "start"
+        justifyItems: "start",
+        "& :nth-child(1)": {
+            gridColumn: "1 / 3"
+        }
     }, 
     circularProgress: {
         position: "absolute",
@@ -115,7 +118,7 @@ const Projects = (props)=> {
     const renderDiv = fetching === true ? <CircularProgress className={classes.circularProgress} /> :  projectsToRender;
     return(
         <div className={classes.root} >
-            <Typography className={classes.h1} variant="display1">My Work</Typography>
+            <Typography className={classes.h1} variant="h2">My recent work.</Typography>
             <div>
             <ProjectSectionTags filterTags = {props.filterTags} filterProjects={props.filterProjects} tags = {tags} />
             </div>

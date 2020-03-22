@@ -16,7 +16,9 @@ import Chip from '@material-ui/core/Chip';
 const styles = (theme)=> {
   return {
     card: {
-      height: "100%"
+      height: "100%",
+      boxShadow: "0 0 5px black",
+      position:"relative"
     },
     media: {
       height: 0,
@@ -46,7 +48,7 @@ class Project extends React.Component {
         const githubButton = this.props.github === "" ? null :<Button size="small" color="primary" href={this.props.github}>Github</Button>; 
         const projectButton  = this.props.link === "" ? null :<Button size="small" color="primary" href={this.props.link}> Project site </Button>;
         return(
-            <div>
+            <div> 
             <Card className={classes.card}>
               <CardMedia
                 className={classes.media}
@@ -54,10 +56,10 @@ class Project extends React.Component {
                 title={this.props.title}
               />
               <CardContent>
-                <Typography gutterBottom variant="headline" component="h2" color="primary">
+                <Typography gutterBottom variant="headline" component="h2" color="primary.contrastText">
                   {this.props.title}
                 </Typography>
-                <Typography component="p">
+                <Typography component="p" color="primary.contrastText">
                   {this.props.content}
                 </Typography>
                 <div>

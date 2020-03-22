@@ -15,11 +15,13 @@ const styles = theme => ({
     color: theme.palette.secondary
   },
   defaultStyle: {
-    width: "50vw",
+    width: "50%",
     margin: " 0 auto",
     display: "flex",
     flexDirection: "column",
     opacity: 0.8,
+    alignSelf:"center",
+    transform: "translateY(-10%)",
     "& h1": {
         alignSelf: "center"
       },
@@ -216,7 +218,7 @@ class VerticalLinearStepper extends React.Component {
 
     return (
       <div className={classes.defaultStyle}>
-      <Typography variant="headline">Write me something amaizing :)</Typography>
+      <Typography variant="h3" color="inherit">Write me something amaizing :)</Typography>
       <Snackbar show={this.state.open} message="enis"/>
       <form onSubmit ={this.handleSubmit}>
         <Stepper activeStep={activeStep} orientation="vertical">

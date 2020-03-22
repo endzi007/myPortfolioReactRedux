@@ -49,6 +49,7 @@
     "babel-runtime": "^6.26.0",
     "gh-pages": "^1.0.0",
     "parcel-bundler": "1.9.7",
-    "rimraf": "^2.6.2"
+    "rimraf": "^2.6.2",
+    "sass": "^1.26.3"
   }
 }

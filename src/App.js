@@ -1,10 +1,11 @@
-import React, { useRef, Fragment } from 'react';
+import React, { useRef } from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
-import './App.css';
-import { ThemeProvider, makeStyles } from '@material-ui/core';
+import './App.scss';
+import { ThemeProvider, makeStyles, useMediaQuery, responsiveFontSizes } from '@material-ui/core';
 import theme from './components/helperComponents/theme';
-import Navigation from './components/navigation/navigationContainer';
+import Drawer from './components/navigation/drawer';
+import Navigation from './components/navigation/navigation';
 import TransitionOverlay from './transitionOverlay.js';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
@@ -13,41 +14,51 @@ import Skills from './components/skills/skills';
 import Contact from './components/contact/contact';
 import Projects from './components//project/projects'; 
 import HomeText from './components//home/homeText';
-import Cards from './components/helperComponents/cards';
-import anime from 'animejs';
 
+let newTheme = theme({primaryColor: "#48BCEC", backgroundDefault: "#181718", paletteType: "dark"});
+newTheme = responsiveFontSizes(newTheme);
 
 const useStyles = makeStyles(theme => ({
   root:{
     boxSizing: "border-box",
-    padding: "30px 30px 30px 60px",
-    backgroundColor: theme.palette.background.default,
     width: "100vw",
     height: "100vh",
     position: "relative",
-    "@media only screen and (max-width: 768px)":{
-      padding: "5px 5px 5px 5px"
-    }
-  }
+    background:`linear-gradient(45deg, ${theme.palette.secondary.dark} 0%, ${theme.palette.background.default} 100%)`,
+    backgroundColor: "white",
+  },
+  innerDiv: (props)=>({
+    position: "absolute",
+    overflow: "auto",
+    "&::-webkit-scrollbar": {
+      display: "none"
+    },
+    "-ms-overflow-style": "none",
+    boxShadow: "0 0 5px black",
+    display: "flex",
+    width: `calc(100% - ${theme.dimensions[props.layout].margins.left} - ${theme.dimensions[props.layout].margins.right})`,
+    height: `calc(100% - ${theme.dimensions[props.layout].margins.top} - ${theme.dimensions[props.layout].margins.bottom})`,
+    top: `${theme.dimensions[props.layout].margins.top}`,
+    left: `${theme.dimensions[props.layout].margins.left}`,
+    backgroundColor: theme.palette.background.default,
+    borderTopLeftRadius: "80px"
+  })
 }));
 const App = (props)=> {
   const myRef= useRef(null);
     return (
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={newTheme}>
       <CssBaseline />
       <Router>
          <Wrapper>
-          <Navigation />
           <TransitionOverlay />
-          <Cards show={props.appConfig.showDrawerAndCards}/>
-{/*           <div style={{display: props.appConfig.showDrawerAndCards? "none": "block"}}>
-              <Switch>
-                <Route exact path="/" component={HomeText} />
-                <Route path="/skills" component={Skills}/>
-                <Route exact path="/projects" component={Projects}/>
-                <Route path="/contact" component={Contact}/>
-              </Switch>
-          </div> */}
+          <Switch>
+            <Route exact path="/" component={HomeText} />             
+            <Route path="/skills" component={Skills}/>
+            <Route exact path="/projects" component={Projects}/>
+            <Route path="/contact" component={Contact}/>
+          </Switch>
+          <Navigation />
           </Wrapper>
         </Router>
         </ThemeProvider>
@@ -56,8 +67,20 @@ const App = (props)=> {
 
 
 const Wrapper = (props)=>{
-    const classes = useStyles();
-    return <div className={classes.root}>{props.children}</div>
+  const matches = useMediaQuery("(max-width: 768px)");
+  let classes;
+  if(!matches){
+    classes = useStyles({ layout: "desktop"});
+  } else {
+    classes = useStyles({ layout: "mobile"});
+  }
+    
+    return <div className={classes.root}>
+      <Drawer />
+      <div className={`${classes.innerDiv}`}>
+        {props.children}
+        </div>
+      </div>
 }
 
 const mapStateToProps = (state)=>{

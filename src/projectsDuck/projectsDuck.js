@@ -25,7 +25,7 @@ export default (state = defaultState, action )=>{
             if(newState.filterTags.indexOf(action.payload)===-1){
                 newState.filterTags.push(action.payload);
             } else {
-                newState.filterTags.splice(newState.indexOf(action.payload), 1);
+                newState.filterTags.splice(newState.filterTags.indexOf(action.payload), 1);
             }
             return newState;
         default: 

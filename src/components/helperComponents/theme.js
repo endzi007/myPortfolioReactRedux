@@ -1,14 +1,14 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 import { cyan } from '@material-ui/core/colors';
 
-const theme = createMuiTheme({
+const theme = (props)=>createMuiTheme({
   palette: {
-    type: "dark",
+    type: props.paletteType,
     primary: {
-        main: "#49BCEC"
+        main: props.paletteType === "dark"? props.primaryColor: "#ff5851"
     },
     secondary: {
-        main: "#18ffff"
+        main: props.paletteType === "dark"? "#18ffff": "#ff5851"
     },
     grey: {
         main: "#18ffff"
@@ -17,7 +17,7 @@ const theme = createMuiTheme({
         main: "#fff",
     },
     background: {
-        default: "#181718"
+        default: props.paletteType === "dark"? "#181718": "#f8f8f8"
     }
   },
   overrides:{
@@ -44,11 +44,46 @@ const theme = createMuiTheme({
       }
   },
   typography: {
-      fontFamily: "Raleway, Georgia, Times, Times New Roman, serif"
+      fontFamily: "Montserrat, Georgia, Times, Times New Roman, serif",
+      h1:{
+        fontFamily: "Anton, Times, sans-serif"
+      },
+      h2:{
+        fontFamily: "Anton, Times, sans-serif"
+      },
+      h3:{
+        fontFamily: "Anton, Times, sans-serif"
+      },
+      h4:{
+        fontFamily: "Anton, Times, sans-serif"
+      },
+      h5:{
+        fontFamily: "Anton, Times, sans-serif"
+      },
+      h6:{
+        fontFamily: "Anton, Times, sans-serif"
+      },
+      h7:{
+        fontFamily: "Anton, Times, sans-serif"
+      }
   },
   dimensions:{
-      navWidth: 200,
-      drawerWidth: 50
+      desktop: {
+          margins: {
+            top: "70px",
+            left: "70px",
+            right: "70px",
+            bottom: "50px"
+          }
+      },
+      mobile: {
+        margins: {
+          top: "70px",
+          left: "5px",
+          right: "5px",
+          bottom: "5px"
+        }
+    }
   }
 
 });
