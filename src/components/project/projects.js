@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import ProjectSectionTags from './tags/projectSectionTags';
 import FlipMove from 'react-flip-move';
 import PropTypes from 'prop-types';
-import { Typography, withStyles } from "@material-ui/core";
+import { Typography, makeStyles } from "@material-ui/core";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { fetchProjects, creators as projectActions } from '../../projectsDuck/projectsDuck';
 import { types as projectTypes } from '../../projectsDuck/projectsDuck';
@@ -24,37 +24,41 @@ const mapDispatchToProps = {
 }
 
 
-const styles = theme =>({
+const styles = makeStyles(theme =>({
     h1: {
         color: theme.palette.primary.main.contrastText,
         margin: "0 auto",
         alignSelf: "center",
-        justifySelf: "center"
+        justifySelf: "center",
+        [theme.breakpoints.down("sm")]:{
+            fontSize: "1.5rem"
+        }
     },
     root: {
         width: "100%",
         display: "flex",
         flexDirection: "column",
-        padding: "50px"
+        fontSize: "0.5rem",
+        marginTop: "4vh",
+        overflow: "auto"
     },
     projects: {
         display: "grid",
-        gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
+        gridTemplateColumns: "repeat(auto-fill, minmax(calc(250px + 1vw), 1fr))",
         gridGap: "20px",
-        justifyItems: "start",
-        "& :nth-child(1)": {
-            gridColumn: "1 / 3"
-        }
+        alignItems: "start",
+        padding: "2vh 5vw"
     }, 
     circularProgress: {
         position: "absolute",
         left: "50%",
         top: "50%",
     }
-});
+}));
 
 const Projects = (props)=> {
     const [ fetching, setFetching ] = useState(true);
+    const classes = styles();
     const setProjects = () =>{
         props.fetchProjects().then((data)=>{
             if(data.type ===projectTypes.FETCH_PROJECTS_OK){
@@ -66,7 +70,6 @@ const Projects = (props)=> {
         setProjects();
         setFetching(props.fetching);
     },[])
-
 
     const getAllTags =()=>{
         var tags = []; 
@@ -80,7 +83,7 @@ const Projects = (props)=> {
         });
         return tags;
     }
-        const { classes } = props;
+
         var tags=[];
         if(props.projects.length !== 0){
             tags = getAllTags();
@@ -137,4 +140,4 @@ Projects.propTypes={
 }
 
 
-export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(Projects));
+export default connect(mapStateToProps, mapDispatchToProps)(Projects);

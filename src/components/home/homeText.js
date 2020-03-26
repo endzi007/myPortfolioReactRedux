@@ -9,36 +9,41 @@ const styles = makeStyles(theme=>({
         display: "grid",
         gridTemplateColumns: "50% 50%",
         position: "relative",
+        alignItems: "center",
         "& h4":{
-            letterSpacing: "10px",
-            marginLeft: "10px"
+            letterSpacing: "0.2rem",
+            fontSize: "3vw",
+            marginTop: "2vh"
         },
         "& h6":{
-            letterSpacing: "10px",
+            letterSpacing: "0.2rem",
             marginLeft: "5px",
-            marginTop: "4rem"
+            marginTop: "1vw",
+            fontSize: "3.5vw"
+        },
+        "& h1":{
+            fontSize: "7.5vw",
+            letterSpacing: "5px",
+            letterSpacing: "5px",
+            justifySelf: "center"
         }
     },
     left: {
         height: "100%",
         backgroundColor: theme.palette.primary.main,
         color: theme.palette.background.default,
-        textAlign: "right",
-        paddingTop: "30vh"
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-end",
+        justifyContent: "center"
     },
     right: {
         height:"100%",
         color: theme.palette.primary.main,
-        textAlign: "left",
-        paddingTop: "30vh"
-    },
-    span: {
-        fontSize: "9vw",
-        letterSpacing: "5px",
-        fontFamily: "'Anton', sans-serif",
-        letterSpacing: "5px",
-        justifySelf: "center",
-        transform: "translateY(-50%)"
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        justifyContent: "center"
     }
 }));
 
@@ -49,12 +54,12 @@ const HomeText = (props)=>{
             
             <div className={classes.left}>
             <Typography variant="h6">Web</Typography>
-                <span className={classes.span}>Enis Ja</span>
+                <Typography variant="h1">Enis Ja</Typography>
                 <Typography variant="h4">Welcome</Typography>
             </div>
             <div className={classes.right}>
                 <Typography variant="h6">Developer</Typography>
-                <span className={classes.span}>sarovic</span>
+                <Typography variant="h1">sarovic</Typography>
                 <Typography variant="h4">.</Typography>
 
             </div>

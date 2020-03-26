@@ -1,11 +1,11 @@
-import React from 'react';
-import { withStyles, Typography, withWidth } from '@material-ui/core';
+import React, { useEffect, useState } from 'react';
+import { withStyles, Typography, withWidth, makeStyles } from '@material-ui/core';
 
-const styles = theme => ({
+const styles = makeStyles(theme => ({
     root: {
         width: "100%",
         position: "relative",
-        height: "25px",
+        height: "20px",
         marginTop: "8px",
         overflow: "hidden"
     },
@@ -14,19 +14,19 @@ const styles = theme => ({
         height: "100%",
         position: "absolute",
         zIndex: 0,
-        borderRadius: "3px",
-        backgroundColor: theme.palette.background.paper
+        borderRadius: "5px"
     },
-    bar:{
+    bar:(props)=>({
         left: "0",
         width: "100%", 
         height: "98%",
-        backgroundColor: theme.palette.primary.main,
+        backgroundColor: theme.palette[props.color]["main"],
         position: "absolute",
         zIndex: "1",
         transformOrigin: "left",
-        transition: `transform 500ms ease-in`
-    },
+        transition: `transform 500ms ease-in`,
+        borderRadius: "3px"
+    }),
     label: {
         position: "absolute",
         top: "50%",
@@ -34,50 +34,46 @@ const styles = theme => ({
         transform: "translateY(-50%)",
         display: "block",
         minWidth: "150px",
-        backgroundColor: theme.palette.primary.dark,
         padding: "6px 3px 6px 6px",
-        '& span': {
-            fontWeight: "bold",
-            color: theme.palette.secondary.light
+        '& p': {
+            color: theme.palette.background.default,
+            fontSize: "0.65rem",
+            fontWeight: "bold"
+            
         }
     },
-})
-class ProgressBar extends React.Component {
+}));
+const ProgressBar = (props)=> {
 
-       state={
-            value: 1,
-            barColor: "",
-            backgroundColor: "",
-            duration: 500,
-            height: 10,
-            label: "",
-        }
-
-
-    componentDidMount = ()=>{
+    const [ state, setState ] = useState({
+        value: 1,
+        barColor: "",
+        backgroundColor: "",
+        duration: 500,
+        height: 8,
+        label: "",
+    })
+    const classes = styles({color: props.color});
+    useEffect(()=>{
         setTimeout(()=>{
-            this.setState({
-                value: this.props.value,
-                label: this.props.label,
+            setState({...state,
+                value: props.value,
+                label: props.label,
             });
         }, 0);
-    }
-    render(){
-        const { classes } = this.props;
+    })
         return(
             <div className={classes.root}>
                 <div className={classes.label}> 
-
-                <Typography variant="body1"><span>{`${this.state.value}%`} </span> | {this.state.label} </Typography>
+                <Typography variant="body1">{state.label} </Typography>
                 </div>
                 <div>
                     <div className={classes.background}></div>
-                    <div className={classes.bar} style={{ transform: `scalex(${this.state.value/100})`}} ></div>
+                    <div className={classes.bar} style={{ transform: `scalex(${state.value/100})`}} ></div>
                 </div>
             </div>
         );
-    }
 
 }
 
-export default withWidth()(withStyles(styles, {withTheme: true})(ProgressBar));
+export default ProgressBar;

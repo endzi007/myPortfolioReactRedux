@@ -4,14 +4,16 @@ export const types = {
     FETCH_PROJECTS_OK: "appConfig/FETCH_PROJECTS_OK",
     FETCH_CATEGORIES_BAD: "appConfig/FETCH_CATEGORIES_BAD",
     SHOW_DRAWER_AND_CARDS: "appConfig/SHOW_DRAWER_AND_CARDS",
-    CURRENT_HOVER: "appConfig/CURRENT_HOVER"
+    CURRENT_HOVER: "appConfig/CURRENT_HOVER",
+    CURRENT_THEME: "appConfig/CURRENT_THEME"
 }
 
 
 export const creators = {
     startPageTransition: (start)=>({type: types.START_PAGE_TRANSITION, payload: start}),
     showDrawerAndCards: (bool)=>({type: types.SHOW_DRAWER_AND_CARDS, payload: bool}),
-    currentHover: (str) =>({type: types.CURRENT_HOVER, payload: str})
+    currentHover: (str) =>({type: types.CURRENT_HOVER, payload: str}),
+    currentTheme: str =>({type: types.CURRENT_THEME, payload: str})
 
 }
 
@@ -20,7 +22,8 @@ export let defaultState = {
     transitionDuration: 2000, //miliseconds,
     fetching: false,
     showDrawerAndCards: false,
-    currentHover: "/"
+    currentHover: "/",
+    currentTheme: "dark"
 }
 export default (state = defaultState, action )=>{
     let newState = {...state};
@@ -42,6 +45,9 @@ export default (state = defaultState, action )=>{
             return newState;
         case types.CURRENT_HOVER:  
             newState.currentHover= action.payload;
+            return newState;
+        case types.CURRENT_THEME:
+            newState.currentTheme = action.payload;
             return newState;
         default: 
             return newState;

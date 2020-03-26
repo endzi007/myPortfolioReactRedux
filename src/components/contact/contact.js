@@ -12,7 +12,10 @@ const encode = (data) => {
 const styles = theme => ({
   root: {
     width: '90%',
-    color: theme.palette.secondary
+    color: theme.palette.secondary,
+    "MuiSvgIcon-root":{
+      fontSize: "0.5em"
+    },
   },
   defaultStyle: {
     width: "50%",
@@ -22,26 +25,34 @@ const styles = theme => ({
     opacity: 0.8,
     alignSelf:"center",
     transform: "translateY(-10%)",
-    "& h1": {
-        alignSelf: "center"
+    "& h4": {
+        marginBottom: "3vh",
+        alignSelf: "center",
+        [theme.breakpoints.down("sm")]:{
+          fontSize: "1.4rem",
+          paddingTop: "5vh"
+        }
       },
-    '@media (max-width: 766px)':{
-      width: "80vw"
+    [theme.breakpoints.down("sm")]:{
+      width: "90vw"
     }
   },
   button: {
     marginTop: theme.spacing.unit,
     marginRight: theme.spacing.unit,
+
   },
   actionsContainer: {
     marginBottom: theme.spacing.unit * 2,
   },
   resetContainer: {
     padding: theme.spacing.unit * 3,
+    fontSize: "1rem"
   },
-  MuiStepIcon:{
+  MuiStepLabel:{
     root:{
-      color: theme.palette.primary.main
+      color: theme.palette.secondary.main,
+      
     },
     active:{
       color: theme.palette.primary.main
@@ -49,7 +60,6 @@ const styles = theme => ({
   },
   snackbar: {
     root: {
-      borderRadius: "20px",
       backgroundColor: theme.palette.primary.main
     },
     snackbarContent: {
@@ -218,7 +228,7 @@ class VerticalLinearStepper extends React.Component {
 
     return (
       <div className={classes.defaultStyle}>
-      <Typography variant="h3" color="inherit">Write me something amaizing :)</Typography>
+      <Typography variant="h4" color="inherit">Contact me</Typography>
       <Snackbar show={this.state.open} message="enis"/>
       <form onSubmit ={this.handleSubmit}>
         <Stepper activeStep={activeStep} orientation="vertical">

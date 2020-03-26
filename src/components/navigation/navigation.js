@@ -4,7 +4,11 @@ import { withRouter, useLocation } from 'react-router-dom';
 import { creators as actions } from '../../appConfig/appConfigDuck'
 import { Typography, makeStyles } from '@material-ui/core/';
 import { useRef } from "react";
-
+import GitHubIcon from '@material-ui/icons/GitHub';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
+import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
+import CreditCardIcon from '@material-ui/icons/CreditCard';
+import FreeBreakfastIcon from '@material-ui/icons/FreeBreakfast';
 
 const styles = makeStyles (theme =>{
     return {
@@ -19,12 +23,13 @@ const styles = makeStyles (theme =>{
         justifyContent: "space-between",
         transition: "all 0.7s cubic-bezier(0,.84,0,1.0)",
         transform: !props.showDrawer? `translateX(-${100}%)` : "translateX(0px)",
-        position: "absolute",
-        zIndex: 2
+        position: "fixed",
+        zIndex: 2,
+        bottom: 0
     }),
     navItemStyle: (props)=>({
         fontFamily: "'Anton', sans-serif",
-        fontSize: "3vw",
+        fontSize: "3vmax",
         position: "relative",
         display: "grid",
         justifyContent:"start",
@@ -51,15 +56,29 @@ const styles = makeStyles (theme =>{
         }
     }),
     info: {
-        marginLeft: "1.2em",
-        paddingBottom: "1.2em"
-
+        marginLeft: "1em",
+        paddingBottom: "1em",
+        wordWrap: "break-word",
+        [theme.breakpoints.down("sm")]:{
+            "& p":{
+                fontSize: "0.6rem"
+            }
+        },
+        textAlign: "center"
+    },
+    links:{
+        display: "flex",
+        justifyContent: "center",
+        "& a":{
+            color: theme.palette.primary.main
+        }
     }
     }
 });
 
 const NavItem = ({onMouseEnterHandler, handleClick, name, url})=>{
     const location = useLocation();
+    
     let styleProps = {
         showSpan: false
     }
@@ -114,7 +133,15 @@ const Navigation = (props)=> {
                     <NavItem onMouseEnterHandler={onMouseEnterHandler} handleClick={handleClick} url="/Contact" name="Contact" />
                 </div>
                 <div className={classes.info}>
-                <Typography variant="h7">{appInfos.contact.email}</Typography>
+                <Typography variant="body2">{appInfos.contact.email}</Typography>
+                <div className={classes.links}>
+                    <a href={appInfos.contact.github} target="_blank"><GitHubIcon /></a>
+                    <a href={appInfos.contact.linkedIn} target="_blank"><LinkedInIcon /></a>
+                    <a href={appInfos.contact.github} target="_blank"><PictureAsPdfIcon /></a>
+                    <a href={appInfos.contact.paypal} target="_blank"><CreditCardIcon /></a>
+                    <a href={appInfos.contact.buyMeACoffe} target="_blank"><FreeBreakfastIcon /></a>
+                    
+                </div>
                 </div>
             </div>
         );

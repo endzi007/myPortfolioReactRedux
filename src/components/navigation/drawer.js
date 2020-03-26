@@ -16,8 +16,9 @@ const styles = makeStyles (theme =>{
         top: 0,
         zIndex: 999,
         display: "flex",
-        height: "100vh",
-        width: "60px"
+        height: props.layout === "desktop" ? "100vh": "60px",
+        width: props.layout === "desktop"? "60px": "100vw",
+        flexDirection: props.layout === "desktop"? "column": "row"
     }),
     }
 });
@@ -29,13 +30,10 @@ const Drawer = (props)=> {
         props.currentHover(location.pathname);
         props.showDrawerAndCards(!props.appConfig.showDrawerAndCards);
     }
-        const  classes  = styles({showDrawer: props.appConfig.showDrawerAndCards});
+        const  classes  = styles({showDrawer: props.appConfig.showDrawerAndCards, layout: props.layout});
         return(
             <div className={classes.root}>
-                <div 
-                ref={myRef}>
-                </div>
-                <ToggleDrawer show ={props.appConfig.showDrawerAndCards} handleClick={handleShowDrawer}/>
+                <ToggleDrawer layout={props.layout} show ={props.appConfig.showDrawerAndCards} handleClick={handleShowDrawer}/>
             </div>
         );
 }

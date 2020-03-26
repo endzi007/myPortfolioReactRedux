@@ -1,101 +1,112 @@
-import React, { Component } from "react";
-import { withStyles, LinearProgress, Paper, Typography, Avatar} from "@material-ui/core";
+import React from "react";
+import { makeStyles, Typography, Link, Paper} from "@material-ui/core";
+import { fade } from '@material-ui/core/styles/colorManipulator'
 import ProgressBar from '../helperComponents/progressbar'; 
-import avatarImg from '../../assets/images/enisjasarovic.jpg';
-const styles = theme => ({
-  root: {
-    padding: "60px 100px",
-    minHeight: "80vh",
-    '@media (max-width: 766px)':{
-      padding: "80px 10px"
-    }
-  },
-  skillsContainer: {
-    display: "grid",
-    gridTemplateColumns: "4fr 3fr",
-    gridGap: "20px",
-    height: "100%",
-    position: "relative",
-    overflow: "hidden",
-    '@media (max-width: 766px)':{
-      gridTemplateColumns: "1fr"
-    }
-  },
-  skillsGroup:{
-    padding: theme.spacing.unit*2
-  },
-  leftSide:{
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    paddingRight: "150px",
-    paddingLeft: "10px",
-    justifyContent: "center",
-    textAlign: "center",
-    '@media (max-width: 766px)':{
-      padding: "10px",
-      'img': {
-        width: "100px",
-        height: "100px"
-      }
-    }
-  },
-  devider:{
-    position: "absolute",
-    height: "150%",
-    width: "400px",
-    background: theme.palette.background.default,
-    border: "2px solid transparent",
-    borderLeftColor: theme.palette.primary.main,
-    top: 0, 
-    left: "57%",
-    transformOrigin: "left top",
-    transform: "rotate(20deg) translate(-10px, -10px)",
-    zIndex: 0,
-    '@media (max-width: 766px)':{
-      display: "none"
-    }
-  },
-  avatar: {
-    width: "130px",
-    height: "130px"
-  }
-});
+import image from '../../assets/Enis-Jasarovic.jpg'
 
+
+const styles = makeStyles(theme=>({
+  root: {
+      width: "100%",
+      height: "100%",
+      display: "grid",
+      gridTemplateColumns: "50% 50%",
+      position: "relative",
+      fontSize: "calc(1em + 1vmax)",
+      overflow: "auto"
+  },
+  left: (props)=>({
+      height: "100%",
+      backgroundColor: theme.palette.primary.main,
+      color: theme.palette.background.default,
+      textAlign: "right",
+      paddingTop: "30vh",
+      position: "relative",
+      "&::before":{
+        content: '""',
+        display: "block",
+        position: "absolute",
+        width: "100%",
+        height: "100%",
+        backgroundImage: `url(${image})`,
+        backgroundSize: "cover",
+        backgroundOrigin: "center",
+        backgroundPosition: "center center",
+        opacity: "0.8",
+        top: 0,
+        left: 0,
+        zIndex: 1
+      },
+      "&::after":{
+        content: '""',
+        display: "block",
+        position: "absolute",
+        width: "100%",
+        height: "100%",
+        opacity: "1",
+        top: 0,
+        left: 0,
+        zIndex: 2,
+        backgroundImage: `linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 50%, ${fade(theme.palette.background.default, 0.5)} 80%,${theme.palette.background.default} 100%)`
+      }
+
+  }),
+  right: {
+      height:"100%",
+      color: theme.palette.primary.main.contrastText,
+      textAlign: "left",
+      padding: "20px",
+      alignContent: "strech",
+      justifyItems: "center",
+      "& span":{
+        color: theme.palette.primary.main
+      }, 
+      "& h4":{
+        marginBottom: "3vh",
+      }
+  },
+  paper:{
+    backgroundColor: theme.palette.background.default,
+    marginTop: "3vh",
+    width: "100%",
+    zIndex: -1
+  }
+}));
 
 const  Skills = (props)=> {
-
-    const { classes, theme} = props;
-      return(
-          <div className={classes.root}>
-              <div className={classes.skillsContainer}>
-              <div className={classes.devider}></div>
-              <Paper className={`${classes.leftSide}`}>
-                <Avatar className={classes.avatar} src={avatarImg} alt="enis-jasarovic"/>
-                <Typography variant="display2" component="h5">Enis Jašarović</Typography>
-                <Typography variant="title">web developer</Typography>
-                <Typography variant="title">I'm web developer from Montenegro with few years of experience as freelancer.</Typography>                
-              </Paper>
-                <Paper className={classes.skillsGroup} style={{backgroundColor: theme.palette.background.default}}>
-                  <ProgressBar label="REACT" value={85} />
-                  <ProgressBar label="JAVASCRIPT" value={85}/>
-                  <ProgressBar label="JQUERY" value={80}/>
-                  <ProgressBar label="REDUX" value={85}/>
-                  <ProgressBar label="HTML5" value={85}/>
-                  <ProgressBar label="CSS, SASS" value={90}/>
-                  <ProgressBar label="BOOTSTRAP 4" value={90}/>
-                  <ProgressBar label="MATERIAL-UI" value={85}/>
-                  <ProgressBar label="GIT" value={55} />
-                  <ProgressBar label="WEBPACK, PARCEL" value={55} />
-                  <ProgressBar label="NODE" value={50} />
-                  <ProgressBar label="EXPRESS" value={50} />
-                  <ProgressBar label="PHOTOSHOP" value={80} />
-                  <ProgressBar label="ILLUSTRATOR" value={50} />
-                </Paper>
-                
-              </div>
-          </div>
+        const classes = styles(); 
+        return(
+            <div className={classes.root}>
+                <div className={classes.left}></div>
+                <div className={classes.right}>
+                  <div>
+                    <Typography variant="h4">Hi<span>,</span> I'm Enis<span>,</span> web developer from Montenegro<span>.</span></Typography>
+                    <Typography variant="body2">
+                      I'm passionate about building excellent <span>web, mobile</span> and <span>desktop</span> apps. 
+                      I am also developer of <Link href="https://github.com/endzi007/desktopDownloader/releases" target="_blank">Dedex Video downloader software</Link> for Windows platform.
+                      <br /> Currently I work in company DeCom from Montenegro. 
+                      <br />Below you you can see technologies I'm currently familiar with.
+                    </Typography>
+                  </div>
+                  <div className={classes.paper}>
+                      <ProgressBar label="REACT | JAVASCRIPT | JQUERY " color="success" value={98} />
+                      <ProgressBar label="NODE | EXPRESS | ELECTRONJS" color="success" value={93} />
+                      <ProgressBar label="MONGODB | SQL" color="success" value={93} />
+                      <ProgressBar label="REDUX | FLUX" color="success" value={98}/>
+                      <ProgressBar label="WORDPRESS | PHP" color="success" value={93} />
+                      <ProgressBar label="HTML5, CSS, SASS" color="info" value={98}/>
+                      <ProgressBar label="MATERIAL-UI | BOOTSTRAP" color="info" value={93}/>
+                      <ProgressBar label="GSAP | ANIMEJS" color="info" value={93}/>
+                      <ProgressBar label="WEBPACK, PARCEL" color="warning" value={93} />
+                      <ProgressBar label="GIT" color="warning" value={93} />
+                      <ProgressBar label="PHOTOSHOP | ILLUSTRATOR | INKSCAPE" color="info" value={93} />
+                      <ProgressBar label="VBA" color="error" value={93} />
+                      <ProgressBar label="WORD, EXCEL, POWERPOINT" color="error" value={95} />
+                      <ProgressBar label="OTHER SOFTWARES FOR 3D/2D DRAWING, VIDEO EDITING..." color="info" value={93} />
+                    </div>
+                </div>
+            </div>
       );
 }
 
-export default withStyles(styles, {withTheme: true})(Skills);
+export default Skills;

@@ -1,6 +1,27 @@
 import { createMuiTheme } from '@material-ui/core/styles';
+import createBreakpoints from '@material-ui/core/styles/createBreakpoints';
 import { cyan } from '@material-ui/core/colors';
 
+function createFontSizes (xs, sm, md, lg, xl){
+  return {
+    [breakpoints.up("xs")]:{
+      fontSize: "xs"
+    },
+    [breakpoints.up("sm")]:{
+      fontSize: sm
+    },
+    [breakpoints.up("md")]:{
+      fontSize: md
+    },
+    [breakpoints.up("lg")]:{
+      fontSize: lg
+    },
+    [breakpoints.up("xl")]:{
+      fontSize: xl
+    },
+  }
+}
+const breakpoints = createBreakpoints({});
 const theme = (props)=>createMuiTheme({
   palette: {
     type: props.paletteType,
@@ -24,7 +45,7 @@ const theme = (props)=>createMuiTheme({
       MuiSvgIcon:{
           root:{
               backgroundColor: cyan
-          },
+          }
       },
       MuiStepIcon:{
           root:{
@@ -61,9 +82,14 @@ const theme = (props)=>createMuiTheme({
         fontFamily: "Anton, Times, sans-serif"
       },
       h6:{
-        fontFamily: "Anton, Times, sans-serif"
+        fontFamily: "Anton, Times, sans-serif",
       },
       h7:{
+        fontFamily: "Anton, Times, sans-serif"
+      },
+      body1: {
+      },
+      subtitle1:{
         fontFamily: "Anton, Times, sans-serif"
       }
   },
@@ -86,6 +112,7 @@ const theme = (props)=>createMuiTheme({
     }
   }
 
-});
+}, );
+
 
 export default theme;

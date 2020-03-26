@@ -16,18 +16,22 @@ import Chip from '@material-ui/core/Chip';
 const styles = (theme)=> {
   return {
     card: {
-      height: "100%",
       boxShadow: "0 0 5px black",
-      position:"relative"
+      position:"relative",
+      wordWrap: "break-word"
     },
     media: {
       height: 0,
       paddingTop: '56.25%', // 16:9
     },
     chip: {
-      margin: theme.spacing.unit/2,
-      height: "25px",
-      backgroundColor: theme.palette.primary.dark
+      margin: "2px",
+      backgroundColor: theme.palette.primary.dark,
+      fontSize: "0.6rem"
+    },
+    button:{
+      fontSize:"0.7rem",
+      fontWeight: "bold"
     }
   };
 }
@@ -45,10 +49,9 @@ class Project extends React.Component {
     render(){
         const { classes } = this.props;
         const tags = this.props.tags.map((tag,i)=><Chip className={classes.chip} key={`${tag}_${i}`} label={tag}/>);
-        const githubButton = this.props.github === "" ? null :<Button size="small" color="primary" href={this.props.github}>Github</Button>; 
-        const projectButton  = this.props.link === "" ? null :<Button size="small" color="primary" href={this.props.link}> Project site </Button>;
+        const githubButton = this.props.github === "" ? null :<Button className={classes.button} size="small" color="primary" href={this.props.github}>Github</Button>; 
+        const projectButton  = this.props.link === "" ? null :<Button className={classes.button} size="small" color="primary" href={this.props.link}> Project site </Button>;
         return(
-            <div> 
             <Card className={classes.card}>
               <CardMedia
                 className={classes.media}
@@ -56,10 +59,10 @@ class Project extends React.Component {
                 title={this.props.title}
               />
               <CardContent>
-                <Typography gutterBottom variant="headline" component="h2" color="primary.contrastText">
+                <Typography gutterBottom variant="h5" color="primary.contrastText">
                   {this.props.title}
                 </Typography>
-                <Typography component="p" color="primary.contrastText">
+                <Typography variant="body2" color="primary.contrastText">
                   {this.props.content}
                 </Typography>
                 <div>
@@ -71,7 +74,6 @@ class Project extends React.Component {
                 {projectButton}
               </CardActions>
             </Card>
-          </div>
         );
     }
 }
