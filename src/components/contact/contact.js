@@ -10,27 +10,22 @@ const encode = (data) => {
 }
 
 const styles = theme => ({
-  root: {
-    width: '90%',
-    color: theme.palette.secondary,
-    "MuiSvgIcon-root":{
-      fontSize: "0.5em"
-    },
-  },
   defaultStyle: {
     width: "50%",
     margin: " 0 auto",
     display: "flex",
     flexDirection: "column",
     opacity: 0.8,
-    alignSelf:"center",
-    transform: "translateY(-10%)",
+    paddingTop: "4vh",
     "& h4": {
         marginBottom: "3vh",
         alignSelf: "center",
         [theme.breakpoints.down("sm")]:{
           fontSize: "1.4rem",
           paddingTop: "5vh"
+        },
+        "& span":{
+          color: theme.palette.primary.main
         }
       },
     [theme.breakpoints.down("sm")]:{
@@ -225,10 +220,10 @@ class VerticalLinearStepper extends React.Component {
     const { classes } = this.props;
     const steps = getSteps();
     const { activeStep } = this.state;
-
+    const dd = "</>"
     return (
       <div className={classes.defaultStyle}>
-      <Typography variant="h4" color="inherit">Contact me</Typography>
+      <Typography variant="h4" color="inherit"><span>{dd.substr(0,1)}</span> Contact me <span>{dd.substr(1,2)}</span></Typography>
       <Snackbar show={this.state.open} message="enis"/>
       <form onSubmit ={this.handleSubmit}>
         <Stepper activeStep={activeStep} orientation="vertical">

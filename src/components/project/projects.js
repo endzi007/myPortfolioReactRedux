@@ -32,6 +32,9 @@ const styles = makeStyles(theme =>({
         justifySelf: "center",
         [theme.breakpoints.down("sm")]:{
             fontSize: "1.5rem"
+        },
+        "& span":{
+            color: theme.palette.primary.main
         }
     },
     root: {
@@ -121,7 +124,7 @@ const Projects = (props)=> {
     const renderDiv = fetching === true ? <CircularProgress className={classes.circularProgress} /> :  projectsToRender;
     return(
         <div className={classes.root} >
-            <Typography className={classes.h1} variant="h2">My recent work.</Typography>
+            <Typography className={classes.h1} variant="h2">My recent work<span>.</span></Typography>
             <div>
             <ProjectSectionTags filterTags = {props.filterTags} filterProjects={props.filterProjects} tags = {tags} />
             </div>

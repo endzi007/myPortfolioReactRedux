@@ -83,7 +83,7 @@ const ToggleDrawer = ({ show, handleClick, layout})=>{
             <div className={classes.links}>
                 <a href={appInfoAndLinks.contact.github} target="_blank"><GitHubIcon /></a>
                 <a href={appInfoAndLinks.contact.linkedIn} target="_blank"><LinkedInIcon /></a>
-                <a href={appInfoAndLinks.contact.github} target="_blank"><PictureAsPdfIcon /></a>
+                <a href={appInfoAndLinks.contact.resume} target="_blank"><PictureAsPdfIcon /></a>
             </div>
         </div>
     ); 

@@ -1,8 +1,8 @@
-import React from "react";
-import { connect, useSelector } from 'react-redux';
-import { withRouter, useLocation } from 'react-router-dom';
+import React, { useState } from "react";
+import { connect, useSelector, useDispatch } from 'react-redux';
+import { withRouter, useLocation, useHistory} from 'react-router-dom';
 import { creators as actions } from '../../appConfig/appConfigDuck'
-import { Typography, makeStyles } from '@material-ui/core/';
+import { Typography, makeStyles, Switch } from '@material-ui/core/';
 import { useRef } from "react";
 import GitHubIcon from '@material-ui/icons/GitHub';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
@@ -34,7 +34,46 @@ const styles = makeStyles (theme =>{
         display: "grid",
         justifyContent:"start",
         marginLeft: "0.8vw",
-        color: props.showSpan? theme.palette.primary.main : theme.palette.primary.main.contrastText,
+        color: props.showSpan? theme.palette.primary.main : theme.palette.primary.main.contrastText
+    }),
+    info: (props)=> ({
+        marginLeft: "1em",
+        paddingBottom: "1em",
+        wordWrap: "break-word",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        [theme.breakpoints.down("sm")]:{
+            "& p":{
+                fontSize: "0.6rem"
+            }
+        },
+        "& p":{
+            color: props.color
+        }
+    }),
+    links:{
+        display: "flex",
+        justifyContent: "center",
+        "& a":{
+            color: theme.palette.primary.main,
+            marginLeft: "0.5vw"
+        },
+        "& a:hover":{
+            color: theme.palette.primary.light,
+            opacity: "0.5"
+        }
+    },
+    switchTheme:{
+        display: "flex",
+        alignItems: "center"
+    }
+    }
+});
+
+
+const itemsStyle = makeStyles(theme => ({
+    defaultStyle: (props)=> ({
         "& span":{
             display: "block",
             backgroundColor: theme.palette.background.default,
@@ -54,31 +93,35 @@ const styles = makeStyles (theme =>{
             cursor: "pointer",
             opacity: "0.8"
         }
-    }),
-    info: {
-        marginLeft: "1em",
-        paddingBottom: "1em",
-        wordWrap: "break-word",
-        [theme.breakpoints.down("sm")]:{
-            "& p":{
-                fontSize: "0.6rem"
-            }
-        },
-        textAlign: "center"
-    },
-    links:{
-        display: "flex",
-        justifyContent: "center",
-        "& a":{
-            color: theme.palette.primary.main
+    })
+}));
+export const NavItem = (props)=>{
+    const { name, url } = props;
+    const globalState = useSelector(state =>{
+        return {
+            transitionDuration: state.appConfig.transitionDuration,
+            showDrawer: state.appConfig.showDrawerAndCards
         }
-    }
-    }
-});
-
-const NavItem = ({onMouseEnterHandler, handleClick, name, url})=>{
+    });
+    const dispatch = useDispatch();
     const location = useLocation();
-    
+    const history = useHistory();
+    const onMouseEnterHandler = (path)=>{
+        setTimeout(()=>{
+            props.currentHover(path);
+        },0);
+    }
+    const handleClick = (path) => {
+        if (location.pathname === path){
+            return;
+        }
+        dispatch(actions.startPageTransition(true));
+        setTimeout(()=>{
+            dispatch(actions.showDrawerAndCards(false));
+            history.push(path);
+            dispatch(actions.startPageTransition(false));
+        }, globalState.transitionDuration);
+    }
     let styleProps = {
         showSpan: false
     }
@@ -87,57 +130,51 @@ const NavItem = ({onMouseEnterHandler, handleClick, name, url})=>{
     } else {
         styleProps.showSpan = false;
     }
-    let classes = styles({...styleProps})
+    const classes = itemsStyle({showSpan: styleProps.showSpan});
     return (
-    <Typography  variant="body1" onMouseEnter={()=>{onMouseEnterHandler(url)}} className={classes.navItemStyle} onClick={()=>{handleClick(url)}}> 
+    <Typography  variant="body1" color={styleProps.showSpan? "primary": ""} onMouseEnter={()=>{onMouseEnterHandler(url)}} className={`${classes.defaultStyle} ${props.className}`} onClick={()=>{handleClick(url)}}> 
      {name} <span></span>
     </Typography>
     )
 }
 
 const Navigation = (props)=> {
-    const myRef = useRef(null);
-    const location = useLocation();
+    const [ theme, setTheme ] = useState(true);
+    const dispatch = useDispatch();
     const appInfos = useSelector((state)=>{
         return state.appInfoAndLinks;
     })
-    const handleClick = (path) => {
-        if (props.history.location.pathname === path){
-            return;
-        }
-        props.startPageTransition(true);
-        setTimeout(()=>{
-            props.showDrawerAndCards(false);
-            props.history.push(path);
-            props.startPageTransition(false);
-        }, props.appConfig.transitionDuration);
-    }
-     const handleShowDrawer = ()=>{
-        props.currentHover(location.pathname);
-        props.showDrawerAndCards(!props.appConfig.showDrawerAndCards);
+
+    const handleThemeSwitch = (e)=>{
+        setTheme(e.target.checked);
+        dispatch(actions.currentTheme(e.target.checked? "dark": "light"));
     }
 
-    const onMouseEnterHandler = (path)=>{
-        setTimeout(()=>{
-            props.currentHover(path);
-        },0);
-    }
         const  classes  = styles({showDrawer: props.appConfig.showDrawerAndCards});
         return(
             <div className={classes.root}>
-                <div></div>
+                <div className={classes.info}>
+                    <Typography variant="h6">Choose theme</Typography>
+                    <div className={classes.switchTheme}>
+                        <Typography variant="body2" color="textPrimary">Light</Typography>
+                        <Switch checked={theme} onChange={handleThemeSwitch} name="checkedA" />
+                        <Typography variant="body2" color="initial">Dark</Typography>
+                    </div>
+                    
+                </div>
                 <div>
-                    <NavItem onMouseEnterHandler={onMouseEnterHandler} handleClick={handleClick} url="/" name="Home" />
-                    <NavItem onMouseEnterHandler={onMouseEnterHandler} handleClick={handleClick} url="/Skills" name="Skills" />
-                    <NavItem onMouseEnterHandler={onMouseEnterHandler} handleClick={handleClick} url="/Projects" name="Projects" />
-                    <NavItem onMouseEnterHandler={onMouseEnterHandler} handleClick={handleClick} url="/Contact" name="Contact" />
+                    <NavItem url="/" name="Home" className={classes.navItemStyle}/>
+                    <NavItem url="/Skills" name="Skills" className={classes.navItemStyle}/>
+                    <NavItem url="/Projects" name="Projects" className={classes.navItemStyle}/>
+                    <NavItem url="/Contact" name="Contact" className={classes.navItemStyle}/>
+                    <NavItem url="/Donate" name="Donate" className={classes.navItemStyle}/>
                 </div>
                 <div className={classes.info}>
                 <Typography variant="body2">{appInfos.contact.email}</Typography>
                 <div className={classes.links}>
                     <a href={appInfos.contact.github} target="_blank"><GitHubIcon /></a>
                     <a href={appInfos.contact.linkedIn} target="_blank"><LinkedInIcon /></a>
-                    <a href={appInfos.contact.github} target="_blank"><PictureAsPdfIcon /></a>
+                    <a href={appInfos.contact.resume} target="_blank"><PictureAsPdfIcon /></a>
                     <a href={appInfos.contact.paypal} target="_blank"><CreditCardIcon /></a>
                     <a href={appInfos.contact.buyMeACoffe} target="_blank"><FreeBreakfastIcon /></a>
                     
@@ -155,9 +192,7 @@ function mapStateToProps (state){
 }
 
 const mapDispatchToProps = {
-    startPageTransition: actions.startPageTransition,
     showDrawerAndCards: actions.showDrawerAndCards,
-    currentHover: actions.currentHover
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Navigation));

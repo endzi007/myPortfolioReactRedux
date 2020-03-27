@@ -16,6 +16,7 @@ import Skills from './components/skills/skills';
 import Contact from './components/contact/contact';
 import Projects from './components//project/projects'; 
 import HomeText from './components//home/homeText';
+import Donations from './components/donate/donate';
 import { useState } from 'react';
 
 let newTheme = themeCreator({primaryColor: "#48BCEC", backgroundDefault: "#181718", paletteType: "dark"});
@@ -70,6 +71,7 @@ const App = (props)=> {
             <Route path="/skills" component={Skills}/>
             <Route exact path="/projects" component={Projects}/>
             <Route path="/contact" component={Contact}/>
+            <Route path="/donate" component={Donations} />
           </Switch>
           <Navigation />
           </Wrapper>
@@ -105,10 +107,7 @@ const Wrapper = (props)=>{
   const classes = useStyles({ layout });
     return <div className={classes.root}>
       <Drawer layout={layout}/>
-      <div onClickCapture={(e)=>{ 
-
-        dispatch(appConfigActions.currentTheme(currentTheme==="dark"? "light": "dark"))
-        }} className={`${classes.innerDiv}`} ref={myRef} >
+      <div className={`${classes.innerDiv}`} ref={myRef} >
         {props.children}
         </div>
       </div>
