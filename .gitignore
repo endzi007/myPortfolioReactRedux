@@ -16,4 +16,4 @@ yarn-error.log*
 
 /.cache
 /.vscode
-/dist
+/src
