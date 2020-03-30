@@ -24,7 +24,6 @@ try{
     console.log(e, "err");
 }
 
-console.log(theme, "theme");
 export let defaultState = {
     pageTransition: false, //when true start page fade out animation 
     transitionDuration: 3, //sec,

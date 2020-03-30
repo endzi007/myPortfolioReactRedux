@@ -134,7 +134,7 @@ export const NavItem = (props)=>{
     }
     const classes = itemsStyle({showSpan: styleProps.showSpan});
     return (
-    <Typography  variant="body1" color={styleProps.showSpan? "primary": ""} onMouseEnter={()=>{onMouseEnterHandler(url)}} className={`${classes.defaultStyle} ${props.className}`} onClick={()=>{handleClick(url)}}> 
+    <Typography  variant="body1" color={styleProps.showSpan? "primary": ""} className={`${classes.defaultStyle} ${props.className}`} onClick={()=>{handleClick(url)}}> 
      {name} <span></span>
     </Typography>
     )
@@ -149,7 +149,6 @@ const Navigation = (props)=> {
         return store.appConfig.currentTheme;
     });
 
-    console.log(currentTheme);
     const [ theme, setTheme ] = useState(currentTheme === "dark"? true : false);
 
 

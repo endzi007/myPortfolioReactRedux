@@ -27,7 +27,7 @@ const styles = makeStyles(theme => ({
     })
 }));
 
-let tl1 = new TimelineMax({ paused: true, onComplete: ()=>{ console.log("called on complete")}});
+let tl1 = new TimelineMax({ paused: true });
 
 let tl2 = new TimelineMax({
     paused: true, 
@@ -70,7 +70,6 @@ export default ({ show })=>{
         tl1.play();
         setShowPage(currentHover);
         return ()=>{
-            console.log("unmounted");
             
         }
     },[currentHover]);

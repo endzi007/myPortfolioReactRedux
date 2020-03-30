@@ -49,7 +49,6 @@ const styles = makeStyles(theme =>({
 }));
 
 const Projects = (props)=> {
-    console.log("rerender projects");
     const [ fetching, setFetching ] = useState(true);
     const { projects, filterTags } = useSelector(store=>store.projects);
     const storeFetching = useSelector(store=>store.appConfig.fetching);
@@ -57,7 +56,6 @@ const Projects = (props)=> {
     const classes = styles();
     const setProjects = () =>{
         dispatch(fetchProjects()).then((data)=>{
-            console.log(data);
             if(data.type ===projectTypes.FETCH_PROJECTS_OK){
                 dispatch(projectActions.addProjectsToStore(data.payload)); 
             }
