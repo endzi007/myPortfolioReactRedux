@@ -3,6 +3,7 @@
 @import url(./assets/css/font-awesome.css);
 @import url(./assets/css/hamburgers.css);
 @import url('https://fonts.googleapis.com/css?family=Anton&display=swap');
+
 :root {
   --marginTop: 70px;
   --marginBottom: 50px;
@@ -32,9 +33,7 @@
 html{
   font-size: calc(1em + 0.3vmax);
 }
-div{
-  transition: "all .8s ease-in"
-}
+
 @keyframes hideme {
   100% {
     height: 0;
@@ -167,8 +166,6 @@ div{
 
   to {
     opacity: 0;
-    -webkit-transform: translate3d(0, -2000px, 0);
-    transform: translate3d(0, -2000px, 0);
   }
 }
 
@@ -182,4 +179,24 @@ div{
   height: calc(100% - var(--marginTop) - var(--marginBottom));
   top: var(--marginTop);
   left: var(--marginBottom);
+}
+
+@keyframes flash {
+  from,
+  50%,
+  to {
+    opacity: 1;
+  }
+
+  25%,
+  75% {
+    opacity: 0;
+  }
+}
+
+
+.pulse {
+  animation: flash 1s infinite;
+  animation-delay: 1.5s;
+  animation-play-state: paused;
 }

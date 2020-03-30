@@ -1,27 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Project from './project';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import ProjectSectionTags from './tags/projectSectionTags';
 import FlipMove from 'react-flip-move';
-import PropTypes from 'prop-types';
 import { Typography, makeStyles } from "@material-ui/core";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { fetchProjects, creators as projectActions } from '../../projectsDuck/projectsDuck';
 import { types as projectTypes } from '../../projectsDuck/projectsDuck';
-
-const mapStateToProps = (store) =>{
-    return{
-        projects: store.projects.projects,
-        filterTags: store.projects.filterTags,
-        fetching: store.appConfig.fetching
-    }
-}
-
-const mapDispatchToProps = {
-    fetchProjects: fetchProjects,
-    addProjectsToStore: projectActions.addProjectsToStore,
-    filterProjects: projectActions.filterProjects
-}
 
 
 const styles = makeStyles(theme =>({
@@ -43,7 +28,11 @@ const styles = makeStyles(theme =>({
         flexDirection: "column",
         fontSize: "0.5rem",
         marginTop: "4vh",
-        overflow: "auto"
+        overflow: "auto",
+        "&::-webkit-scrollbar": {
+            display: "none"
+          },
+        "-ms-overflow-style": "none",
     },
     projects: {
         display: "grid",
@@ -60,23 +49,28 @@ const styles = makeStyles(theme =>({
 }));
 
 const Projects = (props)=> {
+    console.log("rerender projects");
     const [ fetching, setFetching ] = useState(true);
+    const { projects, filterTags } = useSelector(store=>store.projects);
+    const storeFetching = useSelector(store=>store.appConfig.fetching);
+    const dispatch = useDispatch();
     const classes = styles();
     const setProjects = () =>{
-        props.fetchProjects().then((data)=>{
+        dispatch(fetchProjects()).then((data)=>{
+            console.log(data);
             if(data.type ===projectTypes.FETCH_PROJECTS_OK){
-                props.addProjectsToStore(data.payload); 
+                dispatch(projectActions.addProjectsToStore(data.payload)); 
             }
         });
     }
     useEffect(()=>{
         setProjects();
-        setFetching(props.fetching);
+        setFetching(storeFetching);
     },[])
 
     const getAllTags =()=>{
         var tags = []; 
-        props.projects.map((project)=>{
+        projects.map((project)=>{
             for(var i in project.tags){
                 const tag = project.tags[i];
                 if(tags.indexOf(tag) === -1){
@@ -87,38 +81,38 @@ const Projects = (props)=> {
         return tags;
     }
 
-        var tags=[];
-        if(props.projects.length !== 0){
-            tags = getAllTags();
-            var projectsToRender = props.projects.map((project, i)=>{
-                if(props.filterTags.length === 0){
-                    return <Project key={"project"+i} 
-                    title={project.title}
-                    content= {project.content}
-                    image= {project.image}
-                    link={project.link}
-                    github={project.github}
-                    tags={project.tags}
-                    />;
-                }
+    var tags=[];
+    if(projects.length !== 0){
+        tags = getAllTags();
+        var projectsToRender = projects.map((project, i)=>{
+            if(filterTags.length === 0){
+                return <Project key={"project"+i} 
+                title={project.title}
+                content= {project.content}
+                image= {project.image}
+                link={project.link}
+                github={project.github}
+                tags={project.tags}
+                />;
+    }
 
-                var counter = 0;
-                project.tags.map((tag)=>{
-                    if(props.filterTags.indexOf(tag)!==-1){
-                        counter++;
-                    }
-                });
-                if(counter === props.filterTags.length){
-                    return <Project itemHeight={200} key={"project"+i} 
-                    title={project.title}
-                    content= {project.content}
-                    image= {project.image}
-                    link={project.link}
-                    github={project.github}
-                    tags={project.tags}
-                     />
-                }
-            });
+        var counter = 0;
+        project.tags.map((tag)=>{
+            if(filterTags.indexOf(tag)!==-1){
+                counter++;
+            }
+        });
+        if(counter === filterTags.length){
+            return <Project itemHeight={200} key={"project"+i} 
+            title={project.title}
+            content= {project.content}
+            image= {project.image}
+            link={project.link}
+            github={project.github}
+            tags={project.tags}
+        />
+        }
+    });
         }
         
     const renderDiv = fetching === true ? <CircularProgress className={classes.circularProgress} /> :  projectsToRender;
@@ -126,7 +120,7 @@ const Projects = (props)=> {
         <div className={classes.root} >
             <Typography className={classes.h1} variant="h2">My recent work<span>.</span></Typography>
             <div>
-            <ProjectSectionTags filterTags = {props.filterTags} filterProjects={props.filterProjects} tags = {tags} />
+            <ProjectSectionTags filterTags = {filterTags} filterProjects={tag => dispatch(projectActions.filterProjects(tag))} tags = {tags} />
             </div>
             <FlipMove className={classes.projects} duration={500} easing="ease-out">
             {renderDiv}
@@ -135,12 +129,5 @@ const Projects = (props)=> {
     );
 }
 
-Projects.propTypes={
-    className: PropTypes.string,
-    projects: PropTypes.array.isRequired,
-    addProjectsToStore: PropTypes.func.isRequired,
-    fetchProjects: PropTypes.func.isRequired
-}
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(Projects);
+export default Projects;

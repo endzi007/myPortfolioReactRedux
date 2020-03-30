@@ -51,7 +51,6 @@ const HomeText = (props)=>{
     const classes = styles();
     return(
         <div className={classes.root}>
-            
             <div className={classes.left}>
             <Typography variant="h6">Web</Typography>
                 <Typography variant="h1">Enis Ja</Typography>

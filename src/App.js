@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState} from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect, useSelector, useDispatch} from 'react-redux';
 import './App.scss';
@@ -17,9 +17,14 @@ import Contact from './components/contact/contact';
 import Projects from './components//project/projects'; 
 import HomeText from './components//home/homeText';
 import Donations from './components/donate/donate';
-import { useState } from 'react';
 
-let newTheme = themeCreator({primaryColor: "#48BCEC", backgroundDefault: "#181718", paletteType: "dark"});
+let storedTheme = "";
+try {
+  storedTheme = localStorage.getItem("theme");
+} catch (error) {
+  
+}
+let newTheme = themeCreator({primaryColor: "#48BCEC", backgroundDefault: "#181718", paletteType: storedTheme === ""? storedTheme : "dark"});
 
 const useStyles = makeStyles(theme => ({
   root:{
@@ -32,12 +37,8 @@ const useStyles = makeStyles(theme => ({
   },
   innerDiv: (props)=>({
     position: "absolute",
-    transformOrigin: "left",
+    //transformOrigin: "left",
     overflow: "auto",
-    "&::-webkit-scrollbar": {
-      display: "none"
-    },
-    "-ms-overflow-style": "none",
     boxShadow: "0 0 5px black",
     display: "flex",
     width: `calc(100% - ${theme.dimensions[props.layout].margins.left} - ${theme.dimensions[props.layout].margins.right})`,
@@ -45,19 +46,18 @@ const useStyles = makeStyles(theme => ({
     top: `${theme.dimensions[props.layout].margins.top}`,
     left: `${theme.dimensions[props.layout].margins.left}`,
     backgroundColor: theme.palette.background.default,
-    borderTopLeftRadius: "80px"
+
+    transform: "translate(0px, 0px)",
+    transformOrigin: "0% 50%"
   })
 }));
 
 
 const App = (props)=> {
-  const myRef= useRef(0);
   const [theme, setTheme] = useState(newTheme);
   const storeTheme = useSelector(store=> store.appConfig.currentTheme);
   useEffect(()=>{
-    
       setTheme(themeCreator({primaryColor: "#48BCEC", backgroundDefault: "#181718", paletteType: storeTheme}))
-    
   },[storeTheme]);
 
     return (
@@ -86,23 +86,12 @@ const Wrapper = (props)=>{
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("sm"));
   const myRef = useRef(null);
-  const pageTransition = useSelector(store=>store.appConfig.pageTransition);
-  const currentTheme = useSelector(store=>store.appConfig.currentTheme)
-  const dispatch = useDispatch()
-  useEffect(()=>{
-    if(!pageTransition){
-      pageTl.fromTo(myRef.current, {scaleX: 0}, {scaleX: 1, duration: 0.7, ease: Power3.easeOut});
-      pageTl.play();
-    }
-  }, [pageTransition]);
-
   let layout = "desktop"
   if(!matches){
     layout= "desktop"
   } else {
     layout="mobile";
   }
-
 
   const classes = useStyles({ layout });
     return <div className={classes.root}>

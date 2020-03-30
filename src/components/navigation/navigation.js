@@ -9,10 +9,12 @@ import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
 import CreditCardIcon from '@material-ui/icons/CreditCard';
 import FreeBreakfastIcon from '@material-ui/icons/FreeBreakfast';
+import { useEffect } from "react";
 
 const styles = makeStyles (theme =>{
     return {
     root: (props)=>({
+        paddingTop: "3vh",
         width: "50%",
         height: "100%",
         display: "flex",
@@ -21,8 +23,7 @@ const styles = makeStyles (theme =>{
         height: "100%",
         background: theme.palette.background.default,
         justifyContent: "space-between",
-        transition: "all 0.7s cubic-bezier(0,.84,0,1.0)",
-        transform: !props.showDrawer? `translateX(-${100}%)` : "translateX(0px)",
+        transition: "all 0.5s cubic-bezier(0,.84,0,1.0)",
         position: "fixed",
         zIndex: 2,
         bottom: 0
@@ -95,6 +96,7 @@ const itemsStyle = makeStyles(theme => ({
         }
     })
 }));
+
 export const NavItem = (props)=>{
     const { name, url } = props;
     const globalState = useSelector(state =>{
@@ -120,7 +122,7 @@ export const NavItem = (props)=>{
             dispatch(actions.showDrawerAndCards(false));
             history.push(path);
             dispatch(actions.startPageTransition(false));
-        }, globalState.transitionDuration);
+        }, globalState.transitionDuration*1000);
     }
     let styleProps = {
         showSpan: false
@@ -139,20 +141,31 @@ export const NavItem = (props)=>{
 }
 
 const Navigation = (props)=> {
-    const [ theme, setTheme ] = useState(true);
     const dispatch = useDispatch();
     const appInfos = useSelector((state)=>{
         return state.appInfoAndLinks;
     })
+    const currentTheme = useSelector((store)=>{
+        return store.appConfig.currentTheme;
+    });
+
+    console.log(currentTheme);
+    const [ theme, setTheme ] = useState(currentTheme === "dark"? true : false);
+
 
     const handleThemeSwitch = (e)=>{
         setTheme(e.target.checked);
         dispatch(actions.currentTheme(e.target.checked? "dark": "light"));
+        try {
+            localStorage.setItem("theme", e.target.checked? "dark": "light");
+        } catch (error) {
+            console.log(error);
+        }
     }
 
         const  classes  = styles({showDrawer: props.appConfig.showDrawerAndCards});
         return(
-            <div className={classes.root}>
+            <div className={classes.root} style={{transform: !props.appConfig.showDrawerAndCards? `translateX(-${100}%)` : "translateX(0px)",}}>
                 <div className={classes.info}>
                     <Typography variant="h6">Choose theme</Typography>
                     <div className={classes.switchTheme}>

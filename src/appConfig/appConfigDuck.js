@@ -14,16 +14,23 @@ export const creators = {
     showDrawerAndCards: (bool)=>({type: types.SHOW_DRAWER_AND_CARDS, payload: bool}),
     currentHover: (str) =>({type: types.CURRENT_HOVER, payload: str}),
     currentTheme: str =>({type: types.CURRENT_THEME, payload: str})
+}
 
+
+let theme = "";
+try{
+    theme = localStorage.getItem("theme");
+} catch(e){
+    console.log(e);
 }
 
 export let defaultState = {
     pageTransition: false, //when true start page fade out animation 
-    transitionDuration: 2000, //miliseconds,
+    transitionDuration: 3, //sec,
     fetching: false,
     showDrawerAndCards: false,
     currentHover: "/",
-    currentTheme: "dark"
+    currentTheme: theme!== ""? theme: "dark"
 }
 export default (state = defaultState, action )=>{
     let newState = {...state};
