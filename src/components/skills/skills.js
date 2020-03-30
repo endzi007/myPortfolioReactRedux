@@ -13,7 +13,13 @@ const styles = makeStyles(theme=>({
       gridTemplateColumns: "50% 50%",
       position: "relative",
       fontSize: "calc(1em + 1vmax)",
-      overflow: "auto"
+      overflow: "auto",
+      [theme.breakpoints.down("sm")]:{
+        gridTemplateColumns: "30% 70%"
+      },
+      [theme.breakpoints.up("lg")]:{
+        fontSize: "calc(1em + 2vmax)",
+      }
   },
   left: (props)=>({
       height: "100%",
@@ -58,12 +64,13 @@ const styles = makeStyles(theme=>({
       padding: "20px",
       alignContent: "strech",
       justifyItems: "center",
+      fontSize: "1em",
       "& span":{
         color: theme.palette.primary.main
       }, 
       "& h4":{
         marginBottom: "3vh",
-      }
+      },
   },
   paper:{
     backgroundColor: theme.palette.background.default,
@@ -85,7 +92,7 @@ const  Skills = (props)=> {
                       I'm passionate about building excellent <span>web, mobile</span> and <span>desktop</span> apps. 
                       I am also developer of <Link href="https://github.com/endzi007/desktopDownloader/releases" target="_blank">Dedex Video downloader software</Link> for Windows platform.
                       <br /> Currently I work in company DeCom from Montenegro. 
-                      <br />Below you you can see technologies I'm currently familiar with.
+                      <br />Below you you can see technologies I'm currently working with.
                     </Typography>
                   </div>
                   <div className={classes.paper}>

@@ -17,20 +17,21 @@ export const creators = {
 }
 
 
-let theme = "";
+let theme = null;
 try{
     theme = localStorage.getItem("theme");
 } catch(e){
-    console.log(e);
+    console.log(e, "err");
 }
 
+console.log(theme, "theme");
 export let defaultState = {
     pageTransition: false, //when true start page fade out animation 
     transitionDuration: 3, //sec,
     fetching: false,
     showDrawerAndCards: false,
     currentHover: "/",
-    currentTheme: theme!== ""? theme: "dark"
+    currentTheme: theme!== null? theme: "dark"
 }
 export default (state = defaultState, action )=>{
     let newState = {...state};

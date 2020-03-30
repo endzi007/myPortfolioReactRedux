@@ -5,7 +5,7 @@ const styles = makeStyles(theme => ({
     root: {
         width: "100%",
         position: "relative",
-        height: "20px",
+        height: "1.2rem",
         marginTop: "8px",
         overflow: "hidden"
     },
@@ -39,7 +39,11 @@ const styles = makeStyles(theme => ({
             color: theme.palette.background.default,
             fontSize: "0.65rem",
             fontWeight: "bold"
-            
+        },
+        [theme.breakpoints.down("sm")]:{
+            "& p":{
+                fontSize: "0.5rem"
+            }
         }
     },
 }));
