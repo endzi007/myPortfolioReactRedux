@@ -49,7 +49,10 @@ const styles = makeStyles(theme =>{
             display: props.layout==="desktop"? "flex": "none",
             flexDirection: "column",
             "& a":{
-                color: theme.palette.background.default
+                color: theme.palette.background.default,
+                "&:hover":{
+                    opacity: 0.6
+                }
             }
         }),
         logo: (props)=>({

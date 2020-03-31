@@ -1,7 +1,8 @@
 import React from "react";
 import { makeStyles, Typography, Link, Paper} from "@material-ui/core";
 import { fade } from '@material-ui/core/styles/colorManipulator'
-import image from '../../assets/donations.jpg'
+import image from '../../assets/donations.jpg';
+import imagePortrait from '../../assets/donationsPortrait.jpg';
 import { NavItem } from '../navigation/navigation'
 import { useSelector } from "react-redux";
 
@@ -14,8 +15,11 @@ const styles = makeStyles(theme=>({
       display: "grid",
       gridTemplateColumns: "50% 50%",
       position: "relative",
-      fontSize: "calc(1em + 1vmax)",
-      overflow: "auto"
+      fontSize: "calc(1em + 1vw)",
+      overflow: "auto",
+      [theme.breakpoints.down("sm")]:{
+        gridTemplateColumns: "30% 70%"
+      }
   },
   left: (props)=>({
       height: "100%",
@@ -37,7 +41,10 @@ const styles = makeStyles(theme=>({
         opacity: "0.8",
         top: 0,
         left: 0,
-        zIndex: 1
+        zIndex: 1,
+      [theme.breakpoints.down("sm")]:{
+        backgroundImage: `url(${imagePortrait})`
+      }
       },
       "&::after":{
         content: '""',
@@ -63,8 +70,11 @@ const styles = makeStyles(theme=>({
       "& span":{
         color: theme.palette.primary.main
       }, 
-      "& h4":{
+      "& h3":{
         marginBottom: "3vh",
+        [theme.breakpoints.down("sm")]:{
+          fontSize: "1.9rem"
+        }
       }
   },
   paper:{
@@ -92,6 +102,9 @@ const styles = makeStyles(theme=>({
               width: "100%",
               height: "auto"
           }
+      },
+      [theme.breakpoints.down("sm")]:{
+        width: "60%"
       }
   }
 }));
