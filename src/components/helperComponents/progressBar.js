@@ -7,7 +7,8 @@ const styles = makeStyles(theme => ({
         position: "relative",
         height: "1.2rem",
         marginTop: "8px",
-        overflow: "hidden"
+        overflow: "hidden",
+        wordWrap: "break-word"
     },
     background: {
         width: "100%",
@@ -25,7 +26,7 @@ const styles = makeStyles(theme => ({
         zIndex: "1",
         transformOrigin: "left",
         transition: `transform 500ms ease-in`,
-        borderRadius: "3px"
+        borderRadius: "3px",
     }),
     label: {
         position: "absolute",
@@ -35,14 +36,16 @@ const styles = makeStyles(theme => ({
         display: "block",
         minWidth: "150px",
         padding: "6px 3px 6px 6px",
+        wordWrap: "break-word",
         '& p': {
             color: theme.palette.background.default,
             fontSize: "0.65rem",
-            fontWeight: "bold"
+            fontWeight: "bold",
         },
         [theme.breakpoints.down("sm")]:{
             "& p":{
-                fontSize: "0.5rem"
+                fontSize: "0.5rem",
+                wordWrap: "break-word"
             }
         }
     },

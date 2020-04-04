@@ -7,7 +7,8 @@ import { Typography, makeStyles } from "@material-ui/core";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { fetchProjects, creators as projectActions } from '../../projectsDuck/projectsDuck';
 import { types as projectTypes } from '../../projectsDuck/projectsDuck';
-
+import Simplebar from 'simplebar';
+import 'simplebar/dist/simplebar.css';
 
 const styles = makeStyles(theme =>({
     h1: {
@@ -28,11 +29,7 @@ const styles = makeStyles(theme =>({
         flexDirection: "column",
         fontSize: "0.5rem",
         marginTop: "4vh",
-        overflow: "auto",
-        "&::-webkit-scrollbar": {
-            display: "none"
-          },
-        "-ms-overflow-style": "none",
+        //overflowY: "scroll",
     },
     projects: {
         display: "grid",
@@ -115,7 +112,7 @@ const Projects = (props)=> {
         
     const renderDiv = fetching === true ? <CircularProgress className={classes.circularProgress} /> :  projectsToRender;
     return(
-        <div className={classes.root} >
+        <div className={classes.root + " scrollbar-redesign"} >
             <Typography className={classes.h1} variant="h2">My recent work<span>.</span></Typography>
             <div>
             <ProjectSectionTags filterTags = {filterTags} filterProjects={tag => dispatch(projectActions.filterProjects(tag))} tags = {tags} />

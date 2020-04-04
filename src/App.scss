@@ -9,6 +9,7 @@
   --marginBottom: 50px;
   --marginLeft: 70px;
   --marginRight: 70px;
+  --scrollBarColor: gray;
 }
 @mixin for-phone-only {
   @media (max-width: 599px) { @content; }
@@ -197,4 +198,20 @@ html{
 .pulse {
   animation: flash 1s infinite;
   animation-delay: 1.5s;
+}
+
+.scrollbar-redesign{
+  scrollbar-color: var(--scrollBarColor) transparent;
+  scrollbar-width: thin;
+  border-radius: 5px;
+}
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--scrollBarColor);
+  border-radius: 5px;
 }

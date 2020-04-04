@@ -16,7 +16,7 @@ const styles = makeStyles(theme=>({
       gridTemplateColumns: "50% 50%",
       position: "relative",
       fontSize: "calc(1em + 1vw)",
-      overflow: "auto",
+      //overflow: "auto",
       [theme.breakpoints.down("sm")]:{
         gridTemplateColumns: "30% 70%"
       }

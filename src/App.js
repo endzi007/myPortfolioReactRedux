@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState} from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
-import { connect, useSelector, useDispatch} from 'react-redux';
+import { useSelector} from 'react-redux';
 import './App.scss';
 import { ThemeProvider, makeStyles, useMediaQuery, responsiveFontSizes, useTheme } from '@material-ui/core';
 import themeCreator from './components/helperComponents/theme';
@@ -9,7 +9,6 @@ import Navigation from './components/navigation/navigation';
 import TransitionOverlay from './transitionOverlay.js';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { TimelineMax, Power3 } from 'gsap';
-import { creators as appConfigActions } from './appConfig/appConfigDuck';
 
 /*-----pages------*/
 import Skills from './components/skills/skills';
@@ -46,9 +45,8 @@ const useStyles = makeStyles(theme => ({
     top: `${theme.dimensions[props.layout].margins.top}`,
     left: `${theme.dimensions[props.layout].margins.left}`,
     backgroundColor: theme.palette.background.default,
-
     transform: "translate(0px, 0px)",
-    transformOrigin: "0% 50%"
+    transformOrigin: "0% 50%",
   })
 }));
 
