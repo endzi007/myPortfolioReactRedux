@@ -7,8 +7,6 @@ import { Typography, makeStyles } from "@material-ui/core";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { fetchProjects, creators as projectActions } from '../../projectsDuck/projectsDuck';
 import { types as projectTypes } from '../../projectsDuck/projectsDuck';
-import Simplebar from 'simplebar';
-import 'simplebar/dist/simplebar.css';
 
 const styles = makeStyles(theme =>({
     h1: {
